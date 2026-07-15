@@ -1,0 +1,8 @@
+{
+  "name": "EduPlay Pula",
+  "description": "Premium children's playroom and educational center in Pula, Croatia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

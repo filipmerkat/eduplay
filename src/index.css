@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", Inter, Calibri, ui-sans-serif, system-ui, sans-serif;
+  
+  --color-nordic-bg: var(--theme-bg);
+  --color-nordic-text: var(--theme-text);
+  --color-nordic-heading: var(--theme-heading);
+  --color-nordic-accent: var(--theme-accent);
+  --color-nordic-accent-hover: var(--theme-accent-hover);
+  --color-nordic-card: var(--theme-card);
+  --color-nordic-border: var(--theme-border);
+  --color-nordic-inverse-bg: var(--theme-inverse-bg);
+  --color-nordic-inverse-text: var(--theme-inverse-text);
+  
+  /* Brand specific palette variables */
+  --color-edu-cream: #F5F1EA;
+  --color-edu-blue: #B7CDDA;
+  --color-edu-terracotta: #CAA998;
+  --color-edu-beige: #DDD6CC;
+  --color-edu-gold: #CBB78E;
+  --color-edu-sage: #B2BFB8;
+  --color-edu-lavender: #BBB4C6;
+  --color-edu-lilac: #DBC1D3;
+  --color-edu-charcoal: #5F6662;
+}
+
+:root {
+  --theme-bg: #F5F1EA;
+  --theme-text: #5F6662;
+  --theme-heading: #5F6662;
+  --theme-accent: #CBB78E;
+  --theme-accent-hover: #CAA998;
+  --theme-card: #FFFFFF;
+  --theme-border: rgba(95, 102, 98, 0.12);
+  --theme-inverse-bg: #5F6662;
+  --theme-inverse-text: #F5F1EA;
+}
+
+.dark {
+  --theme-bg: #1A1D1B;
+  --theme-text: #DDD6CC;
+  --theme-heading: #F5F1EA;
+  --theme-accent: #CBB78E;
+  --theme-accent-hover: #DDD6CC;
+  --theme-card: #252A27;
+  --theme-border: rgba(245, 241, 234, 0.08);
+  --theme-inverse-bg: #F5F1EA;
+  --theme-inverse-text: #1A1D1B;
+}
+
+body {
+  background-color: var(--color-nordic-bg);
+  color: var(--color-nordic-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom scrollbar to keep it sleek and premium */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--theme-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--theme-accent);
+  border-radius: 99px;
+  border: 2px solid var(--theme-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-accent-hover);
+}
