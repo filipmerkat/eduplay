@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Puzzle, Coffee, HeartHandshake, ArrowRight, Instagram, Facebook, Mail, MapPin, Phone, Quote, ChevronLeft, ChevronRight, Moon, Sun, Calculator, Check, Sparkles, HelpCircle, Gift, BookOpen, Clock } from 'lucide-react';
 
@@ -41,6 +41,46 @@ const faqs = [
   {
     question: "Kako integrirate Montessori pedagogiju?",
     answer: "Montessori pristup integriramo kroz slobodan pristup igračkama koje su raspoređene na dječjoj visini, poticanje samostalnosti u odlučivanju o tijeku igre, te kroz materijale koji imaju 'kontrolu pogreške' – dijete samo uočava i ispravlja nesavršenosti bez stalnog uplitanja odraslih."
+  },
+  {
+    question: "Je li vaš prostor siguran za bebe koje tek uče puzati i hodati (za proslavu 1. rođendana)?",
+    answer: "Apsolutno! Proslave 1. i 2. rođendana su naša posebna specijalnost u Puli. Naša Soft Play zona obložena je mekanim strunjačama i nema oštrih rubova. Budući da je cijeli prostor zatvoren isključivo za vašu proslavu, nema straha da će veća djeca slučajno srušiti ili prestrašiti vaše najmlađe slavljenike i njihove goste."
+  },
+  {
+    question: "Mogu li kao roditelj ponijeti laptop i raditi dok se dijete igra?",
+    answer: "Naravno! EduPlay je zamišljen kao oaza za cijelu obitelj. Naš udobni roditeljski lounge nudi brzi Wi-Fi, utičnice i vrhunsku premium kavu. Možete u potpunom miru odraditi sastanak, odgovoriti na mailove ili jednostavno predahnuti, dok kroz otvoreni prostor cijelo vrijeme imate dijete na oku."
+  },
+  {
+    question: "Puštate li djeci crtiće, videoigre i glasnu glazbu tijekom rođendana?",
+    answer: "Ne, EduPlay je ponosna \"zona bez ekrana\". Vjerujemo u pametnu, senzornu igru koja razvija dječji mozak. Umjesto gledanja u ekran, naši edukatori vode djecu kroz maštovitu igru uloga (Mini Play City), motoričke poligone i kreativne radionice, uz tihu, umirujuću pozadinsku glazbu."
+  },
+  {
+    question: "Moje dijete uvijek plače i ima \"tantrume\" kada treba ići kući s rođendana. Kako to rješavate?",
+    answer: "Znamo taj osjećaj! Klasične igraonice često prestimuliraju djecu (tzv. \"dopaminski dump\"). Zato naš rođendan završava u posebnom Snoezelen senzornom šatoru. Tamo se djeca prije polaska kući opuštaju uz prigušena svjetla i umirujuće elemente, što osigurava miran povratak kući, bez suza i stresa."
+  },
+  {
+    question: "Trebamo li mi donositi dekoracije, balone i tematske ukrase za stol?",
+    answer: "Nema potrebe za dodatnim stresom, mi smo tu da vas rasteretimo! Naš prostor sam po sebi odiše predivnim, smirujućim nordijskim dizajnom (boje drveta i pastelnih tonova). U našim premium paketima uključena je predivna postava stola koja se savršeno uklapa u našu estetiku, a na vama je samo da ponesete dobro raspoloženje."
+  },
+  {
+    question: "Kako funkcionira hrana i tko donosi tortu?",
+    answer: "U sklopu naših paketa osiguravamo grickalice, prirodne sokove i vodu za male goste. Tortu donosite vi (kako biste imali slobodu odabira omiljene slastičarnice i točnog okusa). Za roditelje gostiju koji ostaju s vama, naš kafić je otvoren te poslužujemo vrhunsku kavu i napitke."
+  },
+  {
+    question: "Koja su pravila ponašanja i higijene pri ulasku u EduPlay?",
+    answer: "Čistoća nam je apsolutni prioritet, posebno zbog beba i puzalica. Pravilo za sve (i djecu i odrasle!) je da u prostor za igru i lounge ulaze isključivo u čistim čarapicama ili kućnim papučama."
+  },
+  {
+    question: "Moraju li roditelji gostiju ostati s djecom tijekom rođendana?",
+    answer: "To ovisi o dobi djece. Za jaslički uzrast (1 do 3 godine) preporučujemo da roditelji ostanu prisutni kako bi se djeca osjećala sigurno. Za stariju djecu roditelji ih mogu ostaviti pod nadzorom naših stručnih edukatora. U oba slučaja, svi roditelji koji žele ostati više su nego dobrodošli uživati u našem loungeu!"
+  },
+  {
+    question: "Koliko unaprijed moramo rezervirati termin za rođendan?",
+    answer: "Budući da su EduPlay rođendani 100% zatvorenog i privatnog tipa, naš kapacitet termina mjesečno je strogo ograničen. Kako biste osigurali željeni datum i vrijeme (posebno za vikende), preporučujemo da nas kontaktirate barem 4 do 6 tjedana unaprijed."
+  },
+  {
+    question: "Mogu li starija djeca (npr. 6-7 godina) također slaviti rođendan kod vas? Nude li se posebne teme?",
+    answer: "Da! Iako smo najpoznatiji kao najsigurnija oaza za mlađu djecu, naši tematski paketi sjajno su prilagođeni i za predškolce. Za stariju djecu naši animatori organiziraju vođene tematske avanture poput \"Malih istraživača\" ili \"Šumskog kampa\" s kreativnim edukativnim radionicama."
   }
 ];
 
@@ -87,11 +127,26 @@ function BrandLogo({ isDarkMode }: { isDarkMode: boolean }) {
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroSlide((prev) => (prev === 0 ? 1 : 0));
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeToyTab, setActiveToyTab] = useState('puzzles');
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(0);
   
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   const philosophyScrollRef = useRef<HTMLDivElement>(null);
   const servicesScrollRef = useRef<HTMLDivElement>(null);
 
@@ -165,6 +220,10 @@ export default function App() {
       
       {/* Sticky Header with Brand Logo and theme toggler */}
       <header className="sticky top-0 z-50 bg-nordic-bg/90 backdrop-blur-md border-b border-nordic-border transition-colors duration-300">
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-1 bg-nordic-accent origin-left z-50"
+          style={{ scaleX }}
+        />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Branded interactive Logo */}
@@ -174,13 +233,12 @@ export default function App() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex space-x-8 items-center">
-              <a href="#philosophy" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Filozofija</a>
               <a href="#toy-guide" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Razvojne Igračke</a>
               <a href="#services" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Usluge</a>
-              <a href="#calculator" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Kalkulator</a>
               <a href="#about" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">O nama</a>
-              <a href="#blog" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Savjeti</a>
               <a href="#contact" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Kontakt</a>
+              <a href="/kucni-red.html" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Kućni red</a>
+              <a href="/cesta-pitanja.html" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Česta pitanja</a>
             </nav>
 
             {/* Control actions */}
@@ -192,12 +250,12 @@ export default function App() {
               >
                 {isDarkMode ? <Sun size={18} className="text-orange-300" /> : <Moon size={18} className="text-edu-charcoal" />}
               </button>
-              <button 
-                onClick={() => setIsModalOpen(true)}
+              <a 
+                href="/rodjendani.html"
                 className="bg-edu-gold hover:bg-edu-gold/90 text-edu-cream px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm hover:shadow-md active:scale-95 cursor-pointer hover:-translate-y-0.5"
               >
-                Rezerviraj Termin
-              </button>
+                Tematski Rođendani
+              </a>
             </div>
 
             {/* Mobile Actions */}
@@ -229,22 +287,19 @@ export default function App() {
               className="lg:hidden bg-nordic-bg border-b border-nordic-border absolute w-full overflow-hidden"
             >
               <div className="px-4 pt-2 pb-6 space-y-2 flex flex-col">
-                <a href="#philosophy" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Filozofija</a>
                 <a href="#toy-guide" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Igračke</a>
                 <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Usluge</a>
-                <a href="#calculator" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Kalkulator</a>
                 <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">O nama</a>
-                <a href="#blog" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Blog</a>
                 <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Kontakt</a>
-                <button 
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    setIsModalOpen(true);
-                  }}
-                  className="mt-4 w-full bg-edu-gold text-edu-cream px-5 py-3 rounded-full text-base font-medium text-center cursor-pointer"
+                <a href="/kucni-red.html" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Kućni red</a>
+                <a href="/cesta-pitanja.html" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Česta pitanja</a>
+                <a 
+                  href="/rodjendani.html"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="mt-4 block w-full bg-edu-gold text-edu-cream px-5 py-3 rounded-full text-base font-medium text-center cursor-pointer"
                 >
-                  Rezerviraj Termin
-                </button>
+                  Tematski Rođendani
+                </a>
               </div>
             </motion.div>
           )}
@@ -252,89 +307,171 @@ export default function App() {
       </header>
 
       <main className="flex-grow">
-        
-        {/* HERO SECTION - Artistic & Immersive Showcase */}
-        <section className="relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden bg-gradient-to-b from-transparent to-nordic-card/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              
-              {/* Pitch */}
-              <div className="lg:col-span-6 text-left">
-                <div className="inline-flex items-center space-x-2 bg-edu-sage/10 dark:bg-edu-sage/5 border border-edu-sage/30 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-edu-sage mb-6">
-                  <Sparkles size={14} className="animate-pulse" />
-                  <span>PREMIUM DJEČJI CENTAR • PULA</span>
-                </div>
-                
-                <motion.h1 
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-nordic-heading leading-none mb-6"
-                >
-                  Zaokružen razvoj <br />
-                  <span className="font-light italic text-edu-gold">kroz slobodnu igru.</span>
-                </motion.h1>
-                
-                <motion.p 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.15 }}
-                  className="text-lg md:text-xl text-nordic-text font-light leading-relaxed mb-8 max-w-lg"
-                >
-                  Prva istinska oaza zabave i učenja u Puli. Posebno osmišljen prostor koji omogućava razvoj kroz simboličku, konstruktivnu, senzornu i kreativnu igru.
-                </motion.p>
-                
+
+        {/* HERO SLIDER SECTION */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-transparent to-nordic-card/30 min-h-[600px] flex items-center pt-12 pb-20 md:pt-24 md:pb-32">
+          
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <AnimatePresence mode="wait">
+              {currentHeroSlide === 0 ? (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="flex flex-col sm:flex-row gap-4 h-auto"
+                  key="slide0-bg"
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
+                  className="absolute inset-0 bg-edu-terracotta/5"
+                />
+              ) : (
+                <motion.div
+                  key="slide1-bg"
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }}
+                  className="absolute inset-0 bg-transparent"
+                />
+              )}
+            </AnimatePresence>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <AnimatePresence mode="wait">
+              {currentHeroSlide === 0 ? (
+                <motion.div 
+                  key="slide0"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.5 }}
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
                 >
-                  <button 
-                    onClick={() => setIsModalOpen(true)}
-                    className="bg-edu-sage hover:bg-edu-sage/90 text-edu-charcoal font-semibold px-8 py-4 rounded-full text-base transition-all shadow-md hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer text-center"
-                  >
-                    Rezerviraj Posjet
-                  </button>
-                  <a 
-                    href="#toy-guide" 
-                    className="inline-flex items-center justify-center border-2 border-nordic-border hover:border-edu-gold px-8 py-4 rounded-full text-base font-semibold text-nordic-heading transition-colors bg-nordic-card/60"
-                  >
-                    Istraži igračke
-                  </a>
-                </motion.div>
-              </div>
-
-              {/* Asymmetrical Collage Representing Playful Imperfection */}
-              <div className="lg:col-span-6 relative mt-10 lg:mt-0">
-                <div className="relative w-full max-w-md mx-auto aspect-square">
-                  
-                  {/* Outer glowing background color blob */}
-                  <div className="absolute top-10 left-10 w-72 h-72 bg-edu-blue/20 rounded-full filter blur-3xl animate-pulse"></div>
-                  <div className="absolute bottom-10 right-10 w-64 h-64 bg-edu-lilac/25 rounded-full filter blur-3xl"></div>
-
-                  {/* Main Image in Asymmetrical Rounded frame */}
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="absolute inset-0 z-10 overflow-hidden border-4 border-nordic-card shadow-2xl rounded-tl-[10rem] rounded-br-[10rem] rounded-tr-[4rem] rounded-bl-[4rem]"
-                  >
-                    <img 
-                      src="/igraonica.jfif" 
-                      alt="Drvene dječje kućice za igru" 
-                      className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-700"
-                    />
-                  </motion.div>
-
-                  {/* Floating interactive puzzle label */}
-                  <div className="absolute -top-6 -left-6 z-20 bg-edu-cream text-edu-charcoal border border-nordic-border px-5 py-4 rounded-3xl shadow-xl flex items-center space-x-2 max-w-[180px] hover:rotate-3 transition-transform cursor-pointer">
-                    <Puzzle size={24} className="text-edu-terracotta shrink-0" />
-                    <span className="text-xs font-bold leading-tight">Znanje + Zabava = EduPlay</span>
+                  {/* Pitch Slide 0 - Rođendani */}
+                  <div className="lg:col-span-6 text-center lg:text-left">
+                    <div className="inline-flex items-center space-x-2 bg-edu-terracotta/10 border border-edu-terracotta/30 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-edu-terracotta mb-6">
+                      <Sparkles size={14} className="animate-pulse" />
+                      <span>NOVO • EDUPLAY ROĐENDANI</span>
+                    </div>
+                    
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-nordic-heading leading-none mb-6">
+                      EduPlay <br className="hidden sm:block" />
+                      <span className="font-light italic text-edu-terracotta">Rođendani</span>
+                    </h1>
+                    
+                    <p className="text-lg md:text-xl text-nordic-text font-light leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+                      Proslava stvorena za dječju maštu. Odmor stvoren za vas. Rezervirajte 100% privatan prostor za slavlja!
+                    </p>
+                    
+                    <div className="flex flex-col sm:flex-row justify-center lg:justify-start flex-wrap gap-4 h-auto">
+                      <a 
+                        href="/rodjendani.html" 
+                        className="bg-white border-2 border-edu-terracotta hover:bg-edu-terracotta/10 text-edu-terracotta font-semibold px-8 py-4 rounded-full text-base transition-all shadow-sm hover:shadow-md hover:scale-105 active:scale-95 cursor-pointer text-center"
+                      >
+                        Saznaj Više
+                      </a>
+                      <button 
+                        onClick={() => {
+                          if ((window as any).Calendly) {
+                            (window as any).Calendly.initPopupWidget({ url: 'https://calendly.com/filip-merkat' });
+                          }
+                        }}
+                        className="bg-edu-terracotta hover:bg-edu-terracotta/90 text-white font-semibold px-8 py-4 rounded-full text-base transition-all shadow-md hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer text-center border-2 border-edu-terracotta"
+                      >
+                        Provjeri dostupnost
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </div>
+                  {/* Image Slide 0 */}
+                  <div className="lg:col-span-6 relative mt-10 lg:mt-0">
+                    <div className="relative w-full max-w-md mx-auto aspect-square">
+                      <div className="absolute top-10 left-10 w-72 h-72 bg-edu-terracotta/20 rounded-full filter blur-3xl animate-pulse"></div>
+                      <div className="absolute bottom-10 right-10 w-64 h-64 bg-edu-gold/25 rounded-full filter blur-3xl"></div>
+                      <div className="absolute inset-0 z-10 overflow-hidden border-4 border-nordic-card shadow-2xl rounded-tl-[10rem] rounded-br-[10rem] rounded-tr-[4rem] rounded-bl-[4rem]">
+                        <img 
+                          src="/SOFTPLAY1.jpeg" 
+                          alt="EduPlay rođendani" 
+                          className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-700"
+                        />
+                      </div>
+                      <div className="absolute -top-6 -left-6 z-20 bg-edu-cream text-edu-charcoal border border-nordic-border px-5 py-4 rounded-3xl shadow-xl flex items-center space-x-2 max-w-[180px] hover:rotate-3 transition-transform cursor-pointer">
+                        <Gift size={24} className="text-edu-terracotta shrink-0" />
+                        <span className="text-xs font-bold leading-tight">100% Privatno slavlje</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div 
+                  key="slide1"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.5 }}
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+                >
+                  {/* Pitch Slide 1 - Zaokružen razvoj */}
+                  <div className="lg:col-span-6 text-center lg:text-left">
+                    <div className="inline-flex items-center space-x-2 bg-edu-sage/10 dark:bg-edu-sage/5 border border-edu-sage/30 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-edu-sage mb-6">
+                      <Sparkles size={14} className="animate-pulse" />
+                      <span>PREMIUM DJEČJI CENTAR • PULA</span>
+                    </div>
+                    
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-nordic-heading leading-none mb-6">
+                      Zaokružen razvoj <br className="hidden sm:block" />
+                      <span className="font-light italic text-edu-gold">kroz slobodnu igru.</span>
+                    </h1>
+                    
+                    <p className="text-lg md:text-xl text-nordic-text font-light leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+                      Prva istinska oaza zabave i učenja u Puli. Posebno osmišljen prostor koji omogućava razvoj kroz simboličku, konstruktivnu, senzornu i kreativnu igru.
+                    </p>
+                    
+                    <div className="flex flex-col sm:flex-row justify-center lg:justify-start flex-wrap gap-4 h-auto">
+                      <a 
+                        href="#services" 
+                        className="bg-edu-sage hover:bg-edu-sage/90 text-edu-charcoal font-semibold px-8 py-4 rounded-full text-base transition-all shadow-md hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer text-center"
+                      >
+                        Istraži Usluge
+                      </a>
+                      <button 
+                        onClick={() => {
+                          if ((window as any).Calendly) {
+                            (window as any).Calendly.initPopupWidget({ url: 'https://calendly.com/filip-merkat' });
+                          }
+                        }}
+                        className="bg-edu-gold hover:bg-edu-gold/90 text-white font-semibold px-8 py-4 rounded-full text-base transition-all shadow-md hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer text-center"
+                      >
+                        Rezerviraj Rođendan
+                      </button>
+                    </div>
+                  </div>
+                  {/* Image Slide 1 */}
+                  <div className="lg:col-span-6 relative mt-10 lg:mt-0">
+                    <div className="relative w-full max-w-md mx-auto aspect-square">
+                      <div className="absolute top-10 left-10 w-72 h-72 bg-edu-blue/20 rounded-full filter blur-3xl animate-pulse"></div>
+                      <div className="absolute bottom-10 right-10 w-64 h-64 bg-edu-lilac/25 rounded-full filter blur-3xl"></div>
+                      <div className="absolute inset-0 z-10 overflow-hidden border-4 border-nordic-card shadow-2xl rounded-tl-[10rem] rounded-br-[10rem] rounded-tr-[4rem] rounded-bl-[4rem]">
+                        <img 
+                          src="/EDUBABY.jpg" 
+                          alt="Drvene dječje kućice za igru" 
+                          className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-700"
+                        />
+                      </div>
+                      <div className="absolute -top-6 -left-6 z-20 bg-edu-cream text-edu-charcoal border border-nordic-border px-5 py-4 rounded-3xl shadow-xl flex items-center space-x-2 max-w-[180px] hover:rotate-3 transition-transform cursor-pointer">
+                        <Puzzle size={24} className="text-edu-terracotta shrink-0" />
+                        <span className="text-xs font-bold leading-tight">Znanje + Zabava = EduPlay</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
+            {/* Slider Dots */}
+            <div className="flex justify-center mt-12 space-x-3">
+              <button 
+                onClick={() => setCurrentHeroSlide(0)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${currentHeroSlide === 0 ? 'bg-edu-terracotta scale-125 w-6' : 'bg-nordic-border hover:bg-nordic-border/80'}`}
+                aria-label="Rođendani"
+              ></button>
+              <button 
+                onClick={() => setCurrentHeroSlide(1)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${currentHeroSlide === 1 ? 'bg-edu-gold scale-125 w-6' : 'bg-nordic-border hover:bg-nordic-border/80'}`}
+                aria-label="Razvoj kroz igru"
+              ></button>
             </div>
           </div>
         </section>
@@ -362,91 +499,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION: BRAND MANIFESTO & PHILOSOPHY (Vrhunska estetika i objašnjenje) */}
-        <section id="philosophy" className="py-24 bg-nordic-card relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="text-edu-gold font-bold text-sm uppercase tracking-widest block mb-3">Naša Filozofija</span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-nordic-heading">
-                Učenje i Razvoj Kroz Igru
-              </h2>
-            </div>
-
-          <div className="relative">
-            <div 
-              ref={philosophyScrollRef}
-              className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto pb-4 md:pb-0 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-            >
-              {/* Concept 1: Puzzle & Montessori */}
-              <div className="bg-edu-blue text-edu-cream w-full min-w-full md:w-auto md:min-w-0 snap-center shrink-0 p-8 rounded-[2.5rem] border border-transparent hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                <div>
-                  <div className="w-12 h-12 rounded-2xl bg-white/10 text-edu-cream flex items-center justify-center mb-8">
-                    <Puzzle size={24} strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Znanje i igra spojeni</h3>
-                  <p className="text-edu-cream/80 text-sm font-light leading-relaxed">
-                    Puzzle kao simbol igračke povezuje spoznajni razvoj i čistu radost. Djeca istražuju bez nametnutih pravila i bez digitalnih ekrana.
-                  </p>
-                </div>
-                <div className="pt-6 border-t border-white/20 mt-8 text-xs font-semibold uppercase tracking-wider text-edu-cream/90">
-                  Montessori načela
-                </div>
-              </div>
-
-              {/* Concept 2: Safe Parent Coffee Lounge */}
-              <div className="bg-edu-sage text-edu-charcoal dark:text-edu-charcoal w-full min-w-full md:w-auto md:min-w-0 snap-center shrink-0 p-8 rounded-[2.5rem] border border-transparent hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                <div>
-                  <div className="w-12 h-12 rounded-2xl bg-edu-charcoal/10 text-edu-charcoal flex items-center justify-center mb-8">
-                    <Coffee size={24} strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Potpuna mirnoća za roditelje</h3>
-                  <p className="text-edu-charcoal/80 text-sm font-light leading-relaxed">
-                    Dok se mi brinemo o vašim mališanima, opustite se u našem prostoru ili na terasi. Radite, čitajte ili jednostavno uživajte u toplom napitku. Ako želite, možete se i pridružiti igri sa svojim djetetom. 
-                  </p>
-                </div>
-                <div className="pt-6 border-t border-edu-charcoal/20 mt-8 text-xs font-bold uppercase tracking-wider text-edu-charcoal/90">
-                  Utočište bez grižnje savjesti
-                </div>
-              </div>
-
-              {/* Concept 3: Sensory integration */}
-              <div className="bg-edu-terracotta text-edu-cream w-full min-w-full md:w-auto md:min-w-0 snap-center shrink-0 p-8 rounded-[2.5rem] border border-transparent hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                <div>
-                  <div className="w-12 h-12 rounded-2xl bg-white/10 text-edu-cream flex items-center justify-center mb-8">
-                    <HeartHandshake size={24} strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Podrška dječjem integritetu</h3>
-                  <p className="text-edu-cream/80 text-sm font-light leading-relaxed">
-                    Njegujemo i cijenimo nesavršenosti i slobodu dječje riječi i pokreta. Naš rad počiva na načelima individualizacije te na nadogradnji već
-usvojenih vještina kroz igru koja privlači dijete.
-                  </p>
-                </div>
-                <div className="pt-6 border-t border-white/20 mt-8 text-xs font-semibold uppercase tracking-wider text-edu-cream/90">
-                  Stručni odgajatelji Pula
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Navigation Arrows */}
-            <div className="flex justify-center items-center space-x-4 mt-8 md:hidden">
-              <button 
-                onClick={() => scrollPhilosophy('left')}
-                className="w-12 h-12 rounded-full border border-nordic-border flex items-center justify-center text-nordic-text hover:bg-nordic-border hover:text-nordic-heading transition-colors"
-                aria-label="Previous"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button 
-                onClick={() => scrollPhilosophy('right')}
-                className="w-12 h-12 rounded-full border border-nordic-border flex items-center justify-center text-nordic-text hover:bg-nordic-border hover:text-nordic-heading transition-colors"
-                aria-label="Next"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
-          </div>
-          </div>
-        </section>
 
         {/* INTERACTIVE SECTION: DEVELOPMENT TOYS AND MILESTONES (Zabavno, edukativno, vizualni identitet) */}
         <section id="toy-guide" className="py-24 bg-edu-sage relative overflow-hidden">
@@ -558,8 +610,11 @@ usvojenih vještina kroz igru koja privlači dijete.
                   <div className="pt-6 border-t border-white/20 mt-4">
                     <div className="text-2xs uppercase tracking-wide text-edu-cream/80 mb-1">Početna cijena</div>
                     <div className="text-2xl font-black mb-6">€140 / 5 djece</div>
-                    <a href="#calculator" className="block text-center bg-white text-edu-terracotta hover:bg-edu-cream font-bold py-3.5 px-6 rounded-full text-sm transition-all shadow-md">
+                    <a href="#calculator" className="block text-center bg-white text-edu-terracotta hover:bg-edu-cream font-bold py-3.5 px-6 rounded-full text-sm transition-all shadow-md mb-3">
                       Izračunaj / Rezerviraj
+                    </a>
+                    <a href="/rodjendani.html" className="block text-center border-2 border-white text-white hover:bg-white hover:text-edu-terracotta font-bold py-3.5 px-6 rounded-full text-sm transition-all shadow-md">
+                      Saznaj više
                     </a>
                   </div>
                 </div>
@@ -831,7 +886,7 @@ usvojenih vještina kroz igru koja privlači dijete.
                 </div>
                 {/* Visual badge */}
                 <div className="absolute -bottom-6 -right-6 lg:-bottom-10 lg:-right-10 w-32 h-32 bg-nordic-bg rounded-full flex items-center justify-center p-4 shadow-xl border border-nordic-border hidden md:flex rotate-6">
-                  <p className="text-center text-xs font-bold text-edu-gold leading-tight">Zagrebačka 12<br/>Pula</p>
+                  <p className="text-center text-xs font-bold text-edu-gold leading-tight">Grožnjanska 17<br/>Pula</p>
                 </div>
               </div>
               
@@ -865,6 +920,91 @@ usvojenih vještina kroz igru koja privlači dijete.
               </div>
 
             </div>
+          </div>
+        </section>
+        {/* SECTION: BRAND MANIFESTO & PHILOSOPHY (Vrhunska estetika i objašnjenje) */}
+        <section id="philosophy" className="py-24 bg-white dark:bg-nordic-card relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <span className="text-edu-gold font-bold text-sm uppercase tracking-widest block mb-3">Naša Filozofija</span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-nordic-heading">
+                Učenje i Razvoj Kroz Igru
+              </h2>
+            </div>
+
+          <div className="relative">
+            <div 
+              ref={philosophyScrollRef}
+              className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto pb-4 md:pb-0 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            >
+              {/* Concept 1: Puzzle & Montessori */}
+              <div className="bg-edu-blue text-edu-cream w-full min-w-full md:w-auto md:min-w-0 snap-center shrink-0 p-8 rounded-[2.5rem] border border-transparent hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 text-edu-cream flex items-center justify-center mb-8">
+                    <Puzzle size={24} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">Znanje i igra spojeni</h3>
+                  <p className="text-edu-cream/80 text-sm font-light leading-relaxed">
+                    Puzzle kao simbol igračke povezuje spoznajni razvoj i čistu radost. Djeca istražuju bez nametnutih pravila i bez digitalnih ekrana.
+                  </p>
+                </div>
+                <div className="pt-6 border-t border-white/20 mt-8 text-xs font-semibold uppercase tracking-wider text-edu-cream/90">
+                  Montessori načela
+                </div>
+              </div>
+
+              {/* Concept 2: Safe Parent Coffee Lounge */}
+              <div className="bg-edu-sage text-edu-charcoal dark:text-edu-charcoal w-full min-w-full md:w-auto md:min-w-0 snap-center shrink-0 p-8 rounded-[2.5rem] border border-transparent hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-edu-charcoal/10 text-edu-charcoal flex items-center justify-center mb-8">
+                    <Coffee size={24} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">Potpuna mirnoća za roditelje</h3>
+                  <p className="text-edu-charcoal/80 text-sm font-light leading-relaxed">
+                    Dok se mi brinemo o vašim mališanima, opustite se u našem prostoru ili na terasi. Radite, čitajte ili jednostavno uživajte u toplom napitku. Ako želite, možete se i pridružiti igri sa svojim djetetom. 
+                  </p>
+                </div>
+                <div className="pt-6 border-t border-edu-charcoal/20 mt-8 text-xs font-bold uppercase tracking-wider text-edu-charcoal/90">
+                  Utočište bez grižnje savjesti
+                </div>
+              </div>
+
+              {/* Concept 3: Sensory integration */}
+              <div className="bg-edu-terracotta text-edu-cream w-full min-w-full md:w-auto md:min-w-0 snap-center shrink-0 p-8 rounded-[2.5rem] border border-transparent hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 text-edu-cream flex items-center justify-center mb-8">
+                    <HeartHandshake size={24} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">Podrška dječjem integritetu</h3>
+                  <p className="text-edu-cream/80 text-sm font-light leading-relaxed">
+                    Njegujemo i cijenimo nesavršenosti i slobodu dječje riječi i pokreta. Naš rad počiva na načelima individualizacije te na nadogradnji već
+usvojenih vještina kroz igru koja privlači dijete.
+                  </p>
+                </div>
+                <div className="pt-6 border-t border-white/20 mt-8 text-xs font-semibold uppercase tracking-wider text-edu-cream/90">
+                  Stručni odgajatelji Pula
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Navigation Arrows */}
+            <div className="flex justify-center items-center space-x-4 mt-8 md:hidden">
+              <button 
+                onClick={() => scrollPhilosophy('left')}
+                className="w-12 h-12 rounded-full border border-nordic-border flex items-center justify-center text-nordic-text hover:bg-nordic-border hover:text-nordic-heading transition-colors"
+                aria-label="Previous"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button 
+                onClick={() => scrollPhilosophy('right')}
+                className="w-12 h-12 rounded-full border border-nordic-border flex items-center justify-center text-nordic-text hover:bg-nordic-border hover:text-nordic-heading transition-colors"
+                aria-label="Next"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+          </div>
           </div>
         </section>
 
@@ -928,6 +1068,32 @@ usvojenih vještina kroz igru koja privlači dijete.
                   <ChevronRight size={20} />
                 </button>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Banner prije FAQ */}
+        <section className="py-16 px-4 sm:px-6 max-w-5xl mx-auto">
+          <div className="bg-blue-50/50 rounded-3xl p-8 md:p-16 text-center border border-blue-100/50">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-4">
+              Imate pitanja prije dolaska?
+            </h2>
+            <p className="text-slate-600 font-light max-w-2xl mx-auto mb-8 leading-relaxed">
+              Znamo da organizacija dječjeg rođendana ili prvi posjet novoj igraonici može izazvati puno pitanja. Zato smo pripremili detaljne odgovore na sve što vas zanima.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+              <a 
+                href="/cesta-pitanja.html" 
+                className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 px-8 rounded-full transition-colors"
+              >
+                Pročitajte Česta Pitanja
+              </a>
+              <a 
+                href="#contact" 
+                className="w-full sm:w-auto border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white font-medium py-3 px-8 rounded-full transition-colors"
+              >
+                Pošaljite nam upit
+              </a>
             </div>
           </div>
         </section>
@@ -1103,11 +1269,10 @@ usvojenih vještina kroz igru koja privlači dijete.
 
             {/* Quick links */}
             <div>
-              <h4 className="text-edu-cream font-bold text-sm uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Planirano vrijeme</h4>
+              <h4 className="text-edu-cream font-bold text-sm uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Radno vrijeme</h4>
               <ul className="space-y-3 text-edu-cream/75 text-sm font-light">
-                <li className="flex justify-between"><span>Ponedjeljak - Petak</span> <span className="font-semibold text-edu-gold">09:00 - 19:30</span></li>
-                <li className="flex justify-between"><span>Subota (Rođendani)</span> <span className="font-semibold text-edu-gold">10:00 - 20:00</span></li>
-                <li className="flex justify-between"><span>Nedjelja</span> <span className="font-semibold text-edu-gold">Zatvoreno</span></li>
+                <li className="flex justify-between"><span>Ponedjeljak - Petak</span> <span className="font-semibold text-edu-gold">14:00 - 20:00</span></li>
+                <li className="flex justify-between"><span>Subota - Nedjelja</span> <span className="font-semibold text-edu-gold">10:00 - 20:00</span></li>
                 <li className="pt-2 text-3xs text-edu-cream/50 italic leading-snug">
                   *Dolaske je preporučljivo najaviti u aplikaciji radi zadržavanja ugodne atmosfere.
                 </li>
@@ -1120,11 +1285,11 @@ usvojenih vještina kroz igru koja privlači dijete.
               <ul className="space-y-4 text-edu-cream/75 text-sm font-light">
                 <li className="flex items-start">
                   <MapPin size={18} className="mr-3 text-edu-gold shrink-0 mt-0.5" />
-                  <span>Zagrebačka ulica 12,<br />52100 Pula, Hrvatska</span>
+                  <span>Grožnjanska ul. 17,<br />52100 Pula, Hrvatska</span>
                 </li>
                 <li className="flex items-center">
                   <Phone size={18} className="mr-3 text-edu-gold shrink-0" />
-                  <a href="tel:+385991234567" className="hover:text-edu-cream transition-colors">+385 99 123 4567</a>
+                  <a href="tel:+385958457648" className="hover:text-edu-cream transition-colors">095 845 7648</a>
                 </li>
                 <li className="flex items-center">
                   <Mail size={18} className="mr-3 text-edu-gold shrink-0" />
@@ -1155,6 +1320,8 @@ usvojenih vještina kroz igru koja privlači dijete.
             <p>&copy; {new Date().getFullYear()} EduPlay Pula. Sva prava pridržana.</p>
             <div className="flex space-x-6">
               <a href="#" className="hover:text-edu-cream transition-colors">Opći uvjeti</a>
+              <a href="/kucni-red.html" className="hover:text-edu-cream transition-colors">Kućni red</a>
+              <a href="/cesta-pitanja.html" className="hover:text-edu-cream transition-colors">Česta pitanja</a>
               <a href="#" className="hover:text-edu-cream transition-colors">Politika privatnosti</a>
               <a href="#" className="hover:text-edu-cream transition-colors font-semibold text-edu-gold">HR-HR</a>
             </div>
@@ -1200,7 +1367,7 @@ usvojenih vještina kroz igru koja privlači dijete.
                 className="space-y-5" 
                 onSubmit={(e) => { 
                   e.preventDefault(); 
-                  alert('Upit uspješno poslan! Teta Tea će Vam se javiti u najkraćem roku na Zagrebačku ulicu.'); 
+                  alert('Upit uspješno poslan! Teta Tea će Vam se javiti povratno u najkraćem roku na Vašu e-mail adresu.'); 
                   setIsModalOpen(false); 
                 }}
               >
@@ -1242,7 +1409,7 @@ usvojenih vještina kroz igru koja privlači dijete.
                       id="bookPhone" 
                       required 
                       className="w-full px-4 py-3 rounded-xl border border-nordic-border bg-nordic-bg focus:outline-none focus:ring-1 focus:ring-edu-gold focus:border-edu-gold text-sm text-nordic-text font-light transition-all" 
-                      placeholder="099 123 456" 
+                      placeholder="095 845 7648" 
                     />
                   </div>
                 </div>
@@ -1257,7 +1424,7 @@ usvojenih vještina kroz igru koja privlači dijete.
                     required 
                     className="w-full px-4 py-3 rounded-xl border border-nordic-border bg-nordic-bg text-sm text-nordic-text focus:outline-none focus:ring-1 focus:ring-edu-gold"
                   >
-                    <option value="slobodna_igra">Slobodna razvojna igra u Zagrebačkoj (popust na više sati)</option>
+                    <option value="slobodna_igra">Slobodna razvojna igra u Grožnjanskoj (popust na više sati)</option>
                     <option value="rodjendan">Tematska Montessori Proslava Rođendana</option>
                     <option value="radionica">Edukativna senzorna radionica s Teta Teom</option>
                   </select>

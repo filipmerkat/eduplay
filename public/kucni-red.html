@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kućni red | EduPlay Pula</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#F9FAFB', /* stone-50 or gray-50 equivalent */
+                            dark: '#334155', /* slate-700 */
+                            accent: '#DBC1D3', 
+                            blue: '#B7CDDA',
+                            sage: '#B2BFB8',
+                            gold: '#CBB78E',
+                            beige: '#DDD6CC',
+                            lavender: '#BBB4C6',
+                            lilac: '#DBC1D3'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Accordion custom styling */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        details[open] summary ~ * {
+            animation: slideDown 0.3s ease-in-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-[#F8F9FA] text-slate-700 font-sans antialiased selection:bg-brand-gold selection:text-white pb-24">
+
+    <!-- Header / Navigation -->
+    <header class="w-full py-6 px-6 lg:px-12 flex items-center justify-between sticky top-0 bg-[#F8F9FA]/90 backdrop-blur-md z-50 border-b border-slate-200">
+        <a href="/" class="flex items-center gap-3 group transition-transform hover:scale-105">
+            <img src="/Eduplaylogo1.png" alt="EduPlay Logo" class="h-10 w-auto">
+        </a>
+        <a href="/" class="text-sm font-semibold text-slate-500 hover:text-brand-gold transition-colors flex items-center gap-2">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Natrag na naslovnicu
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="max-w-4xl mx-auto px-6 pt-20 pb-16 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 text-brand-gold font-semibold text-sm mb-6">
+            <i data-lucide="info" class="w-4 h-4"></i> Važne informacije
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-800 mb-6">Kućni red EduPlay Igraonice</h1>
+        <p class="text-lg md:text-xl font-light leading-relaxed text-slate-600 max-w-2xl mx-auto">
+            Dobro došli! Kako bismo svim posjetiteljima osigurali sigurno, ugodno i veselo okruženje, molimo vas da se pridržavate sljedećih pravila.
+        </p>
+    </section>
+
+    <!-- Content Sections -->
+    <main class="max-w-3xl mx-auto px-6 space-y-6">
+
+        <!-- Boravak u igraonici -->
+        <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-xl text-slate-800 transition-colors">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-blue/20 flex items-center justify-center text-brand-blue">
+                        <i data-lucide="clock" class="w-5 h-5"></i>
+                    </div>
+                    Boravak u igraonici
+                </div>
+                <span class="transition group-open:rotate-180">
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400"></i>
+                </span>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light space-y-4 ml-14">
+                <div class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-sage shrink-0 mt-0.5"></i><p>Djeca <strong>do navršene 4. godine života</strong> mogu boraviti u igraonici isključivo u pratnji roditelja ili druge punoljetne odgovorne osobe.</p></div>
+                <div class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-sage shrink-0 mt-0.5"></i><p>Djeca <strong>starija od 4 godine</strong> mogu boraviti u igraonici pod nadzorom osoblja, bez prisutnosti roditelja, u trajanju do 3 sata.</p></div>
+                <div class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-sage shrink-0 mt-0.5"></i><p>Roditelj ili zakonski skrbnik obvezan je prilikom dolaska ostaviti važeći kontakt broj telefona te biti dostupan tijekom cijelog boravka djeteta u igraonici.</p></div>
+                <div class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-sage shrink-0 mt-0.5"></i><p>Roditelj ili skrbnik dužan je doći po dijete najkasnije u dogovoreno vrijeme.</p></div>
+            </div>
+        </details>
+
+        <!-- Odgovornost -->
+        <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-xl text-slate-800 transition-colors">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold">
+                        <i data-lucide="shield" class="w-5 h-5"></i>
+                    </div>
+                    Odgovornost
+                </div>
+                <span class="transition group-open:rotate-180">
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400"></i>
+                </span>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light space-y-4 ml-14">
+                <div class="flex gap-3"><i data-lucide="shield-alert" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i><p>Osoblje igraonice tijekom boravka djece pruža primjeren nadzor i brigu u skladu s pravilima rada igraonice.</p></div>
+                <div class="flex gap-3"><i data-lucide="shield-alert" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i><p>Unatoč organiziranom nadzoru, korištenje svih sadržaja igraonice odvija se <strong>na vlastitu odgovornost</strong> roditelja odnosno zakonskog skrbnika.</p></div>
+                <div class="flex gap-3"><i data-lucide="shield-alert" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i><p>Igraonica ne odgovara za ozljede nastale nepridržavanjem kućnog reda, neprimjerenim ponašanjem djeteta ili korištenjem sadržaja protivno njihovoj namjeni.</p></div>
+            </div>
+        </details>
+
+        <!-- Zdravlje djeteta -->
+        <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-xl text-slate-800 transition-colors">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-sage/20 flex items-center justify-center text-brand-sage">
+                        <i data-lucide="heart-pulse" class="w-5 h-5"></i>
+                    </div>
+                    Zdravlje djeteta
+                </div>
+                <span class="transition group-open:rotate-180">
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400"></i>
+                </span>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light space-y-4 ml-14">
+                <div class="flex gap-3"><i data-lucide="activity" class="w-5 h-5 text-brand-sage shrink-0 mt-0.5"></i><p>U igraonicu nije dopušten dolazak djeci koja imaju povišenu tjelesnu temperaturu, simptome zaraznih bolesti, kašalj, povraćanje, proljev, osip ili druge znakove bolesti.</p></div>
+                <div class="flex gap-3"><i data-lucide="activity" class="w-5 h-5 text-brand-sage shrink-0 mt-0.5"></i><p>Roditelj ili zakonski skrbnik obvezan je prije ostavljanja djeteta obavijestiti osoblje o svim informacijama važnima za sigurnost djeteta, uključujući razvojne teškoće, zdravstvena stanja, alergije, intolerancije, kronične bolesti, terapije ili druge okolnosti koje mogu zahtijevati posebnu pažnju.</p></div>
+                <div class="flex gap-3"><i data-lucide="activity" class="w-5 h-5 text-brand-sage shrink-0 mt-0.5"></i><p>Igraonica ne može preuzeti odgovornost za posljedice koje proizlaze iz nepravovremeno ili netočno dostavljenih informacija.</p></div>
+            </div>
+        </details>
+
+        <!-- Odjeća i higijena -->
+        <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-xl text-slate-800 transition-colors">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-lilac/30 flex items-center justify-center text-brand-dark">
+                        <i data-lucide="shirt" class="w-5 h-5"></i>
+                    </div>
+                    Odjeća i higijena
+                </div>
+                <span class="transition group-open:rotate-180">
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400"></i>
+                </span>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light space-y-4 ml-14">
+                <div class="flex gap-3"><i data-lucide="sparkles" class="w-5 h-5 text-brand-lilac shrink-0 mt-0.5"></i><p>Ulazak u prostor za igru dopušten je isključivo u čistim čarapama. Obuća nije dopuštena u prostoru za igru.</p></div>
+                <div class="flex gap-3"><i data-lucide="sparkles" class="w-5 h-5 text-brand-lilac shrink-0 mt-0.5"></i><p>Preporučuje se udobna odjeća koja omogućuje sigurno i nesmetano kretanje.</p></div>
+                <div class="flex gap-3"><i data-lucide="sparkles" class="w-5 h-5 text-brand-lilac shrink-0 mt-0.5"></i><p>Nakit, satove i druge predmete koji mogu predstavljati opasnost tijekom igre preporučuje se skinuti prije ulaska.</p></div>
+            </div>
+        </details>
+
+        <!-- Pravila ponašanja -->
+        <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-xl text-slate-800 transition-colors">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-beige/50 flex items-center justify-center text-brand-dark">
+                        <i data-lucide="smile" class="w-5 h-5"></i>
+                    </div>
+                    Pravila ponašanja
+                </div>
+                <span class="transition group-open:rotate-180">
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400"></i>
+                </span>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light space-y-4 ml-14">
+                <div class="flex gap-3"><i data-lucide="users" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i><p>Djeca su dužna međusobno se ponašati pristojno i s poštovanjem.</p></div>
+                <div class="flex gap-3"><i data-lucide="users" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i><p>Zabranjeno je guranje, udaranje, namjerno uništavanje opreme te svako drugo ponašanje koje može ugroziti sigurnost djece ili osoblja.</p></div>
+                <div class="flex gap-3"><i data-lucide="users" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i><p>Hrana, piće, žvakaće gume, bomboni i tvrdi slatkiši <strong>nisu dopušteni</strong> u prostoru za igru, osim uz odobrenje osoblja.</p></div>
+                <div class="flex gap-3"><i data-lucide="users" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i><p>Djeca su obvezna pridržavati se uputa djelatnika igraonice.</p></div>
+            </div>
+        </details>
+
+        <!-- Pravo osoblja -->
+        <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-xl text-slate-800 transition-colors">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-blue/20 flex items-center justify-center text-brand-blue">
+                        <i data-lucide="hand" class="w-5 h-5"></i>
+                    </div>
+                    Pravo osoblja
+                </div>
+                <span class="transition group-open:rotate-180">
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400"></i>
+                </span>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light space-y-4 ml-14">
+                <div class="flex gap-3"><i data-lucide="arrow-right" class="w-5 h-5 text-brand-blue shrink-0 mt-0.5"></i><p>Osoblje ima pravo upozoriti dijete na neprimjereno ponašanje.</p></div>
+                <div class="flex gap-3"><i data-lucide="arrow-right" class="w-5 h-5 text-brand-blue shrink-0 mt-0.5"></i><p>Ako dijete svojim ponašanjem ugrožava sigurnost sebe ili drugih, osoblje može prekinuti njegov boravak te pozvati roditelja na ranije preuzimanje djeteta.</p></div>
+                <div class="flex gap-3"><i data-lucide="arrow-right" class="w-5 h-5 text-brand-blue shrink-0 mt-0.5"></i><p>U slučaju namjernog oštećenja inventara ili opreme, roditelj odnosno skrbnik snosi troškove nastale štete.</p></div>
+            </div>
+        </details>
+
+        <!-- Osobne stvari -->
+        <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-xl text-slate-800 transition-colors">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">
+                        <i data-lucide="briefcase" class="w-5 h-5"></i>
+                    </div>
+                    Osobne stvari
+                </div>
+                <span class="transition group-open:rotate-180">
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400"></i>
+                </span>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light space-y-4 ml-14">
+                <div class="flex gap-3"><i data-lucide="info" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i><p>Molimo da vrijedne predmete, novac, mobitele i nakit ne ostavljate u igraonici.</p></div>
+                <div class="flex gap-3"><i data-lucide="info" class="w-5 h-5 text-slate-400 shrink-0 mt-0.5"></i><p>Igraonica ne odgovara za izgubljene, zaboravljene ili oštećene osobne stvari.</p></div>
+            </div>
+        </details>
+
+        <!-- Završne odredbe -->
+        <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+            <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-xl text-slate-800 transition-colors">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold">
+                        <i data-lucide="file-check-2" class="w-5 h-5"></i>
+                    </div>
+                    Završne odredbe
+                </div>
+                <span class="transition group-open:rotate-180">
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400"></i>
+                </span>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light space-y-4 ml-14">
+                <div class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i><p>Ulaskom u igraonicu roditelji i zakonski skrbnici potvrđuju da su upoznati s ovim Kućnim redom te ga u cijelosti prihvaćaju.</p></div>
+                <div class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i><p>Zadržavamo pravo uskratiti ulazak ili prekinuti boravak korisnicima koji se ne pridržavaju navedenih pravila, a sve radi sigurnosti i dobrobiti djece.</p></div>
+                <div class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i><p>Imajte na umu da će se djeca pri igri ponekad smočiti ili uprljati.</p></div>
+                <div class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i><p>Roditelj ili skrbnik potvrđuje da je dijete sposobno samostalno boraviti u kolektivu i sudjelovati u aktivnostima primjerenima svojoj dobi. Osoblje igraonice ne pruža individualnu medicinsku, rehabilitacijsku ili osobnu njegu niti može preuzeti odgovornost za djecu kojoj je zbog zdravstvenog ili drugog stanja potreban stalni individualni nadzor, osim ako je prethodno drukčije dogovoreno.</p></div>
+            </div>
+        </details>
+
+        <!-- Final Message -->
+        <div class="mt-12 p-8 bg-brand-blue/10 rounded-3xl text-center border border-brand-blue/20">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white text-brand-blue shadow-sm mb-4">
+                <i data-lucide="heart" class="w-8 h-8 fill-brand-blue/20"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-2">Hvala vam na povjerenju!</h3>
+            <p class="text-slate-600 font-light leading-relaxed max-w-lg mx-auto">
+                Zajedničkim poštivanjem ovih pravila stvaramo sigurno, veselo i bezbrižno mjesto za igru svih mališana.
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Footer Simple -->
+    <footer class="mt-20 border-t border-slate-200 py-10 text-center text-sm font-light text-slate-500">
+        <p>&copy; 2026 EduPlay Pula. Sva prava pridržana.</p>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Česta pitanja (FAQ) | EduPlay Pula</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#F9FAFB',
+                            dark: '#334155',
+                            accent: '#DBC1D3', 
+                            blue: '#B7CDDA',
+                            sage: '#B2BFB8',
+                            gold: '#CBB78E',
+                            beige: '#DDD6CC',
+                            lavender: '#BBB4C6',
+                            lilac: '#DBC1D3'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        details[open] summary ~ * {
+            animation: slideDown 0.3s ease-in-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-slate-700 font-sans antialiased selection:bg-brand-gold selection:text-white pb-24">
+
+    <!-- Header / Navigation -->
+    <header class="w-full py-6 px-6 lg:px-12 flex items-center justify-between sticky top-0 bg-stone-50/90 backdrop-blur-md z-50 border-b border-slate-200">
+        <a href="/" class="flex items-center gap-3 group transition-transform hover:scale-105">
+            <img src="/Eduplaylogo1.png" alt="EduPlay Logo" class="h-10 w-auto">
+        </a>
+        <a href="/" class="text-sm font-semibold text-slate-500 hover:text-brand-gold transition-colors flex items-center gap-2">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Natrag na naslovnicu
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="max-w-4xl mx-auto px-6 pt-20 pb-16 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 text-brand-gold font-semibold text-sm mb-6">
+            <i data-lucide="help-circle" class="w-4 h-4"></i> Pomoć i podrška
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-800 mb-6">Česta pitanja i odgovori</h1>
+        <p class="text-lg md:text-xl font-light leading-relaxed text-slate-600 max-w-2xl mx-auto">
+            Sve što trebate znati o boravku u EduPlay oazi. Ako ne pronađete odgovor, slobodno nam se javite!
+        </p>
+    </section>
+
+    <!-- Content Sections -->
+    <main class="max-w-3xl mx-auto px-6 space-y-16">
+
+        <!-- Kategorija 1 -->
+        <section>
+            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                <span class="w-12 h-12 rounded-full bg-brand-lilac/30 flex items-center justify-center text-brand-dark">
+                    <i data-lucide="cake" class="w-6 h-6"></i>
+                </span>
+                🎂 Rođendanske proslave
+            </h2>
+            <div class="space-y-4">
+                
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Je li vaš prostor siguran za bebe koje tek uče puzati i hodati (za proslavu 1. rođendana)?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        Apsolutno! Proslave 1. i 2. rođendana su naša posebna specijalnost u Puli. Naša Soft Play zona obložena je mekanim strunjačama i nema oštrih rubova. Budući da je cijeli prostor zatvoren isključivo za vašu proslavu, nema straha da će veća djeca slučajno srušiti ili prestrašiti vaše najmlađe slavljenike i njihove goste.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Puštate li djeci crtiće, videoigre i glasnu glazbu tijekom rođendana?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        Ne, EduPlay je ponosna "zona bez ekrana". Vjerujemo u pametnu, senzornu igru koja razvija dječji mozak. Umjesto gledanja u ekran, naši edukatori vode djecu kroz maštovitu igru uloga (Mini Play City), motoričke poligone i kreativne radionice, uz tihu, umirujuću pozadinsku glazbu.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Moje dijete uvijek plače i ima "tantrume" kada treba ići kući s rođendana. Kako to rješavate?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        Znamo taj osjećaj! Klasične igraonice često prestimuliraju djecu (tzv. "dopaminski dump"). Zato naš rođendan završava u posebnom Snoezelen senzornom šatoru. Tamo se djeca prije polaska kući opuštaju uz prigušena svjetla i umirujuće elemente, što osigurava miran povratak kući, bez suza i stresa.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Što uključuje paket za tematski rođendan?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        Naši tematski rođendani uključuju potpuno zatvoren prostor samo za vas, stručno vodstvo dvoje animatora, dekoracije prilagođene temi, te sokove, grickalice i slavljeničku tortu po dogovoru. Svaki rođendan prilagođavamo dobi i interesima slavljenika kako bi iskustvo bilo nezaboravno, bez stresa za roditelje.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Kategorija 2 -->
+        <section>
+            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                <span class="w-12 h-12 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold">
+                    <i data-lucide="shapes" class="w-6 h-6"></i>
+                </span>
+                🧸 Slobodna igra i boravak
+            </h2>
+            <div class="space-y-4">
+                
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Što točno znači 'guilt-free' igraonica?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        To znači da dok se vaše dijete igra u sigurnom, poticajnom okruženju pod nadzorom stručnih edukatora, vi možete raditi, čitati ili popiti kavu u našoj odvojenoj lounge zoni bez osjećaja grižnje savjesti. Dijete se razvija kroz stručno vođenu igru, a vi dobivate zasluženi mir.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Mogu li kao roditelj ponijeti laptop i raditi dok se dijete igra?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        Naravno! EduPlay je zamišljen kao oaza za cijelu obitelj. Naš udobni roditeljski lounge nudi brzi Wi-Fi, utičnice i vrhunsku premium kavu. Možete u potpunom miru odraditi sastanak, odgovoriti na mailove ili jednostavno predahnuti, dok kroz otvoreni prostor cijelo vrijeme imate dijete na oku.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Kako integrirate Montessori pedagogiju?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        Montessori pristup integriramo kroz slobodan pristup igračkama koje su raspoređene na dječjoj visini, poticanje samostalnosti u odlučivanju o tijeku igre, te kroz materijale koji imaju 'kontrolu pogreške' – dijete samo uočava i ispravlja nesavršenosti bez stalnog uplitanja odraslih.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Moram li unaprijed rezervirati dolazak za slobodnu igru?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        Zbog ograničenog kapaciteta i želje da osiguramo mirnu atmosferu bez prenatrpanosti i buke, preporučujemo kratku najavu telefonom ili porukom, iako su spontani dolasci uvijek dobrodošli ako imamo slobodnih mjesta.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Kategorija 3 -->
+        <section>
+            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                <span class="w-12 h-12 rounded-full bg-brand-sage/30 flex items-center justify-center text-brand-sage">
+                    <i data-lucide="leaf" class="w-6 h-6"></i>
+                </span>
+                🌿 Sigurnost, higijena i prostor
+            </h2>
+            <div class="space-y-4">
+                
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Je li prostor prikladan za djecu svih uzrasta?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        Naš prostor je primarno dizajniran i opremljen za djecu od 1 do 7 godina. Sve igračke i oprema su pažljivo odabrani u suradnji s dječjim terapeutima, s posebnim naglaskom na drvene i senzorne elemente, osiguravajući tako da je prostor maksimalno prilagođen tom uzrastu.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Koji su vaši standardi higijene i čistoće?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        Sigurnost i higijena su naš apsolutni prioritet. Prostor i igračke se temeljito čiste i dezinficiraju ekološki prihvatljivim i sigurnim sredstvima svaki dan, dok se mekana Soft Play zona detaljno održava. Naš cilj je osigurati besprijekorno čisto okruženje za bezbrižnu igru.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Treba li dijete donijeti svoju obuću za igru?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        Ulazak u prostor za igru dopušten je isključivo u čistim čarapama, radi očuvanja maksimalne higijene. Obuća nije dopuštena u prostoru za igru, a toplo preporučujemo neklizajuće čarapice (tzv. abs čarapice) za bezbrižno i sigurno trčanje po našim površinama.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+                    <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg text-slate-800 transition-colors">
+                        Može li se u prostor unijeti vlastita hrana i piće?
+                        <span class="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed font-light text-base border-t border-slate-50 mt-2">
+                        Iz higijenskih i sigurnosnih razloga, te zbog moguće prisutnosti djece s alergijama, vlastita hrana i piće (osim vode ili hrane za bebe) nisu dopušteni u prostoru za igru. Nudimo širok izbor provjerenih grickalica, zdravih sokova te premium kave za roditelje u našoj lounge zoni.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <div class="mt-16 bg-brand-blue/15 rounded-[2.5rem] p-10 text-center border border-brand-blue/20">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white text-brand-blue shadow-sm mb-6">
+                <i data-lucide="message-circle" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800 mb-3">Još uvijek imate pitanja?</h3>
+            <p class="text-slate-600 font-light text-lg mb-8 max-w-md mx-auto">
+                Naša Teta Tea rado će vam odgovoriti i pomoći oko svih detalja vezanih za posjet.
+            </p>
+            <a href="/#contact" class="inline-block bg-brand-gold hover:bg-brand-gold/90 text-white font-bold py-3.5 px-8 rounded-full transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                Kontaktirajte nas
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer Simple -->
+    <footer class="mt-20 border-t border-slate-200 py-10 text-center text-sm font-light text-slate-500">
+        <p>&copy; 2026 EduPlay Pula. Sva prava pridržana.</p>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

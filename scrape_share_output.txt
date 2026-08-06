@@ -1,0 +1,12 @@
+
+
+About this page
+
+Our systems have detected unusual traffic from your computer network. This page checks to see if it's really you sending the requests, and not a robot. Why did this happen?
+
+
+
+IP address: 2600:1900:0:4a01::d00
+Time: 2026-07-24T17:54:55Z
+URL: https://www.google.com/search?sa=X&sca_esv=128d3fbf1687292d&biw=2133&bih=1012&sxsrf=APpeQnsAI2VzVlR2166sk6Lgz2SQJvlltw:1784915219158&kgmid=/g/11nr7v2f4j&q=Eduplay&shem=dlvs1,epsd1,ltae,rimspwouoe&shndl=30&source=sh/x/loc/uni/m1/1&kgs=09831ade579d23fb&utm_source=dlvs1,epsd1,ltae,rimspwouoe,sh/x/loc/uni/m1/1&sei=76ZjatuvEr-Pxc8P2J_08QQ
+

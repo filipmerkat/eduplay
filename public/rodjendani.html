@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dječji Rođendani | EduPlay Pula</title>
+    <!-- Google Fonts: Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#F5F1EA',
+                            dark: '#5F6662',
+                            accent: '#CAA998', 
+                            blue: '#B7CDDA',
+                            sage: '#B2BFB8',
+                            gold: '#CBB78E',
+                            beige: '#DDD6CC',
+                            lavender: '#BBB4C6',
+                            lilac: '#DBC1D3'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Accordion custom styling */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-dark font-sans antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- HEADER / FUNNEL NAVIGATION -->
+    <header class="w-full bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-accent/20">
+        <!-- Scroll Progress Bar -->
+        <div class="absolute bottom-0 left-0 h-1 bg-brand-accent transition-all duration-150 ease-out z-50" id="scroll-progress" style="width: 0%;"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <!-- Inline SVG Logo representation or just text if logo image is not strictly required. We'll use the image from main site -->
+                <img src="/Eduplaylogo1.png" alt="EduPlay Pula Logo" class="h-10 w-auto object-contain">
+            </a>
+            <a href="#booking-section" class="bg-brand-accent hover:opacity-90 text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                Rezerviraj
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- SEKCIJA 1: Udica (Hero Section) -->
+        <section class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-4 sm:px-6 overflow-hidden">
+            <div class="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')] opacity-5 bg-cover bg-center"></div>
+            <div class="absolute inset-0 z-0 bg-gradient-to-b from-brand-sage/20 to-transparent"></div>
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <div class="inline-block bg-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-accent mb-6 shadow-sm border border-brand-accent/20">
+                    ZABORAVITE ROĐENDANE "NA TRACI"
+                </div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 text-brand-dark">
+                    Proslava stvorena za dječju maštu.<br class="hidden md:block"/> Odmor stvoren za vas. ☁️
+                </h1>
+                <p class="text-lg md:text-xl text-brand-dark/70 font-light leading-relaxed max-w-2xl mx-auto mb-10">
+                    Vaš jedini zadatak na dan proslave? Naručiti kavu u našem premium loungeu i bezbrižno uživati dok naši stručni edukatori stvaraju magiju za vašeg slavljenika.
+                </p>
+                <a href="#booking-section" class="inline-flex items-center justify-center gap-2 bg-brand-accent hover:bg-brand-accent/90 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                    👉 Provjeri slobodne termine
+                </a>
+            </div>
+        </section>
+
+        <!-- SEKCIJA 2: Problem i Rješenje -->
+        <section class="py-20 px-4 sm:px-6 bg-white border-t border-brand-accent/10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-brand-dark">
+                    Znamo kako obično izgledaju dječji rođendani...
+                </h2>
+                <p class="text-lg text-brand-dark/70 leading-relaxed font-light">
+                    Buka u kojoj se ne čujete, kaos velikih igraonica, previše djece u istom prostoru i onaj poznati osjećaj stresa. Znamo, jer smo i sami to prošli. Zato smo u EduPlayu promijenili pravila igre i stvorili <strong class="text-brand-accent">100% privatan prostor samo za vas.</strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- SEKCIJA 3: Zašto mi? -->
+        <section class="py-20 px-4 sm:px-6 bg-brand-bg border-t border-brand-accent/10">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Kartica 1 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-accent/10 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+                        <div class="w-16 h-16 bg-brand-sage/20 rounded-2xl flex items-center justify-center mb-6 text-brand-sage">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-brand-dark">100% Zatvoren Tip</h3>
+                        <p class="text-brand-dark/70 font-light leading-relaxed">Prostor rezerviran isključivo za vašu proslavu. Potpuna privatnost i sigurnost.</p>
+                    </div>
+                    <!-- Kartica 2 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-accent/10 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+                        <div class="w-16 h-16 bg-brand-blue/20 rounded-2xl flex items-center justify-center mb-6 text-brand-blue">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-brand-dark">Pametna animacija</h3>
+                        <p class="text-brand-dark/70 font-light leading-relaxed">Naši edukatori ne "čuvaju" djecu, već ih vode kroz smislenu, senzornu igru u Mini Play Cityju.</p>
+                    </div>
+                    <!-- Kartica 3 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-accent/10 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+                        <div class="w-16 h-16 bg-brand-gold/20 rounded-2xl flex items-center justify-center mb-6 text-brand-gold">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-brand-dark">Oaza za Roditelje</h3>
+                        <p class="text-brand-dark/70 font-light leading-relaxed">Dok se djeca igraju, vi s prijateljima uživate u našem udobnom loungeu i vrhunskoj kavi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCIJA 4: Naša niša -->
+        <section class="py-20 px-4 sm:px-6">
+            <div class="max-w-4xl mx-auto bg-brand-blue/15 p-10 md:p-16 rounded-3xl text-center border border-brand-blue/30 shadow-sm relative overflow-hidden">
+                <div class="absolute -right-16 -top-16 opacity-10">
+                    <svg width="200" height="200" viewBox="0 0 24 24" fill="currentColor" class="text-brand-blue"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-bold mb-6 text-brand-dark relative z-10">
+                    Najsigurnije mjesto u Puli za proslavu 1. i 2. rođendana 🤍
+                </h3>
+                <p class="text-lg text-brand-dark/80 font-light leading-relaxed relative z-10">
+                    Klasične igraonice često su pregrube za naše najmlađe. EduPlay nudi mekanu Soft Play zonu bez oštrih rubova. A za savršen kraj bez suza? Naš Senzorni Snoezelen šator pomaže slavljeniku da se smiri prije polaska kući.
+                </p>
+            </div>
+        </section>
+
+        <!-- SEKCIJA 5: Paketi -->
+        <section class="py-20 px-4 sm:px-6 bg-white border-t border-brand-accent/10">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-brand-accent font-bold text-sm uppercase tracking-widest block mb-3">Naše Usluge</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-brand-dark mb-4">Rođendanski Paketi</h2>
+                    <p class="text-brand-dark/60 font-light">Transparentne cijene za bezbrižnu proslavu.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <!-- Kartica 1: Classic -->
+                    <div class="bg-brand-bg p-8 md:p-10 rounded-[2.5rem] border border-brand-accent/10 shadow-sm relative hover:shadow-lg transition-shadow">
+                        <h3 class="text-2xl font-bold mb-2 text-brand-dark">EduPlay Classic</h3>
+                        <div class="flex items-baseline gap-2 mb-6">
+                            <span class="text-4xl font-extrabold text-brand-dark">250 EUR</span>
+                            <span class="text-brand-dark/60 font-light">- do 15 djece</span>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-sage shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-brand-dark/80 font-light">2 sata ekskluzivnog najma</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-sage shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-brand-dark/80 font-light">2 stručna edukatora</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-sage shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-brand-dark/80 font-light">Grickalice i sokovi</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-sage shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-brand-dark/80 font-light">Premium Nordic dekoracija stola</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-sage shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-brand-dark/80 font-light">Digitalne pozivnice</span>
+                            </li>
+                        </ul>
+                        <a href="#booking-section" class="block w-full text-center bg-white border-2 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white font-semibold py-3 rounded-xl transition-colors">
+                            Odaberi Classic
+                        </a>
+                    </div>
+
+                    <!-- Kartica 2: Premium -->
+                    <div class="bg-brand-dark text-brand-bg p-8 md:p-10 rounded-[2.5rem] shadow-xl relative transform md:-translate-y-4">
+                        <div class="absolute top-0 right-8 -translate-y-1/2 bg-brand-accent text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest shadow-md">
+                            Preporuka
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">EduPlay Premium Tematski</h3>
+                        <div class="flex items-baseline gap-2 mb-6">
+                            <span class="text-4xl font-extrabold text-white">320 EUR</span>
+                            <span class="text-brand-bg/70 font-light">- do 15 djece</span>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="font-light">Sve iz Classic paketa PLUS</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="font-light">Tematska igra po izboru</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="font-light">Kreativna radionica</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="font-light">Aparat za balončiće</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="font-light">Kava po izboru za roditelje slavljenika</span>
+                            </li>
+                        </ul>
+                        <a href="#booking-section" class="block w-full text-center bg-brand-accent hover:bg-brand-accent/90 text-white font-semibold py-3 rounded-xl transition-colors shadow-lg">
+                            Odaberi Premium
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center text-brand-dark/60 font-light text-sm italic">
+                    (Tortu donosite sami! Naš kafić je otvoren za roditelje gostiju tijekom proslave.)
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCIJA 6: Booking -->
+        <section id="booking-section" class="py-20 px-4 sm:px-6 bg-brand-bg border-t border-brand-accent/10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold text-brand-dark mb-4">Kalendar se brzo puni! 📅</h2>
+                <p class="text-lg text-brand-dark/70 font-light mb-10 max-w-2xl mx-auto">
+                    Zbog zatvorenog tipa proslava, broj termina svakog mjeseca je strogo ograničen. Odaberite datum ispod.
+                </p>
+                
+                <div class="bg-white rounded-3xl shadow-md p-4 md:p-8 border border-brand-accent/10 min-h-[500px] flex items-center justify-center relative overflow-hidden">
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget w-full" data-url="https://calendly.com/filip-merkat?text_color=5f5f64&primary_color=caa998" style="min-width:320px;height:700px;"></div>
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                    <!-- Calendly inline widget end -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCIJA 7: Česta pitanja -->
+        <section class="py-20 px-4 sm:px-6 bg-white border-t border-brand-accent/10">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold text-brand-dark mb-10 text-center">Česta pitanja</h2>
+                
+                <div class="space-y-4">
+                    <details class="group bg-brand-bg rounded-2xl border border-brand-accent/10 overflow-hidden hover:shadow-sm transition-shadow" open>
+                        <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg hover:bg-brand-bg/80 transition-colors text-brand-dark">
+                            Moraju li roditelji gostiju ostati s djecom?
+                            <span class="transition group-open:rotate-180 text-brand-accent">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </summary>
+                        <div class="text-brand-dark/70 font-light p-6 pt-0 leading-relaxed border-t border-brand-accent/10 mt-2">
+                            Za jaslički uzrast preporučujemo prisutnost. Stariju djecu roditelji mogu ostaviti našim edukatorima!
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-brand-bg rounded-2xl border border-brand-accent/10 overflow-hidden hover:shadow-sm transition-shadow">
+                        <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg hover:bg-brand-bg/80 transition-colors text-brand-dark">
+                            Što mi trebamo donijeti?
+                            <span class="transition group-open:rotate-180 text-brand-accent">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </summary>
+                        <div class="text-brand-dark/70 font-light p-6 pt-0 leading-relaxed border-t border-brand-accent/10 mt-2">
+                            Samo tortu i slavljenika! Mi rješavamo pripremu i čišćenje.
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-brand-bg rounded-2xl border border-brand-accent/10 overflow-hidden hover:shadow-sm transition-shadow">
+                        <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg hover:bg-brand-bg/80 transition-colors text-brand-dark">
+                            Je li sigurno za bebe?
+                            <span class="transition group-open:rotate-180 text-brand-accent">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </summary>
+                        <div class="text-brand-dark/70 font-light p-6 pt-0 leading-relaxed border-t border-brand-accent/10 mt-2">
+                            Apsolutno! Nemamo oštrih rubova i cijeli prostor je samo vaš.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER LITE -->
+    <footer class="bg-brand-dark py-10 px-4 text-center">
+        <p class="text-brand-bg/60 font-light text-sm">
+            &copy; 2026 EduPlay Pula. Sva prava pridržana.
+        </p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            const progressBar = document.getElementById('scroll-progress');
+            if (progressBar) {
+                progressBar.style.width = scrolled + '%';
+            }
+        });
+    </script>
+</body>
+</html>
