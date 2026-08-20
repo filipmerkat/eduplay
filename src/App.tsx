@@ -108,10 +108,10 @@ const developmentalToys = [
   },
   {
     id: 'tactile',
-    name: 'UMIRUJUĆI ŠATOR',
+    name: 'KREATIVNI KUTAK',
     color: 'bg-edu-lavender/15 text-edu-lavender border-edu-lavender/25',
-    milestones: 'Umirivanje živčanog sustava, regulacija emocija, opuštanje.',
-    desc: 'Zatamnjeni šator sa projektorom zvjezdanog neba, glazbom i optičkim nitima. Sjednite sa djetetom, odmorite na mekanim jastucima, umirite se te napustite igraonicu malo mirniji nego što ste došli.'
+    milestones: 'Razvoj mašte, motorike i socijalnih vještina',
+    desc: 'Senzorni stolovi s različitim teksturama, zid za crtanje, glazbeni kutak i kutak za uljepšavanje'
   }
 ];
 
@@ -235,7 +235,6 @@ export default function App() {
             <nav className="hidden lg:flex space-x-8 items-center">
               <a href="#toy-guide" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Razvojne Igračke</a>
               <a href="#services" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Usluge</a>
-              <a href="#about" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">O nama</a>
               <a href="#contact" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Kontakt</a>
               <a href="/kucni-red.html" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Kućni red</a>
               <a href="/cesta-pitanja.html" className="text-sm font-medium text-nordic-text hover:text-edu-gold transition-colors">Česta pitanja</a>
@@ -289,7 +288,6 @@ export default function App() {
               <div className="px-4 pt-2 pb-6 space-y-2 flex flex-col">
                 <a href="#toy-guide" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Igračke</a>
                 <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Usluge</a>
-                <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">O nama</a>
                 <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Kontakt</a>
                 <a href="/kucni-red.html" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Kućni red</a>
                 <a href="/cesta-pitanja.html" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-nordic-text hover:bg-nordic-border">Česta pitanja</a>
@@ -579,7 +577,7 @@ export default function App() {
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-edu-terracotta font-bold text-sm uppercase tracking-widest block mb-3">Naše Usluge</span>
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-nordic-heading">
-                Odgoj, proslave i radionice
+                Igra, proslave i radionice
               </h2>
               <p className="mt-4 text-lg text-nordic-text font-light">
                 Nudimo tri prilagođena programa za poticanje djetetovih snaga i opuštanje roditeljskog dana.
@@ -595,7 +593,7 @@ export default function App() {
                 <div className="bg-edu-terracotta text-edu-cream w-full min-w-full md:w-auto md:min-w-0 snap-center shrink-0 p-8 rounded-[2.5rem] flex flex-col justify-between hover:shadow-2xl transition-all duration-300 border border-transparent">
                   <div>
                     <div className="inline-block px-3.5 py-1.5 rounded-full bg-white/10 text-edu-cream text-xs font-extrabold uppercase mb-6">
-                      Mali istraživači
+                      Eduplay rođendani
                     </div>
                     <h3 className="text-2xl font-bold mb-4">Tematski Rođendani</h3>
                     <p className="text-edu-cream/80 text-sm font-light leading-relaxed mb-6">
@@ -630,7 +628,7 @@ export default function App() {
                     </div>
                     <h3 className="text-2xl font-bold mb-4">Slobodna igra</h3>
                     <p className="text-edu-cream/80 text-sm font-light leading-relaxed mb-6">
-                      Slobodnua igra u specijaliziranim zonama
+                      Slobodna igra (uz roditelje ili pod nadzorom)
                     </p>
                     <ul className="space-y-3 mb-8 text-sm text-edu-cream/90 font-light">
                       <li className="flex items-center"><Check size={14} className="text-edu-cream mr-2 shrink-0" /> Mini play city za role-play</li>
@@ -640,7 +638,7 @@ export default function App() {
                   </div>
                   <div className="pt-6 border-t border-white/20 mt-4">
                     <div className="text-2xs uppercase tracking-wide text-edu-cream/80 mb-1">Satnica s popustima</div>
-                    <div className="text-2xl font-black mb-6">već od €8 / h</div>
+                    <div className="text-2xl font-black mb-6">već od €7 / h</div>
                     <a href="#calculator" className="block text-center bg-white text-edu-blue font-bold py-3.5 px-6 rounded-full text-sm transition-all hover:bg-edu-cream shadow-md">
                       Isprobaj odmah
                     </a>
@@ -663,7 +661,7 @@ export default function App() {
                   </div>
                   <div className="pt-6 border-t border-edu-charcoal/20 mt-4">
                     <div className="text-2xs uppercase tracking-wide text-edu-charcoal/70 mb-1">Mjesečna cijena</div>
-                    <div className="text-2xl font-black mb-6">€60</div>
+                    <div className="text-2xl font-black mb-6">Više informacija uskoro</div>
                     <button className="block w-full text-center bg-edu-charcoal hover:bg-edu-charcoal/90 text-edu-cream font-bold py-3.5 px-6 rounded-full text-sm transition-all shadow-md cursor-not-allowed opacity-80">
                       Najava i više info kasnije
                     </button>
@@ -866,62 +864,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* ABOUT TEASER - TETA TEA & STORYTELLING */}
-        <section id="about" className="py-24 bg-nordic-card">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              
-              {/* Left visuals */}
-              <div className="relative">
-                <div className="aspect-[4/5] rounded-[2.5rem] bg-white overflow-hidden border border-nordic-border shadow-2xl relative flex items-center justify-center p-8">
-                  <img 
-                    src="/Eduplaylogo2.png" 
-                    alt="Eduplay Pula" 
-                    className="object-contain w-full h-full hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-8 pb-10 text-edu-cream">
-                    <p className="text-xs uppercase tracking-widest text-edu-gold font-bold mb-2">Eduplay Pula</p>
-                    <h4 className="text-lg font-bold leading-tight">OVDJE MOŽE BITI NEŠTO O TEBI / TEAMU / KONCEPTU NASTANKA</h4>
-                  </div>
-                </div>
-                {/* Visual badge */}
-                <div className="absolute -bottom-6 -right-6 lg:-bottom-10 lg:-right-10 w-32 h-32 bg-nordic-bg rounded-full flex items-center justify-center p-4 shadow-xl border border-nordic-border hidden md:flex rotate-6">
-                  <p className="text-center text-xs font-bold text-edu-gold leading-tight">Grožnjanska 17<br/>Pula</p>
-                </div>
-              </div>
-              
-              {/* Right content */}
-              <div className="text-left space-y-6">
-                <span className="text-edu-gold font-bold text-sm uppercase tracking-widest block">O nama</span>
-                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-nordic-heading leading-tight">
-                  Kako je od ideje nastao mir za cijelu obitelj.
-                </h2>
-                
-                <div className="space-y-6 text-base text-nordic-text font-light leading-relaxed">
-                  <p>
-                    Mjesto gdje nastaje <strong>jedinstveno i nezaboravno putovanje</strong> za Vaše dijete i cijelu obitelj, stvoreno sa srcem u centru Pule.
-                  </p>
-                  <p>
-                    Ideja vodilja našeg koncepta leži u spajanju znanja, tolerancije nesavršenosti i slobode kretanja pod praćenjem stručnih očiju. Ponosimo se <strong>učenjem kroz igru</strong> gdje su znanje i mašta savršeno spojeni u jedno.
-                  </p>
-                  <p>
-                    Tu smo za Vas bez obzira tražite li sigurnu <strong>slobodnu igru</strong>, nezaboravne <strong>tematske rođendane</strong> lišene prekomjerne stimulacije, ili pak stručno vođene <strong>edukativne radionice</strong> uz potpunu mirnoću za roditelje.
-                  </p>
-                </div>
 
-                <div className="pt-6">
-                  <button 
-                    onClick={() => setIsModalOpen(true)}
-                    className="bg-transparent border-2 border-edu-gold text-nordic-heading hover:bg-edu-gold hover:text-edu-cream px-8 py-3.5 rounded-full font-bold transition-all cursor-pointer"
-                  >
-                    Saznajte više
-                  </button>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
         {/* SECTION: BRAND MANIFESTO & PHILOSOPHY (Vrhunska estetika i objašnjenje) */}
         <section id="philosophy" className="py-24 bg-white dark:bg-nordic-card relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -949,7 +892,7 @@ export default function App() {
                   </p>
                 </div>
                 <div className="pt-6 border-t border-white/20 mt-8 text-xs font-semibold uppercase tracking-wider text-edu-cream/90">
-                  Montessori načela
+                  Načela učenja kroz igru
                 </div>
               </div>
 
@@ -982,7 +925,7 @@ usvojenih vještina kroz igru koja privlači dijete.
                   </p>
                 </div>
                 <div className="pt-6 border-t border-white/20 mt-8 text-xs font-semibold uppercase tracking-wider text-edu-cream/90">
-                  Stručni odgajatelji Pula
+                  Stručno osoblje i animatori
                 </div>
               </div>
             </div>
@@ -1005,70 +948,6 @@ usvojenih vještina kroz igru koja privlači dijete.
               </button>
             </div>
           </div>
-          </div>
-        </section>
-
-        {/* TESTIMONIAL CAROUSEL (Showcasing Parent Trust) */}
-        <section className="py-24 bg-nordic-bg relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-edu-blue font-bold text-sm uppercase tracking-widest block mb-3">Zajednica roditelja</span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-nordic-heading">Što kažu naša mama i tata</h2>
-            </div>
-
-            <div className="max-w-4xl mx-auto relative">
-              <div className="overflow-hidden">
-                <div
-                  className="flex transition-transform duration-700 ease-in-out"
-                  style={{ transform: `translateX(-${activeTestimonial * 100}%)` }}
-                >
-                  {testimonials.map((t) => (
-                    <div key={t.id} className="w-full flex-shrink-0 px-4">
-                      <div className="bg-nordic-card rounded-[3.5rem] p-8 md:p-16 text-center shadow-md border border-nordic-border flex flex-col items-center">
-                        <Quote size={40} className="text-edu-gold mb-8 stroke-1 opacity-60" />
-                        <p className="text-lg md:text-2xl text-nordic-heading font-light leading-relaxed mb-8 italic">
-                          "{t.text}"
-                        </p>
-                        <div>
-                          <p className="font-extrabold text-nordic-heading text-lg">{t.author}</p>
-                          <p className="text-xs text-nordic-text/80 mt-1 uppercase tracking-wider font-semibold">{t.role}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Navigation controls */}
-              <div className="flex justify-center items-center mt-12 gap-6">
-                <button
-                  onClick={() => setActiveTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))}
-                  className="p-3.5 rounded-full text-nordic-text hover:bg-nordic-bg hover:text-nordic-heading transition-colors shadow-sm bg-nordic-card border border-nordic-border cursor-pointer hover:scale-105 active:scale-95"
-                  aria-label="Previous testimonial"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <div className="flex gap-2.5">
-                  {testimonials.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveTestimonial(idx)}
-                      aria-label={`Show ${idx + 1}`}
-                      className={`h-2 rounded-full transition-all cursor-pointer ${
-                        activeTestimonial === idx ? 'bg-edu-gold w-8' : 'bg-nordic-border dark:bg-zinc-700 w-2 hover:bg-edu-gold/50'
-                      }`}
-                    />
-                  ))}
-                </div>
-                <button
-                  onClick={() => setActiveTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))}
-                  className="p-3.5 rounded-full text-nordic-text hover:bg-nordic-bg hover:text-nordic-heading transition-colors shadow-sm bg-nordic-card border border-nordic-border cursor-pointer hover:scale-105 active:scale-95"
-                  aria-label="Next testimonial"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -1098,49 +977,6 @@ usvojenih vještina kroz igru koja privlači dijete.
           </div>
         </section>
 
-        {/* FAQ - INTERACTIVE ACCORDION (Rješava ključne roditeljske dvojbe) */}
-        <section className="py-24 bg-nordic-card border-t border-nordic-border">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6">
-            <div className="text-center mb-16">
-              <span className="text-edu-gold font-bold text-sm uppercase tracking-widest block mb-3">Najčešća pitanja</span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-nordic-heading">Česta zabrinutost roditelja</h2>
-            </div>
-
-            <div className="space-y-4">
-              {faqs.map((faq, idx) => (
-                <div 
-                  key={idx} 
-                  style={{ contentVisibility: 'auto' }}
-                  className="bg-nordic-bg/40 rounded-3xl border border-nordic-border overflow-hidden transition-all"
-                >
-                  <button
-                    onClick={() => setFaqOpenIndex(faqOpenIndex === idx ? null : idx)}
-                    className="w-full text-left p-6 flex justify-between items-center text-nordic-heading font-bold font-sans text-base md:text-lg focus:outline-none cursor-pointer hover:bg-nordic-bg/80 transition-colors"
-                  >
-                    <span>{faq.question}</span>
-                    <span className="shrink-0 ml-4 w-8 h-8 rounded-full border border-nordic-border bg-nordic-card flex items-center justify-center text-nordic-text">
-                      {faqOpenIndex === idx ? <X size={16} /> : <HelpCircle size={16} />}
-                    </span>
-                  </button>
-                  
-                  <AnimatePresence>
-                    {faqOpenIndex === idx && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                      >
-                        <div className="px-6 pb-6 text-nordic-text text-sm md:text-base font-light leading-relaxed border-t border-nordic-border/50 pt-4 bg-nordic-bg/25">
-                          {faq.answer}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* CURATED ARTICLES - BLOG */}
         <section id="blog" className="py-24 bg-nordic-bg">
