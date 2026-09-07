@@ -364,7 +364,7 @@ export default function App() {
                       <button 
                         onClick={() => {
                           if ((window as any).Calendly) {
-                            (window as any).Calendly.initPopupWidget({ url: 'https://calendly.com/filip-merkat' });
+                            (window as any).Calendly.initPopupWidget({ url: 'https://calendly.com/teavujic6/30min' });
                           }
                         }}
                         className="bg-edu-terracotta hover:bg-edu-terracotta/90 text-white font-semibold px-8 py-4 rounded-full text-base transition-all shadow-md hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer text-center border-2 border-edu-terracotta"
@@ -427,7 +427,7 @@ export default function App() {
                       <button 
                         onClick={() => {
                           if ((window as any).Calendly) {
-                            (window as any).Calendly.initPopupWidget({ url: 'https://calendly.com/filip-merkat' });
+                            (window as any).Calendly.initPopupWidget({ url: 'https://calendly.com/teavujic6/30min' });
                           }
                         }}
                         className="bg-edu-gold hover:bg-edu-gold/90 text-white font-semibold px-8 py-4 rounded-full text-base transition-all shadow-md hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer text-center"
