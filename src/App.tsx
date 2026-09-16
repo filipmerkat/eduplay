@@ -172,7 +172,6 @@ export default function App() {
   const [playHours, setPlayHours] = useState<number>(2);
   const [playChildren, setPlayChildren] = useState<number>(1);
   const [addonFacepaint, setAddonFacepaint] = useState(false);
-  const [addonCatering, setAddonCatering] = useState(false);
   const [addonGift, setAddonGift] = useState(false);
 
   useEffect(() => {
@@ -195,20 +194,19 @@ export default function App() {
       else base = 260 + (birthdayChildren - 25) * 10;
       
       if (addonFacepaint) base += 30;
-      if (addonCatering) base += 50;
       if (addonGift) base += 25;
       return base;
     } else if (calcService === 'slobodna_igra') {
       if (playChildren === 1) {
-        if (playHours === 1) return 8;
-        if (playHours === 2) return 15;
+        if (playHours === 1) return 7;
+        if (playHours === 2) return 14;
         if (playHours === 3) return 20;
       } else if (playChildren === 2) {
         if (playHours === 1) return 13;
         if (playHours === 2) return 25;
         if (playHours === 3) return 35;
       }
-      return 8;
+      return 7;
     } else {
       // average workshop pass/session
       return 60;
@@ -601,7 +599,7 @@ export default function App() {
                     </p>
                     <ul className="space-y-3 mb-8 text-sm text-edu-cream/90 font-light">
                       <li className="flex items-start"><Check size={14} className="text-edu-cream mr-2 shrink-0 mt-1" /> <span>torta, zdrave grickalice i svježe voće te napitci</span></li>
-                      <li className="flex items-start"><Check size={14} className="text-edu-cream mr-2 shrink-0 mt-1" /> <span>trajanje 2.5 sata</span></li>
+                      <li className="flex items-start"><Check size={14} className="text-edu-cream mr-2 shrink-0 mt-1" /> <span>trajanje 2 sata</span></li>
                       <li className="flex items-start"><Check size={14} className="text-edu-cream mr-2 shrink-0 mt-1" /> <span>dodatne opcije i teme po dogovoru</span></li>
                     </ul>
                   </div>
@@ -759,19 +757,12 @@ export default function App() {
                       {/* Add-ons checkbox */}
                       <div className="space-y-3">
                         <span className="block text-xs font-bold uppercase tracking-wide text-nordic-heading">Slavljenički Dodaci (opcionalno):</span>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 gap-3">
                           <label className="flex items-center space-x-3 p-3 bg-nordic-bg/30 rounded-xl border border-nordic-border/70 cursor-pointer hover:border-edu-gold/50 transition-colors">
                             <input type="checkbox" checked={addonFacepaint} onChange={() => setAddonFacepaint(!addonFacepaint)} className="accent-edu-gold w-4 h-4 rounded" />
                             <div className="text-xs">
                               <span className="block font-semibold text-nordic-heading">Oslikavanje lica / Facepainting</span>
                               <span className="text-nordic-text font-light text-2xs">+ €30 fiksno</span>
-                            </div>
-                          </label>
-                          <label className="flex items-center space-x-3 p-3 bg-nordic-bg/30 rounded-xl border border-nordic-border/70 cursor-pointer hover:border-edu-gold/50 transition-colors">
-                            <input type="checkbox" checked={addonCatering} onChange={() => setAddonCatering(!addonCatering)} className="accent-edu-gold w-4 h-4 rounded" />
-                            <div className="text-xs">
-                              <span className="block font-semibold text-nordic-heading">Premium catering roditelji</span>
-                              <span className="text-nordic-text font-light text-2xs">+ €50 fiksno</span>
                             </div>
                           </label>
                         </div>
@@ -977,105 +968,6 @@ usvojenih vještina kroz igru koja privlači dijete.
           </div>
         </section>
 
-
-        {/* CURATED ARTICLES - BLOG */}
-        <section id="blog" className="py-24 bg-nordic-bg">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
-              <div className="max-w-2xl text-left">
-                <span className="text-edu-sage font-bold text-sm uppercase tracking-widest block mb-2">Montessori savjeti</span>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-nordic-heading">Svijet djetetova razvoja</h2>
-                <p className="text-base text-nordic-text font-light mt-2">Stručni članci, savjeti o odgoju i novosti iz našeg pulskog centra.</p>
-              </div>
-              <div className="mt-6 md:mt-0">
-                <a href="#" className="inline-flex items-center text-nordic-heading font-bold hover:text-edu-gold transition-colors group">
-                  Svi članci <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Post 1 */}
-              <Link to="/blog/senzorna-igra" className="block h-full">
-                <article className="bg-nordic-card rounded-3xl overflow-hidden border border-nordic-border hover:shadow-2xl transition-all duration-300 flex flex-col h-full cursor-pointer group">
-                <div className="aspect-[4/3] w-full relative overflow-hidden bg-zinc-100">
-                  <img 
-                    src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&q=80" 
-                    alt="Wooden educational sensory toys" 
-                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4 bg-edu-cream dark:bg-zinc-800 text-edu-terracotta border border-edu-terracotta/20 px-3 py-1 rounded-full text-xs font-semibold">
-                    Edukacija
-                  </div>
-                </div>
-                <div className="p-8 flex flex-col flex-grow text-left">
-                  <span className="text-xs text-nordic-text/50 mb-3 border-b border-nordic-border pb-3 block">12. Svibnja 2026.</span>
-                  <h3 className="text-xl font-bold text-nordic-heading mb-3 line-clamp-2 hover:text-edu-gold transition-colors">Važnost senzorne igre u ranom razvoju</h3>
-                  <p className="text-nordic-text mb-6 flex-grow leading-relaxed font-light text-sm">
-                    Otkrijte kako jednostavni dodiri različitih tekstura, šum drveta i miris pčelinjeg voska aktiviraju neuronske putanje vašeg mališana.
-                  </p>
-                  <span className="inline-flex items-center text-edu-gold group-hover:text-edu-gold/80 font-bold text-sm mt-auto">
-                    Pročitaj više <ArrowRight size={16} className="ml-1.5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </div>
-              </article>
-              </Link>
-
-              {/* Post 2 */}
-              <Link to="/blog/znakovi-prekomjerne-stimulacije" className="block h-full">
-                <article className="bg-nordic-card rounded-3xl overflow-hidden border border-nordic-border hover:shadow-2xl transition-all duration-300 flex flex-col h-full cursor-pointer group">
-                <div className="aspect-[4/3] w-full relative overflow-hidden bg-zinc-100">
-                  <img 
-                    src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80" 
-                    alt="Simple wooden and paper children items" 
-                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4 bg-edu-cream dark:bg-zinc-800 text-edu-sage border border-edu-sage/20 px-3 py-1 rounded-full text-xs font-semibold">
-                    Roditeljstvo
-                  </div>
-                </div>
-                <div className="p-8 flex flex-col flex-grow text-left">
-                  <span className="text-xs text-nordic-text/50 mb-3 border-b border-nordic-border pb-3 block">05. Svibnja 2026.</span>
-                  <h3 className="text-xl font-bold text-nordic-heading mb-3 line-clamp-2 hover:text-edu-gold transition-colors">Znakovi prekomjerne stimulacije</h3>
-                  <p className="text-nordic-text mb-6 flex-grow leading-relaxed font-light text-sm">
-                    Bučna plastika i agresivne melodije često preopterećuju djetetov živčani sustav. Prepoznajte suptilne znakove nervoze u ranoj fazi.
-                  </p>
-                  <span className="inline-flex items-center text-edu-gold group-hover:text-edu-gold/80 font-bold text-sm mt-auto">
-                    Pročitaj više <ArrowRight size={16} className="ml-1.5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </div>
-              </article>
-              </Link>
-
-              {/* Post 3 */}
-              <Link to="/blog/montessori-kod-kuce" className="block h-full">
-                <article className="bg-nordic-card rounded-3xl overflow-hidden border border-nordic-border hover:shadow-2xl transition-all duration-300 flex flex-col h-full cursor-pointer group">
-                <div className="aspect-[4/3] w-full relative overflow-hidden bg-zinc-100">
-                  <img 
-                    src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?auto=format&fit=crop&q=80" 
-                    alt="Kid playing with sensory objects" 
-                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4 bg-nordic-bg text-edu-gold border border-edu-gold/20 px-3 py-1 rounded-full text-xs font-semibold">
-                    Igračka
-                  </div>
-                </div>
-                <div className="p-8 flex flex-col flex-grow text-left">
-                  <span className="text-xs text-nordic-text/50 mb-3 border-b border-nordic-border pb-3 block">28. Travnja 2026.</span>
-                  <h3 className="text-xl font-bold text-nordic-heading mb-3 line-clamp-2 hover:text-edu-gold transition-colors">Montessori kod kuće za roditelje</h3>
-                  <p className="text-nordic-text mb-6 flex-grow leading-relaxed font-light text-sm">
-                    Ne trebate skupe igračke. Donosimo vam 5 jednostavnih vježbi presipavanja i sortiranja koristeći samo plodove iz vaše kuhinje i prirode.
-                  </p>
-                  <span className="inline-flex items-center text-edu-gold group-hover:text-edu-gold/80 font-bold text-sm mt-auto">
-                    Pročitaj više <ArrowRight size={16} className="ml-1.5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </div>
-              </article>
-              </Link>
-            </div>
-          </div>
-        </section>
-
       </main>
 
       {/* FOOTER - REDESIGNED USING SECURE BRAND COLORS and guideline notes */}
@@ -1107,8 +999,7 @@ usvojenih vještina kroz igru koja privlači dijete.
             <div>
               <h4 className="text-edu-cream font-bold text-sm uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Radno vrijeme</h4>
               <ul className="space-y-3 text-edu-cream/75 text-sm font-light">
-                <li className="flex justify-between"><span>Ponedjeljak - Petak</span> <span className="font-semibold text-edu-gold">14:00 - 20:00</span></li>
-                <li className="flex justify-between"><span>Subota - Nedjelja</span> <span className="font-semibold text-edu-gold">10:00 - 20:00</span></li>
+                <li className="flex justify-between items-center gap-2"><span>Ponedjeljak - Nedjelja</span> <span className="font-semibold text-edu-gold whitespace-nowrap">09-13, 16-20</span></li>
                 <li className="pt-2 text-3xs text-edu-cream/50 italic leading-snug">
                   *Dolaske je preporučljivo najaviti u aplikaciji radi zadržavanja ugodne atmosfere.
                 </li>

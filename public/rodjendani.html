@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dječji Rođendani | EduPlay Pula</title>
+    <meta name="description" content="Nezaboravni dječji rođendani u Puli. 100% zatvoreni tip proslave bez ekrana, pizza, Ledo torta, stručni edukatori i tematske radionice u nordijskom ambijentu.">
     <!-- Google Fonts: Manrope -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,6 +38,17 @@
                             beige: '#DDD6CC',
                             lavender: '#BBB4C6',
                             lilac: '#DBC1D3'
+                        },
+                        edu: {
+                            cream: '#F5F1EA',
+                            charcoal: '#5F6662',
+                            gold: '#CBB78E',
+                            terracotta: '#CAA998',
+                            blue: '#B7CDDA',
+                            sage: '#B2BFB8',
+                            beige: '#DDD6CC',
+                            lavender: '#BBB4C6',
+                            lilac: '#DBC1D3'
                         }
                     }
                 }
@@ -54,136 +66,273 @@
         details > summary::-webkit-details-marker {
             display: none;
         }
+
+        /* Subtle pulse for active theme */
+        .theme-selected-badge {
+            animation: bounceIn 0.3s ease-out forwards;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
-<body class="bg-brand-bg text-brand-dark font-sans antialiased selection:bg-brand-accent selection:text-white">
+<body class="bg-edu-cream text-edu-charcoal font-sans antialiased selection:bg-edu-terracotta selection:text-white pb-16 md:pb-0">
+
+    <!-- Scroll Progress Indicator -->
+    <div class="fixed top-0 left-0 h-1 bg-edu-terracotta transition-all duration-150 ease-out z-50 pointer-events-none" id="scroll-progress" style="width: 0%;"></div>
 
     <!-- HEADER / FUNNEL NAVIGATION -->
-    <header class="w-full bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-accent/20">
-        <!-- Scroll Progress Bar -->
-        <div class="absolute bottom-0 left-0 h-1 bg-brand-accent transition-all duration-150 ease-out z-50" id="scroll-progress" style="width: 0%;"></div>
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                <!-- Inline SVG Logo representation or just text if logo image is not strictly required. We'll use the image from main site -->
-                <img src="/Eduplaylogo1.png" alt="EduPlay Pula Logo" class="h-10 w-auto object-contain">
-            </a>
-            <a href="#booking-section" class="bg-brand-accent hover:opacity-90 text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5">
-                Rezerviraj
-            </a>
+    <header class="w-full bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-edu-charcoal/10 transition-all shadow-2xs">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+            <!-- Brand Logo & Back to Home -->
+            <div class="flex items-center gap-3">
+                <a href="/" class="flex items-center gap-2 hover:opacity-85 transition-opacity" title="EduPlay Pula - Početna">
+                    <img src="/Eduplaylogo1.png" alt="EduPlay Pula Logo" class="h-10 sm:h-11 w-auto object-contain">
+                </a>
+                <span class="hidden sm:inline-block w-px h-6 bg-edu-charcoal/15"></span>
+                <a href="/" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-edu-charcoal/70 hover:text-edu-charcoal transition-colors px-2.5 py-1 rounded-full hover:bg-edu-cream">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Početna
+                </a>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-xs xl:text-sm font-semibold text-edu-charcoal/80">
+                <a href="#ukljuceno" class="px-3 py-1.5 rounded-full hover:text-edu-charcoal hover:bg-edu-cream/80 transition-colors">Uključeno</a>
+                <a href="#raspored" class="px-3 py-1.5 rounded-full hover:text-edu-charcoal hover:bg-edu-cream/80 transition-colors">Raspored</a>
+                <a href="#galerija" class="px-3 py-1.5 rounded-full hover:text-edu-charcoal hover:bg-edu-cream/80 transition-colors">Prostor</a>
+                <a href="#programi" class="px-3 py-1.5 rounded-full hover:text-edu-charcoal hover:bg-edu-cream/80 transition-colors">Programi</a>
+                <a href="#cjenik" class="px-3 py-1.5 rounded-full hover:text-edu-charcoal hover:bg-edu-cream/80 transition-colors">Cjenik</a>
+                <a href="#faq" class="px-3 py-1.5 rounded-full hover:text-edu-charcoal hover:bg-edu-cream/80 transition-colors">Česta pitanja</a>
+            </nav>
+
+            <!-- CTA Actions -->
+            <div class="flex items-center gap-2.5 sm:gap-3">
+                <a href="tel:+385958457648" class="hidden sm:inline-flex items-center gap-1.5 text-edu-charcoal font-semibold text-xs xl:text-sm px-3.5 py-2 rounded-full border border-edu-charcoal/15 hover:border-edu-terracotta hover:text-edu-terracotta transition-all">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    095 845 7648
+                </a>
+                <a href="#booking-section" class="bg-edu-terracotta hover:bg-edu-terracotta/90 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all shadow-xs hover:shadow-sm hover:-translate-y-0.5">
+                    Rezerviraj termin
+                </a>
+
+                <!-- Mobile menu hamburger -->
+                <button id="mobile-menu-btn" aria-label="Otvori navigaciju" class="lg:hidden p-2 rounded-xl text-edu-charcoal hover:bg-edu-cream border border-edu-charcoal/10 transition-colors">
+                    <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile dropdown drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-edu-charcoal/10 px-4 pt-3 pb-6 space-y-2 text-sm font-semibold">
+            <a href="/" class="block px-3 py-2 rounded-xl text-edu-charcoal/70 hover:bg-edu-cream">← Povratak na početnu stranicu</a>
+            <a href="#ukljuceno" class="mobile-link block px-3 py-2 rounded-xl text-edu-charcoal hover:bg-edu-cream">Što svaka proslava uključuje</a>
+            <a href="#raspored" class="mobile-link block px-3 py-2 rounded-xl text-edu-charcoal hover:bg-edu-cream">Raspored 2h rođendana</a>
+            <a href="#galerija" class="mobile-link block px-3 py-2 rounded-xl text-edu-charcoal hover:bg-edu-cream">Pogledajte naš prostor</a>
+            <a href="#programi" class="mobile-link block px-3 py-2 rounded-xl text-edu-charcoal hover:bg-edu-cream">Tematski programi po uzrastu</a>
+            <a href="#cjenik" class="mobile-link block px-3 py-2 rounded-xl text-edu-charcoal hover:bg-edu-cream">Cjenik i kalkulator</a>
+            <a href="#faq" class="mobile-link block px-3 py-2 rounded-xl text-edu-charcoal hover:bg-edu-cream">Česta pitanja (FAQ)</a>
+            <a href="#kontakt" class="mobile-link block px-3 py-2 rounded-xl text-edu-charcoal hover:bg-edu-cream">Kontakt i lokacija</a>
+            <div class="pt-3 border-t border-edu-charcoal/10 flex flex-col gap-2">
+                <a href="tel:+385958457648" class="text-center py-2.5 rounded-full border border-edu-charcoal/20 text-edu-charcoal font-bold text-sm">
+                    📞 Nazovi 095 845 7648
+                </a>
+                <a href="#booking-section" class="mobile-link text-center py-2.5 rounded-full bg-edu-terracotta text-white font-bold text-sm shadow-xs">
+                    📅 Provjeri kalendar termina
+                </a>
+            </div>
         </div>
     </header>
 
     <main>
-        <!-- SEKCIJA 1: Udica (Hero Section) -->
-        <section class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-4 sm:px-6 overflow-hidden">
-            <div class="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')] opacity-5 bg-cover bg-center"></div>
-            <div class="absolute inset-0 z-0 bg-gradient-to-b from-brand-sage/20 to-transparent"></div>
-            <div class="max-w-4xl mx-auto text-center relative z-10">
-                <div class="inline-block bg-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-accent mb-6 shadow-sm border border-brand-accent/20">
-                    ZABORAVITE ROĐENDANE "NA TRACI"
+        <!-- SEKCIJA 1: Udica (Hero Section) s vizualnim dokazom i benefitima -->
+        <section class="relative pt-12 pb-16 md:pt-20 md:pb-28 px-4 sm:px-6 overflow-hidden">
+            <!-- Ambient Nordic background glows -->
+            <div class="absolute top-10 left-1/2 -translate-x-1/2 w-96 h-96 bg-edu-sage/15 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute top-32 right-5 w-80 h-80 bg-edu-terracotta/12 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute top-64 left-5 w-80 h-80 bg-edu-blue/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-6xl mx-auto relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                    
+                    <!-- Left: Hero Text & Value Proposition -->
+                    <div class="lg:col-span-7 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-edu-charcoal mb-6 shadow-2xs border border-edu-terracotta/35">
+                            <span class="w-2 h-2 rounded-full bg-edu-terracotta animate-pulse"></span>
+                            🔒 100% ZATVORENI TIP PROSLAVE
+                        </div>
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-extrabold tracking-tight leading-[1.12] mb-6 text-edu-charcoal">
+                            Nezaboravne rođendanske proslave u Eduplayu! 🌿
+                        </h1>
+                        <p class="text-base sm:text-lg text-edu-charcoal/80 font-light leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+                            Prvi i posebni rođendani zaslužuju čistu radost bez buke, ekrana i kaosa. Cijeli prostor rezerviran je isključivo za vaše goste, uz stručne edukatore, pizzu, Ledo tortu i uspomene koje se nose kući.
+                        </p>
+
+                        <!-- Quick Trust / Value Highlights (UX Reassurance) -->
+                        <div class="grid grid-cols-2 sm:grid-cols-2 gap-3 mb-8 text-left max-w-lg mx-auto lg:mx-0">
+                            <div class="flex items-center gap-2.5 bg-white/80 backdrop-blur-xs px-3.5 py-2.5 rounded-2xl border border-edu-charcoal/10 shadow-2xs">
+                                <span class="text-xl">✨</span>
+                                <span class="text-xs sm:text-sm font-semibold text-edu-charcoal">Samo vaši gosti</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 bg-white/80 backdrop-blur-xs px-3.5 py-2.5 rounded-2xl border border-edu-charcoal/10 shadow-2xs">
+                                <span class="text-xl">🍕</span>
+                                <span class="text-xs sm:text-sm font-semibold text-edu-charcoal">Pizza & Ledo torta</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 bg-white/80 backdrop-blur-xs px-3.5 py-2.5 rounded-2xl border border-edu-charcoal/10 shadow-2xs">
+                                <span class="text-xl">🧸</span>
+                                <span class="text-xs sm:text-sm font-semibold text-edu-charcoal">Mekana Soft Play zona</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 bg-white/80 backdrop-blur-xs px-3.5 py-2.5 rounded-2xl border border-edu-charcoal/10 shadow-2xs">
+                                <span class="text-xl">👩‍🏫</span>
+                                <span class="text-xs sm:text-sm font-semibold text-edu-charcoal">2 stručna animatora</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA Row -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
+                            <a href="#booking-section" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-edu-terracotta hover:bg-edu-terracotta/90 text-white px-7 py-4 rounded-full font-bold text-sm sm:text-base transition-all shadow-xs hover:shadow-md hover:-translate-y-0.5">
+                                📅 Provjeri slobodne termine
+                            </a>
+                            <a href="#cjenik" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/95 backdrop-blur-sm border border-edu-charcoal/15 hover:border-edu-terracotta text-edu-charcoal px-6 py-4 rounded-full font-bold text-sm sm:text-base transition-all shadow-2xs hover:shadow-xs hover:-translate-y-0.5">
+                                💰 Izračunaj cijenu za svoju grupu
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Hero Visual Card (Real Space Preview) -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative max-w-md mx-auto">
+                            <!-- Decorative background glow -->
+                            <div class="absolute -inset-2 bg-gradient-to-tr from-edu-sage/40 to-edu-terracotta/30 rounded-[3rem] filter blur-xl opacity-70"></div>
+                            
+                            <!-- Main Image Frame -->
+                            <div class="relative bg-white p-3 sm:p-4 rounded-[2.5rem] border border-edu-charcoal/10 shadow-md overflow-hidden">
+                                <div class="relative aspect-4/3 rounded-[2rem] overflow-hidden">
+                                    <img src="/SOFTPLAY1.jpeg" alt="EduPlay Pula dječji rođendan prostor" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                                    <div class="absolute bottom-4 left-4 right-4 text-white text-left">
+                                        <span class="inline-block bg-white/25 backdrop-blur-md px-3 py-1 rounded-full text-2xs font-bold uppercase tracking-wider mb-1">
+                                            🌿 Pula • Grožnjanska 17
+                                        </span>
+                                        <p class="font-bold text-sm sm:text-base leading-snug">
+                                            Sigurna Soft Play zona i drveni Play City
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Floating Badge under photo -->
+                                <div class="mt-3.5 p-3 rounded-2xl bg-edu-cream/70 flex items-center justify-between text-left text-xs font-semibold text-edu-charcoal">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-base">☕</span>
+                                        <span>Lounge zona s kavom za roditelje</span>
+                                    </div>
+                                    <span class="text-2xs font-bold uppercase tracking-wider text-edu-terracotta bg-edu-terracotta/15 px-2 py-0.5 rounded-md">Besplatan parking</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 text-brand-dark">
-                    Rođendanske proslave za pamćenje u Eduplayu!. 🌿
-                </h1>
-                <p class="text-lg md:text-xl text-brand-dark/70 font-light leading-relaxed max-w-2xl mx-auto mb-10">
-                    Prvi rođendani bi trebali biti beskrajno  zabavni, ali i potpuno sigurni. Zbog toga smo osmilil posebne programe rođendanskih zabava.
-                </p>
-                <a href="#booking-section" class="inline-flex items-center justify-center gap-2 bg-brand-accent hover:bg-brand-accent/90 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
-                    👉 Provjeri slobodne termine
-                </a>
             </div>
         </section>
 
-        <!-- SEKCIJA 2: Što svaka proslava uključuje (Banner) -->
-        <section class="py-20 px-4 sm:px-6">
-            <div class="max-w-4xl mx-auto bg-gradient-to-br from-brand-blue/20 via-white to-brand-sage/15 p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-brand-blue/30 shadow-md relative overflow-hidden">
-                <!-- Background decorative shapes -->
-                <div class="absolute -right-16 -top-16 opacity-10 pointer-events-none">
-                    <svg width="220" height="220" viewBox="0 0 24 24" fill="currentColor" class="text-brand-blue"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                </div>
-                <div class="absolute -left-12 -bottom-12 opacity-10 pointer-events-none">
-                    <svg width="180" height="180" viewBox="0 0 24 24" fill="currentColor" class="text-brand-sage"><circle cx="12" cy="12" r="10"/></svg>
-                </div>
+        <!-- SEKCIJA 2: Što svaka proslava uključuje (All-Inclusive) -->
+        <section id="ukljuceno" class="py-16 sm:py-20 px-4 sm:px-6 scroll-mt-24">
+            <div class="max-w-5xl mx-auto bg-white/90 backdrop-blur-md p-6 sm:p-10 md:p-14 rounded-[2.5rem] border border-edu-charcoal/10 shadow-sm relative overflow-hidden">
+                <!-- Ambient circles -->
+                <div class="absolute -top-16 -right-16 w-64 h-64 bg-edu-blue/15 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-16 -left-16 w-64 h-64 bg-edu-sage/20 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div class="relative z-10">
-                    <div class="text-center mb-10">
-                        <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-dark mb-4 shadow-sm border border-brand-accent/20">
-                            ✨ ALL-INCLUSIVE ISKUSTVO
+                    <div class="text-center mb-10 max-w-2xl mx-auto">
+                        <div class="inline-flex items-center gap-2 bg-edu-blue/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-edu-charcoal mb-4 border border-edu-blue/35">
+                            ✨ BEZ SKRIVENIH TROŠKOVA
                         </div>
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-brand-dark tracking-tight">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-edu-charcoal tracking-tight mb-3">
                             Svaka proslava rođendana uključuje:
                         </h2>
+                        <p class="text-sm sm:text-base text-edu-charcoal/75 font-light leading-relaxed">
+                            Pružamo potpuno zaokruženu uslugu kako bi se roditelji mogli opustiti i doista uživati u slavlju sa svojim djetetom.
+                        </p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 text-left">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
                         <!-- Stavka 1 -->
-                        <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-accent/15 shadow-sm hover:shadow-md transition-all flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm border border-emerald-100">
-                                <svg class="w-4 h-4 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
+                        <div class="bg-edu-cream/50 hover:bg-white backdrop-blur-sm p-5 rounded-2xl border border-edu-charcoal/8 hover:border-edu-terracotta/40 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
                             <div>
-                                <p class="text-brand-dark font-medium leading-relaxed">
-                                    <strong class="font-bold text-slate-800">2 sata bezbrižne zabave</strong> u prostoru rezerviranom samo za Vas
+                                <div class="w-10 h-10 rounded-xl bg-edu-sage/35 text-edu-charcoal flex items-center justify-center mb-3 border border-edu-sage/50">
+                                    <svg class="w-5 h-5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-edu-charcoal text-base mb-1.5">2 sata privatnosti</h3>
+                                <p class="text-xs sm:text-sm text-edu-charcoal/80 font-light leading-relaxed">
+                                    Cijeli prostor rezerviran je samo za vas i vaše goste. Bez nepoznate djece i bez gužve.
                                 </p>
                             </div>
                         </div>
 
                         <!-- Stavka 2 -->
-                        <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-accent/15 shadow-sm hover:shadow-md transition-all flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm border border-emerald-100">
-                                <svg class="w-4 h-4 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
+                        <div class="bg-edu-cream/50 hover:bg-white backdrop-blur-sm p-5 rounded-2xl border border-edu-charcoal/8 hover:border-edu-terracotta/40 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
                             <div>
-                                <p class="text-brand-dark font-medium leading-relaxed">
-                                    <strong class="font-bold text-slate-800">Hrana i piće:</strong> Omiljena pizza, sladoledna Ledo torta, zdrave grickalice i sokovi
+                                <div class="w-10 h-10 rounded-xl bg-edu-terracotta/25 text-edu-charcoal flex items-center justify-center mb-3 border border-edu-terracotta/40">
+                                    <span class="text-lg">🍕</span>
+                                </div>
+                                <h3 class="font-bold text-edu-charcoal text-base mb-1.5">Hrana, Torta & Piće</h3>
+                                <p class="text-xs sm:text-sm text-edu-charcoal/80 font-light leading-relaxed">
+                                    Topla pizza, sladoledna Ledo torta, zdrave grickalice, voće i neograničeni voćni sokovi i voda.
                                 </p>
                             </div>
                         </div>
 
                         <!-- Stavka 3 -->
-                        <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-accent/15 shadow-sm hover:shadow-md transition-all flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm border border-emerald-100">
-                                <svg class="w-4 h-4 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
+                        <div class="bg-edu-cream/50 hover:bg-white backdrop-blur-sm p-5 rounded-2xl border border-edu-charcoal/8 hover:border-edu-terracotta/40 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
                             <div>
-                                <p class="text-brand-dark font-medium leading-relaxed">
-                                    <strong class="font-bold text-slate-800">Program:</strong> Slobodna igra + vođena tematska aktivnost po izboru
+                                <div class="w-10 h-10 rounded-xl bg-edu-blue/30 text-edu-charcoal flex items-center justify-center mb-3 border border-edu-blue/45">
+                                    <span class="text-lg">🎨</span>
+                                </div>
+                                <h3 class="font-bold text-edu-charcoal text-base mb-1.5">Vođeni program</h3>
+                                <p class="text-xs sm:text-sm text-edu-charcoal/80 font-light leading-relaxed">
+                                    Slobodna igra + pomno osmišljena tematska radionica prilagođena dobi slavljenika i gostiju.
                                 </p>
                             </div>
                         </div>
 
                         <!-- Stavka 4 -->
-                        <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-accent/15 shadow-sm hover:shadow-md transition-all flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm border border-emerald-100">
-                                <svg class="w-4 h-4 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
+                        <div class="bg-edu-cream/50 hover:bg-white backdrop-blur-sm p-5 rounded-2xl border border-edu-charcoal/8 hover:border-edu-terracotta/40 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
                             <div>
-                                <p class="text-brand-dark font-medium leading-relaxed">
-                                    <strong class="font-bold text-slate-800">Uspomene:</strong> Digitalne fotografije slavlja (za vas, ne za internet!) 📸
+                                <div class="w-10 h-10 rounded-xl bg-edu-gold/30 text-edu-charcoal flex items-center justify-center mb-3 border border-edu-gold/45">
+                                    <span class="text-lg">👩‍🏫</span>
+                                </div>
+                                <h3 class="font-bold text-edu-charcoal text-base mb-1.5">2 stručna edukatora</h3>
+                                <p class="text-xs sm:text-sm text-edu-charcoal/80 font-light leading-relaxed">
+                                    Topla pedagoška podrška, animacija i stalna briga o sigurnosti svakog malog gosta.
                                 </p>
                             </div>
                         </div>
 
                         <!-- Stavka 5 -->
-                        <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-accent/15 shadow-sm hover:shadow-md transition-all flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm border border-emerald-100">
-                                <svg class="w-4 h-4 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
+                        <div class="bg-edu-cream/50 hover:bg-white backdrop-blur-sm p-5 rounded-2xl border border-edu-charcoal/8 hover:border-edu-terracotta/40 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
                             <div>
-                                <p class="text-brand-dark font-medium leading-relaxed">
-                                    <strong class="font-bold text-slate-800">Pozivnice:</strong> Digitalne ili fizičke s EduPlay dizajnom
+                                <div class="w-10 h-10 rounded-xl bg-edu-lilac/35 text-edu-charcoal flex items-center justify-center mb-3 border border-edu-lilac/50">
+                                    <span class="text-lg">📸</span>
+                                </div>
+                                <h3 class="font-bold text-edu-charcoal text-base mb-1.5">Uspomene & Pozivnice</h3>
+                                <p class="text-xs sm:text-sm text-edu-charcoal/80 font-light leading-relaxed">
+                                    Digitalne fotografije slavlja (samo za vas, ne za internet!) te digitalne ili tiskane pozivnice.
                                 </p>
                             </div>
                         </div>
 
                         <!-- Stavka 6 -->
-                        <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-accent/15 shadow-sm hover:shadow-md transition-all flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm border border-emerald-100">
-                                <svg class="w-4 h-4 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
+                        <div class="bg-edu-cream/50 hover:bg-white backdrop-blur-sm p-5 rounded-2xl border border-edu-charcoal/8 hover:border-edu-terracotta/40 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
                             <div>
-                                <p class="text-brand-dark font-medium leading-relaxed">
-                                    <strong class="font-bold text-slate-800">Poklon za slavljenika!</strong> 🎁
+                                <div class="w-10 h-10 rounded-xl bg-edu-terracotta/25 text-edu-charcoal flex items-center justify-center mb-3 border border-edu-terracotta/40">
+                                    <span class="text-lg">🎁</span>
+                                </div>
+                                <h3 class="font-bold text-edu-charcoal text-base mb-1.5">Poklon & Čišćenje</h3>
+                                <p class="text-xs sm:text-sm text-edu-charcoal/80 font-light leading-relaxed">
+                                    Poseban poklon za slavljenika, uspomene za male goste te kompletno čišćenje nakon zabave.
                                 </p>
                             </div>
                         </div>
@@ -192,176 +341,367 @@
             </div>
         </section>
 
-        <!-- SEKCIJA: 2 Vrste usluga / Tematski programi po uzrastu -->
-        <section class="py-20 px-4 sm:px-6 bg-stone-50/60 border-t border-brand-accent/15 relative">
-            <div class="max-w-6xl mx-auto">
-                <!-- Section Header -->
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <div class="inline-flex items-center gap-2 bg-brand-accent/15 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-dark mb-4 border border-brand-accent/20">
-                        🎈 TEMATSKI PROGRAMI PO UZRASTU
+        <!-- NOVO: SEKCIJA 3: Kako izgleda rođendan u EduPlayu? (Vremenska crta / Timeline UX) -->
+        <section id="raspored" class="py-16 sm:py-20 px-4 sm:px-6 bg-white/60 border-t border-edu-charcoal/10 scroll-mt-24">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <div class="inline-flex items-center gap-2 bg-edu-sage/25 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-edu-charcoal mb-4 border border-edu-sage/40">
+                        ⏱️ KORAK PO KORAK
                     </div>
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-dark tracking-tight mb-4">
-                        Odaberite savršen program za slavljenika
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-edu-charcoal tracking-tight mb-3">
+                        Kako izgleda 2 sata slavlja?
                     </h2>
-                    <p class="text-lg text-brand-dark/70 font-light leading-relaxed">
-                        Aktivnosti su pažljivo osmišljene kako bi potaknule dječju maštu, motoriku i senzoriku, uz pregršt radosti i uspomene koje se nose kući.
+                    <p class="text-sm sm:text-base text-edu-charcoal/75 font-light leading-relaxed">
+                        Raspored je pažljivo balansiran između slobodne igre, kreativnog stvaranja i smirenog završetka bez plakanja pri odlasku kući.
                     </p>
                 </div>
 
-                <!-- 2 Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                    <!-- Step 1 -->
+                    <div class="bg-white p-5 rounded-3xl border border-edu-charcoal/10 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between text-center relative">
+                        <div class="text-xs font-black uppercase tracking-wider text-edu-terracotta mb-2 bg-edu-terracotta/10 py-1 rounded-full">00:00 - 00:20</div>
+                        <div class="my-2 text-3xl">👋</div>
+                        <h4 class="font-bold text-edu-charcoal text-sm mb-1.5">Doček & Opuštanje</h4>
+                        <p class="text-xs text-edu-charcoal/75 font-light">
+                            Upoznavanje s animatorima, slobodno istraživanje Soft Play poligona i drvenog grada.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-white p-5 rounded-3xl border border-edu-charcoal/10 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between text-center relative">
+                        <div class="text-xs font-black uppercase tracking-wider text-edu-blue mb-2 bg-edu-blue/15 py-1 rounded-full">00:20 - 01:05</div>
+                        <div class="my-2 text-3xl">🎨</div>
+                        <h4 class="font-bold text-edu-charcoal text-sm mb-1.5">Tematska radionica</h4>
+                        <p class="text-xs text-edu-charcoal/75 font-light">
+                            Slikanje, kuhanje muffina, sadnja cvijeća ili potraga za blagom sa svim materijalima.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-white p-5 rounded-3xl border border-edu-charcoal/10 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between text-center relative">
+                        <div class="text-xs font-black uppercase tracking-wider text-edu-gold mb-2 bg-edu-gold/20 py-1 rounded-full">01:05 - 01:25</div>
+                        <div class="my-2 text-3xl">🍕</div>
+                        <h4 class="font-bold text-edu-charcoal text-sm mb-1.5">Pizza & Osvježenje</h4>
+                        <p class="text-xs text-edu-charcoal/75 font-light">
+                            Vrijeme za slasnu pizzu, sokove i druženje za svečano postavljenim stolom.
+                        </p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="bg-white p-5 rounded-3xl border border-edu-charcoal/10 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between text-center relative">
+                        <div class="text-xs font-black uppercase tracking-wider text-edu-lilac mb-2 bg-edu-lilac/25 py-1 rounded-full">01:25 - 01:45</div>
+                        <div class="my-2 text-3xl">🎂</div>
+                        <h4 class="font-bold text-edu-charcoal text-sm mb-1.5">Ledo Torta & Svjećice</h4>
+                        <p class="text-xs text-edu-charcoal/75 font-light">
+                            Svečano puhanje svjećica, rođendanska pjesma i slasna Ledo sladoledna torta.
+                        </p>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="bg-white p-5 rounded-3xl border border-edu-charcoal/10 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between text-center relative">
+                        <div class="text-xs font-black uppercase tracking-wider text-edu-sage mb-2 bg-edu-sage/25 py-1 rounded-full">01:45 - 02:00</div>
+                        <div class="my-2 text-3xl">⛺</div>
+                        <h4 class="font-bold text-edu-charcoal text-sm mb-1.5">Miran završetak</h4>
+                        <p class="text-xs text-edu-charcoal/75 font-light">
+                            Snoezelen šator s prigušenim svjetlima, podjela darova i rukotvorina za miran odlazak.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOVO: SEKCIJA 4: Galerija našeg prostora (Visual Proof UX) -->
+        <section id="galerija" class="py-16 sm:py-20 px-4 sm:px-6 scroll-mt-24">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <div class="inline-flex items-center gap-2 bg-edu-gold/25 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-edu-charcoal mb-4 border border-edu-gold/40">
+                        📸 POGLED U NAŠU OAZU
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-edu-charcoal tracking-tight mb-3">
+                        Ugodan, čist i siguran prostor u Puli
+                    </h2>
+                    <p class="text-sm sm:text-base text-edu-charcoal/75 font-light leading-relaxed">
+                        Sve je opremljeno prirodnim drvenim igračkama, mekanim strunjačama i bez oštrih kutova kako bi roditelji mogli biti 100% bezbrižni.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Photo 1 -->
+                    <div class="group relative bg-white p-3 rounded-3xl border border-edu-charcoal/10 shadow-2xs overflow-hidden hover:shadow-md transition-all">
+                        <div class="aspect-4/3 rounded-2xl overflow-hidden mb-3">
+                            <img src="/SOFTPLAY1.jpeg" alt="Soft Play zona za bebe i puzalice" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-sm text-edu-charcoal mb-1">Soft Play zona</h4>
+                        <p class="text-xs text-edu-charcoal/75 font-light">Mekane strunjače i sigurne prepreke za najmlađe</p>
+                    </div>
+
+                    <!-- Photo 2 -->
+                    <div class="group relative bg-white p-3 rounded-3xl border border-edu-charcoal/10 shadow-2xs overflow-hidden hover:shadow-md transition-all">
+                        <div class="aspect-4/3 rounded-2xl overflow-hidden mb-3">
+                            <img src="/EDUBABY.jpg" alt="Drveni Play City i kućice za igru uloga" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-sm text-edu-charcoal mb-1">Drveni Play City</h4>
+                        <p class="text-xs text-edu-charcoal/75 font-light">Simbolička igra uloga i maštovite drvene kućice</p>
+                    </div>
+
+                    <!-- Photo 3 -->
+                    <div class="group relative bg-white p-3 rounded-3xl border border-edu-charcoal/10 shadow-2xs overflow-hidden hover:shadow-md transition-all">
+                        <div class="aspect-4/3 rounded-2xl overflow-hidden mb-3">
+                            <img src="/SOFTPLAY1-1.jpeg" alt="Kutak za senzoriku i taktilne igre" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-sm text-edu-charcoal mb-1">Senzorni kutak</h4>
+                        <p class="text-xs text-edu-charcoal/75 font-light">Taktilne podloge, prirodni materijali i mirna igra</p>
+                    </div>
+
+                    <!-- Photo 4 -->
+                    <div class="group relative bg-white p-3 rounded-3xl border border-edu-charcoal/10 shadow-2xs overflow-hidden hover:shadow-md transition-all">
+                        <div class="aspect-4/3 rounded-2xl overflow-hidden mb-3">
+                            <img src="/igraonica.jfif" alt="Uredan ambijent EduPlay Pula" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="font-bold text-sm text-edu-charcoal mb-1">Nordijski ambijent</h4>
+                        <p class="text-xs text-edu-charcoal/75 font-light">Prostrana oaza bez vizualne i zvučne preopterećenosti</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCIJA 5: Tematski programi po uzrastu (s interaktivnim odabirom teme) -->
+        <section id="programi" class="py-20 px-4 sm:px-6 bg-edu-cream/40 border-t border-edu-charcoal/10 relative scroll-mt-24">
+            <div class="max-w-6xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <div class="inline-flex items-center gap-2 bg-edu-terracotta/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-edu-charcoal mb-4 border border-edu-terracotta/35">
+                        🎈 TEMATSKI PROGRAMI PO UZRASTU
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-edu-charcoal tracking-tight mb-4">
+                        Odaberite savršen program za slavljenika
+                    </h2>
+                    <p class="text-base sm:text-lg text-edu-charcoal/75 font-light leading-relaxed mb-6">
+                        Kliknite na temu koja se vašem djetetu najviše sviđa. Odabrani program automatski će se označiti za vašu rezervaciju!
+                    </p>
+
+                    <!-- Filter Buttons for quick switching -->
+                    <div class="inline-flex flex-wrap items-center justify-center gap-2 bg-white/80 p-1.5 rounded-full border border-edu-charcoal/15 shadow-2xs">
+                        <button onclick="filterPrograms('all')" id="filter-btn-all" class="program-filter-btn active px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-edu-terracotta text-white transition-all">
+                            Svi programi (9)
+                        </button>
+                        <button onclick="filterPrograms('baby')" id="filter-btn-baby" class="program-filter-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-edu-charcoal/75 hover:text-edu-charcoal transition-all">
+                            👶 Do 3 godine (Baby)
+                        </button>
+                        <button onclick="filterPrograms('kids')" id="filter-btn-kids" class="program-filter-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-edu-charcoal/75 hover:text-edu-charcoal transition-all">
+                            🎨 3+ godine (Kids)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2 Program Cards Grid -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     
                     <!-- 1. EduPlay Baby (do 3 godine) -->
-                    <div class="lg:col-span-5 bg-gradient-to-b from-brand-sage/20 via-white to-white rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-brand-sage/30 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between h-full">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-sage/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+                    <div id="card-group-baby" class="program-group-card lg:col-span-5 bg-gradient-to-b from-edu-sage/20 via-white/95 to-white/95 backdrop-blur-sm rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-edu-sage/40 shadow-xs hover:shadow-md transition-all relative overflow-hidden flex flex-col justify-between h-full">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-edu-sage/15 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
 
                         <div>
                             <!-- Header Card 1 -->
-                            <div class="inline-flex items-center gap-2 bg-brand-sage/25 text-slate-800 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4 border border-brand-sage/40">
+                            <div class="inline-flex items-center gap-2 bg-edu-sage/30 text-edu-charcoal text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4 border border-edu-sage/50">
                                 🌿 Mališani do 3 godine
                             </div>
-                            <h3 class="text-2xl sm:text-3xl font-extrabold text-brand-dark mb-3">
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-edu-charcoal mb-3">
                                 1. EduPlay Baby
                             </h3>
-                            <p class="text-brand-dark/80 text-sm sm:text-base font-light leading-relaxed mb-8">
-                                Pripremili smo tematske aktivnosti koje potiču senzoriku i grubu motoriku naših najmlađih. Odaberite savršenu temu za prvu proslavu:
+                            <p class="text-edu-charcoal/80 text-sm sm:text-base font-light leading-relaxed mb-6">
+                                Senzorne i motoričke aktivnosti za prve proslave u sigurnom okruženju:
                             </p>
 
                             <!-- Theme List -->
                             <div class="space-y-4">
                                 <!-- Tema 1 -->
-                                <div class="bg-white/80 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-brand-sage/25 shadow-xs hover:border-brand-sage/50 transition-all">
-                                    <div class="flex items-center gap-3 mb-2">
-                                        <span class="text-2xl">🚜</span>
-                                        <h4 class="font-bold text-brand-dark text-base tracking-wide uppercase">ŽIVOT NA FARMI</h4>
+                                <div class="theme-card bg-white/95 p-4 sm:p-5 rounded-2xl border border-edu-sage/30 shadow-2xs hover:border-edu-sage/70 hover:shadow-xs transition-all flex flex-col justify-between" data-theme-name="Život na farmi (do 3 god.)">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="flex items-center gap-2.5">
+                                                <span class="text-2xl">🚜</span>
+                                                <h4 class="font-bold text-edu-charcoal text-sm sm:text-base tracking-wide uppercase">ŽIVOT NA FARMI</h4>
+                                            </div>
+                                            <span class="text-2xs font-bold bg-edu-sage/25 text-edu-charcoal px-2 py-0.5 rounded-md">Baby</span>
+                                        </div>
+                                        <p class="text-xs sm:text-sm text-edu-charcoal/75 font-light leading-relaxed mb-3">
+                                            Igre s mekanim plišancima, sakupljanje jaja u gnijezda, nježne taktilne staze i poticajne senzorne kutije.
+                                        </p>
                                     </div>
-                                    <p class="text-sm text-brand-dark/75 font-light leading-relaxed pl-1">
-                                        Igre s plišancima, sakupljanje jaja u gnijezda, nježne "utrke" za malene i predivne taktilne aktivnosti.
-                                    </p>
+                                    <button onclick="selectTheme('Život na farmi (do 3 god.)')" class="self-start inline-flex items-center gap-1.5 text-xs font-bold text-edu-charcoal hover:text-edu-terracotta bg-edu-sage/20 hover:bg-edu-sage/35 px-3 py-1.5 rounded-full transition-colors">
+                                        <span>Odaberi ovu temu</span> &rarr;
+                                    </button>
                                 </div>
 
                                 <!-- Tema 2 -->
-                                <div class="bg-white/80 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-brand-sage/25 shadow-xs hover:border-brand-sage/50 transition-all">
-                                    <div class="flex items-center gap-3 mb-2">
-                                        <span class="text-2xl">🐠</span>
-                                        <h4 class="font-bold text-brand-dark text-base tracking-wide uppercase">ŽIVOT POD MOREM</h4>
+                                <div class="theme-card bg-white/95 p-4 sm:p-5 rounded-2xl border border-edu-sage/30 shadow-2xs hover:border-edu-sage/70 hover:shadow-xs transition-all flex flex-col justify-between" data-theme-name="Život pod morem (do 3 god.)">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="flex items-center gap-2.5">
+                                                <span class="text-2xl">🐠</span>
+                                                <h4 class="font-bold text-edu-charcoal text-sm sm:text-base tracking-wide uppercase">ŽIVOT POD MOREM</h4>
+                                            </div>
+                                            <span class="text-2xs font-bold bg-edu-sage/25 text-edu-charcoal px-2 py-0.5 rounded-md">Baby</span>
+                                        </div>
+                                        <p class="text-xs sm:text-sm text-edu-charcoal/75 font-light leading-relaxed mb-3">
+                                            Pecanje ribica magnetima (koordinacija oko-ruka!), bojanje malim prstićima i nježne vodene senzacije.
+                                        </p>
                                     </div>
-                                    <p class="text-sm text-brand-dark/75 font-light leading-relaxed pl-1">
-                                        Pecanje ribica (razvoj koordinacije!), bojanje malim prstićima i vodene senzorne avanture.
-                                    </p>
+                                    <button onclick="selectTheme('Život pod morem (do 3 god.)')" class="self-start inline-flex items-center gap-1.5 text-xs font-bold text-edu-charcoal hover:text-edu-terracotta bg-edu-sage/20 hover:bg-edu-sage/35 px-3 py-1.5 rounded-full transition-colors">
+                                        <span>Odaberi ovu temu</span> &rarr;
+                                    </button>
                                 </div>
 
                                 <!-- Tema 3 -->
-                                <div class="bg-white/80 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-brand-sage/25 shadow-xs hover:border-brand-sage/50 transition-all">
-                                    <div class="flex items-center gap-3 mb-2">
-                                        <span class="text-2xl">🩺</span>
-                                        <h4 class="font-bold text-brand-dark text-base tracking-wide uppercase">MALI VETERINARI</h4>
+                                <div class="theme-card bg-white/95 p-4 sm:p-5 rounded-2xl border border-edu-sage/30 shadow-2xs hover:border-edu-sage/70 hover:shadow-xs transition-all flex flex-col justify-between" data-theme-name="Mali veterinari (do 3 god.)">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="flex items-center gap-2.5">
+                                                <span class="text-2xl">🩺</span>
+                                                <h4 class="font-bold text-edu-charcoal text-sm sm:text-base tracking-wide uppercase">MALI VETERINARI</h4>
+                                            </div>
+                                            <span class="text-2xs font-bold bg-edu-sage/25 text-edu-charcoal px-2 py-0.5 rounded-md">Baby</span>
+                                        </div>
+                                        <p class="text-xs sm:text-sm text-edu-charcoal/75 font-light leading-relaxed mb-3">
+                                            Najslađe spašavanje i previjanje plišanih životinjica, uz puno empatije, topline i prve igre uloga.
+                                        </p>
                                     </div>
-                                    <p class="text-sm text-brand-dark/75 font-light leading-relaxed pl-1">
-                                        Najslađe spašavanje plišanih životinjica, uz puno nježnosti i igre uloga.
-                                    </p>
+                                    <button onclick="selectTheme('Mali veterinari (do 3 god.)')" class="self-start inline-flex items-center gap-1.5 text-xs font-bold text-edu-charcoal hover:text-edu-terracotta bg-edu-sage/20 hover:bg-edu-sage/35 px-3 py-1.5 rounded-full transition-colors">
+                                        <span>Odaberi ovu temu</span> &rarr;
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Footer highlight -->
-                        <div class="mt-8 pt-5 border-t border-brand-sage/20 flex items-center gap-3 text-xs text-brand-dark/70 font-medium">
-                            <span class="w-2 h-2 rounded-full bg-brand-sage shrink-0"></span>
+                        <div class="mt-8 pt-5 border-t border-edu-sage/25 flex items-center gap-3 text-xs text-edu-charcoal/80 font-medium">
+                            <span class="w-2.5 h-2.5 rounded-full bg-edu-sage shrink-0"></span>
                             <span>Mekana Soft Play zona & Snoezelen šator za miran završetak</span>
                         </div>
                     </div>
 
                     <!-- 2. EduPlay Kids (3+) -->
-                    <div class="lg:col-span-7 bg-gradient-to-b from-brand-lilac/20 via-white to-white rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-brand-lilac/30 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between h-full">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-lilac/15 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+                    <div id="card-group-kids" class="program-group-card lg:col-span-7 bg-gradient-to-b from-edu-lilac/25 via-white/95 to-white/95 backdrop-blur-sm rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-edu-lilac/40 shadow-xs hover:shadow-md transition-all relative overflow-hidden flex flex-col justify-between h-full">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-edu-lilac/20 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
 
                         <div>
                             <!-- Header Card 2 -->
-                            <div class="inline-flex items-center gap-2 bg-brand-lilac/25 text-slate-800 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4 border border-brand-lilac/40">
+                            <div class="inline-flex items-center gap-2 bg-edu-lilac/35 text-edu-charcoal text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4 border border-edu-lilac/50">
                                 🎨 Kreativci 3+ godine
                             </div>
-                            <h3 class="text-2xl sm:text-3xl font-extrabold text-brand-dark mb-3">
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-edu-charcoal mb-3">
                                 2. EduPlay Kids (3+)
                             </h3>
-                            <p class="text-brand-dark/80 text-sm sm:text-base font-light leading-relaxed mb-8">
-                                Kreativne proslave gdje stvaramo uspomene za ponijeti kući! Odaberite neku od aktivnosti za Vašu proslavu:
+                            <p class="text-edu-charcoal/80 text-sm sm:text-base font-light leading-relaxed mb-6">
+                                Kreativne radionice gdje svako dijete stvara i nosi uspomenu doma:
                             </p>
 
                             <!-- Activities 2-column Grid on Desktop -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 
                                 <!-- a) MALI SLIKARI -->
-                                <div class="bg-white/80 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-brand-lilac/25 shadow-xs hover:border-brand-lilac/50 transition-all flex flex-col">
-                                    <div class="flex items-center gap-2.5 mb-2">
-                                        <span class="text-xl">🎨</span>
-                                        <h4 class="font-bold text-brand-dark text-sm tracking-wide uppercase">a) MALI SLIKARI</h4>
+                                <div class="theme-card bg-white/95 p-4 sm:p-5 rounded-2xl border border-edu-lilac/30 shadow-2xs hover:border-edu-lilac/70 hover:shadow-xs transition-all flex flex-col justify-between" data-theme-name="Mali slikari (3+ god.)">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="text-xl">🎨</span>
+                                            <h4 class="font-bold text-edu-charcoal text-sm tracking-wide uppercase">a) MALI SLIKARI</h4>
+                                        </div>
+                                        <p class="text-xs sm:text-sm text-edu-charcoal/75 font-light leading-relaxed mb-3">
+                                            Pravi štafelaji i pregačice. Svako dijete nosi svoje platno doma, a slavljenik nosi zajedničko umjetničko remek-djelo!
+                                        </p>
                                     </div>
-                                    <p class="text-xs sm:text-sm text-brand-dark/75 font-light leading-relaxed">
-                                        Štafelaji, pregačice, svako dijete nosi svoju sliku doma, a slavljenik nosi veliko umjetničko djelo.
-                                    </p>
+                                    <button onclick="selectTheme('Mali slikari (3+ god.)')" class="self-start inline-flex items-center gap-1.5 text-xs font-bold text-edu-charcoal hover:text-edu-terracotta bg-edu-lilac/25 hover:bg-edu-lilac/40 px-3 py-1.5 rounded-full transition-colors">
+                                        <span>Odaberi ovu temu</span> &rarr;
+                                    </button>
                                 </div>
 
                                 <!-- b) MALI VRTLARI -->
-                                <div class="bg-white/80 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-brand-lilac/25 shadow-xs hover:border-brand-lilac/50 transition-all flex flex-col">
-                                    <div class="flex items-center gap-2.5 mb-2">
-                                        <span class="text-xl">🌱</span>
-                                        <h4 class="font-bold text-brand-dark text-sm tracking-wide uppercase">b) MALI VRTLARI</h4>
+                                <div class="theme-card bg-white/95 p-4 sm:p-5 rounded-2xl border border-edu-lilac/30 shadow-2xs hover:border-edu-lilac/70 hover:shadow-xs transition-all flex flex-col justify-between" data-theme-name="Mali vrtlari (3+ god.)">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="text-xl">🌱</span>
+                                            <h4 class="font-bold text-edu-charcoal text-sm tracking-wide uppercase">b) MALI VRTLARI</h4>
+                                        </div>
+                                        <p class="text-xs sm:text-sm text-edu-charcoal/75 font-light leading-relaxed mb-3">
+                                            Mali agronomi ukrašavaju svoju teglicu, sade pravu biljčicu i nose je kući na prozor da o njoj brinu.
+                                        </p>
                                     </div>
-                                    <p class="text-xs sm:text-sm text-brand-dark/75 font-light leading-relaxed">
-                                        Pregačice, svako dijete ukrašava svoju teglicu za cvijeće pa ih onda nose kući.
-                                    </p>
+                                    <button onclick="selectTheme('Mali vrtlari (3+ god.)')" class="self-start inline-flex items-center gap-1.5 text-xs font-bold text-edu-charcoal hover:text-edu-terracotta bg-edu-lilac/25 hover:bg-edu-lilac/40 px-3 py-1.5 rounded-full transition-colors">
+                                        <span>Odaberi ovu temu</span> &rarr;
+                                    </button>
                                 </div>
 
                                 <!-- c) MALI KUHARI -->
-                                <div class="bg-white/80 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-brand-lilac/25 shadow-xs hover:border-brand-lilac/50 transition-all flex flex-col">
-                                    <div class="flex items-center gap-2.5 mb-2">
-                                        <span class="text-xl">🧁</span>
-                                        <h4 class="font-bold text-brand-dark text-sm tracking-wide uppercase">c) MALI KUHARI</h4>
+                                <div class="theme-card bg-white/95 p-4 sm:p-5 rounded-2xl border border-edu-lilac/30 shadow-2xs hover:border-edu-lilac/70 hover:shadow-xs transition-all flex flex-col justify-between" data-theme-name="Mali kuhari (3+ god.)">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="text-xl">🧁</span>
+                                            <h4 class="font-bold text-edu-charcoal text-sm tracking-wide uppercase">c) MALI KUHARI</h4>
+                                        </div>
+                                        <p class="text-xs sm:text-sm text-edu-charcoal/75 font-light leading-relaxed mb-3">
+                                            Kuharske kapice, pregačice i dekoriranje slasnih muffina ili waffli – svatko nosi svoje u ukrašenoj kutijici.
+                                        </p>
                                     </div>
-                                    <p class="text-xs sm:text-sm text-brand-dark/75 font-light leading-relaxed">
-                                        Pregačice, ukrašavanje muffina / američkih palačinki / waffli – svatko nosi svoje u posebnoj kutijici kući.
-                                    </p>
+                                    <button onclick="selectTheme('Mali kuhari (3+ god.)')" class="self-start inline-flex items-center gap-1.5 text-xs font-bold text-edu-charcoal hover:text-edu-terracotta bg-edu-lilac/25 hover:bg-edu-lilac/40 px-3 py-1.5 rounded-full transition-colors">
+                                        <span>Odaberi ovu temu</span> &rarr;
+                                    </button>
                                 </div>
 
                                 <!-- d) KOKTEL PARTY -->
-                                <div class="bg-white/80 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-brand-lilac/25 shadow-xs hover:border-brand-lilac/50 transition-all flex flex-col">
-                                    <div class="flex items-center gap-2.5 mb-2">
-                                        <span class="text-xl">🍹</span>
-                                        <h4 class="font-bold text-brand-dark text-sm tracking-wide uppercase">d) KOKTEL PARTY</h4>
+                                <div class="theme-card bg-white/95 p-4 sm:p-5 rounded-2xl border border-edu-lilac/30 shadow-2xs hover:border-edu-lilac/70 hover:shadow-xs transition-all flex flex-col justify-between" data-theme-name="Koktel party (3+ god.)">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="text-xl">🍹</span>
+                                            <h4 class="font-bold text-edu-charcoal text-sm tracking-wide uppercase">d) KOKTEL PARTY</h4>
+                                        </div>
+                                        <p class="text-xs sm:text-sm text-edu-charcoal/75 font-light leading-relaxed mb-3">
+                                            Miješanje šarenih voćnih bezalkoholnih koktela, ukrašavanje vlastite čaše i mini barmenski certifikat.
+                                        </p>
                                     </div>
-                                    <p class="text-xs sm:text-sm text-brand-dark/75 font-light leading-relaxed">
-                                        Svatko ukrašava svoju koktel čašu te kući nose istu i svoj mix za pripremu koktela.
-                                    </p>
+                                    <button onclick="selectTheme('Koktel party (3+ god.)')" class="self-start inline-flex items-center gap-1.5 text-xs font-bold text-edu-charcoal hover:text-edu-terracotta bg-edu-lilac/25 hover:bg-edu-lilac/40 px-3 py-1.5 rounded-full transition-colors">
+                                        <span>Odaberi ovu temu</span> &rarr;
+                                    </button>
                                 </div>
 
                                 <!-- e) SENZORNI ROĐENDAN -->
-                                <div class="bg-white/80 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-brand-lilac/25 shadow-xs hover:border-brand-lilac/50 transition-all flex flex-col">
-                                    <div class="flex items-center gap-2.5 mb-2">
-                                        <span class="text-xl">🧪</span>
-                                        <h4 class="font-bold text-brand-dark text-sm tracking-wide uppercase">e) SENZORNI ROĐENDAN</h4>
+                                <div class="theme-card bg-white/95 p-4 sm:p-5 rounded-2xl border border-edu-lilac/30 shadow-2xs hover:border-edu-lilac/70 hover:shadow-xs transition-all flex flex-col justify-between" data-theme-name="Senzorni rođendan (3+ god.)">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="text-xl">🧪</span>
+                                            <h4 class="font-bold text-edu-charcoal text-sm tracking-wide uppercase">e) SENZORNI ROĐENDAN</h4>
+                                        </div>
+                                        <p class="text-xs sm:text-sm text-edu-charcoal/75 font-light leading-relaxed mb-3">
+                                            Izrada domaćeg netoksičnog plastelina ili sigurnog senzornog slimea – svako dijete nosi svoju kreaciju kući!
+                                        </p>
                                     </div>
-                                    <p class="text-xs sm:text-sm text-brand-dark/75 font-light leading-relaxed">
-                                        Izrada plastelina / slimea – svako dijete nosi svoju kreaciju doma!
-                                    </p>
+                                    <button onclick="selectTheme('Senzorni rođendan (3+ god.)')" class="self-start inline-flex items-center gap-1.5 text-xs font-bold text-edu-charcoal hover:text-edu-terracotta bg-edu-lilac/25 hover:bg-edu-lilac/40 px-3 py-1.5 rounded-full transition-colors">
+                                        <span>Odaberi ovu temu</span> &rarr;
+                                    </button>
                                 </div>
 
                                 <!-- f) LOV NA BLAGO -->
-                                <div class="bg-white/80 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-brand-lilac/25 shadow-xs hover:border-brand-lilac/50 transition-all flex flex-col">
-                                    <div class="flex items-center gap-2.5 mb-2">
-                                        <span class="text-xl">🗺️</span>
-                                        <h4 class="font-bold text-brand-dark text-sm tracking-wide uppercase">f) LOV NA BLAGO</h4>
+                                <div class="theme-card bg-white/95 p-4 sm:p-5 rounded-2xl border border-edu-lilac/30 shadow-2xs hover:border-edu-lilac/70 hover:shadow-xs transition-all flex flex-col justify-between" data-theme-name="Lov na blago (3+ god.)">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="text-xl">🗺️</span>
+                                            <h4 class="font-bold text-edu-charcoal text-sm tracking-wide uppercase">f) LOV NA BLAGO</h4>
+                                        </div>
+                                        <p class="text-xs sm:text-sm text-edu-charcoal/75 font-light leading-relaxed mb-3">
+                                            Zagonetke, tragovi po igraonici i velika pinjata koja skriva slatkiše i poklončiće za sve male istraživače.
+                                        </p>
                                     </div>
-                                    <p class="text-xs sm:text-sm text-brand-dark/75 font-light leading-relaxed">
-                                        Pronađu pinjatu koju onda rastvore i unutra svatko dobije poklončić i slatkiše.
-                                    </p>
+                                    <button onclick="selectTheme('Lov na blago (3+ god.)')" class="self-start inline-flex items-center gap-1.5 text-xs font-bold text-edu-charcoal hover:text-edu-terracotta bg-edu-lilac/25 hover:bg-edu-lilac/40 px-3 py-1.5 rounded-full transition-colors">
+                                        <span>Odaberi ovu temu</span> &rarr;
+                                    </button>
                                 </div>
 
                             </div>
                         </div>
 
                         <!-- Footer highlight -->
-                        <div class="mt-8 pt-5 border-t border-brand-lilac/20 flex items-center gap-3 text-xs text-brand-dark/70 font-medium">
-                            <span class="w-2 h-2 rounded-full bg-brand-lilac shrink-0"></span>
+                        <div class="mt-8 pt-5 border-t border-edu-lilac/25 flex items-center gap-3 text-xs text-edu-charcoal/80 font-medium">
+                            <span class="w-2.5 h-2.5 rounded-full bg-edu-lilac shrink-0"></span>
                             <span>Svi materijali, rekviziti i pregačice uključeni u cijenu programa</span>
                         </div>
                     </div>
@@ -370,110 +710,167 @@
             </div>
         </section>
 
-        <!-- SEKCIJA 5: Cijena i Akontacija -->
-        <section id="cjenik" class="py-20 px-4 sm:px-6 bg-white border-t border-brand-accent/15">
+        <!-- SEKCIJA 6: Cijena, Interaktivni Kalkulator i Akontacija -->
+        <section id="cjenik" class="py-20 px-4 sm:px-6 bg-white border-t border-edu-charcoal/10 scroll-mt-24">
             <div class="max-w-5xl mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-14">
-                    <div class="inline-flex items-center gap-2 bg-brand-gold/15 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-brand-dark mb-4 border border-brand-gold/30">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <div class="inline-flex items-center gap-2 bg-edu-gold/25 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-edu-charcoal mb-4 border border-edu-gold/40">
                         🏷️ TRANSPARENTAN CJENIK
                     </div>
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-dark tracking-tight mb-4">
-                        Cijena proslave
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-edu-charcoal tracking-tight mb-4">
+                        Jednostavno i transparentno
                     </h2>
-                    <p class="text-lg text-brand-dark/70 font-light leading-relaxed">
-                        Cijene ovise o broju djece i uključuju cjelokupni paket (prostor, hrana, piće, animacija i poklon).
+                    <p class="text-base sm:text-lg text-edu-charcoal/75 font-light leading-relaxed">
+                        Cijena uključuje kompletan paket: 2h privatnog prostora, pizzu, sladolednu Ledo tortu, grickalice, sokove, 2 animatora i poklon.
                     </p>
+                </div>
+
+                <!-- INTERAKTIVNI KALKULATOR GRUPE (Visoka vrijednost za roditelje) -->
+                <div class="bg-edu-cream/60 rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-edu-charcoal/15 shadow-sm mb-12 backdrop-blur-sm">
+                    <div class="max-w-3xl mx-auto">
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl sm:text-2xl font-bold text-edu-charcoal mb-2">
+                                🧮 Koliko djece očekujete na proslavi?
+                            </h3>
+                            <p class="text-xs sm:text-sm text-edu-charcoal/70">
+                                Kliknite ili namjestite broj malih gostiju za točan izračun:
+                            </p>
+                        </div>
+
+                        <!-- Stepper & Quick Pills -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+                            <!-- Number Stepper -->
+                            <div class="inline-flex items-center bg-white rounded-full p-1.5 border border-edu-charcoal/20 shadow-2xs">
+                                <button onclick="adjustChildren(-1)" aria-label="Smanji broj djece" class="w-10 h-10 rounded-full bg-edu-cream hover:bg-edu-terracotta hover:text-white text-edu-charcoal font-black text-lg transition-colors flex items-center justify-center">
+                                    –
+                                </button>
+                                <span class="px-6 font-extrabold text-2xl text-edu-charcoal min-w-[90px] text-center" id="calc-children-count">15</span>
+                                <button onclick="adjustChildren(1)" aria-label="Povećaj broj djece" class="w-10 h-10 rounded-full bg-edu-cream hover:bg-edu-terracotta hover:text-white text-edu-charcoal font-black text-lg transition-colors flex items-center justify-center">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Quick Preset Buttons -->
+                            <div class="flex flex-wrap justify-center gap-2">
+                                <button onclick="setChildren(10)" class="calc-preset-btn px-3 py-1.5 rounded-full text-xs font-bold border border-edu-charcoal/20 bg-white hover:border-edu-terracotta transition-colors">10 djece</button>
+                                <button onclick="setChildren(15)" class="calc-preset-btn px-3 py-1.5 rounded-full text-xs font-bold border border-edu-terracotta bg-edu-terracotta text-white transition-colors">15 djece</button>
+                                <button onclick="setChildren(20)" class="calc-preset-btn px-3 py-1.5 rounded-full text-xs font-bold border border-edu-charcoal/20 bg-white hover:border-edu-terracotta transition-colors">20 djece</button>
+                                <button onclick="setChildren(25)" class="calc-preset-btn px-3 py-1.5 rounded-full text-xs font-bold border border-edu-charcoal/20 bg-white hover:border-edu-terracotta transition-colors">25 djece</button>
+                            </div>
+                        </div>
+
+                        <!-- Live Calculation Result Card -->
+                        <div class="bg-white rounded-3xl p-6 border border-edu-charcoal/10 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
+                            <div class="text-center md:text-left">
+                                <div class="text-xs uppercase font-extrabold tracking-wider text-edu-terracotta mb-1" id="calc-tier-name">Srednja grupa (do 15 djece)</div>
+                                <div class="flex items-baseline justify-center md:justify-start gap-1.5">
+                                    <span class="text-4xl sm:text-5xl font-black text-edu-charcoal" id="calc-total-price">220</span>
+                                    <span class="text-xl font-bold text-edu-charcoal/80">€</span>
+                                    <span class="text-xs text-edu-charcoal/60 ml-2 font-normal">(sve uključeno)</span>
+                                </div>
+                                <div class="text-xs text-edu-charcoal/70 mt-2 space-x-3">
+                                    <span>Akontacija: <strong class="text-edu-charcoal font-semibold">70 €</strong> pri rezervaciji</span>
+                                    <span>•</span>
+                                    <span>Preostalo na dan: <strong class="text-edu-charcoal font-semibold" id="calc-remainder-price">150 €</strong></span>
+                                </div>
+                            </div>
+
+                            <a href="#booking-section" id="calc-cta-btn" class="w-full md:w-auto text-center bg-edu-terracotta hover:bg-edu-terracotta/90 text-white font-bold px-7 py-3.5 rounded-full text-sm sm:text-base transition-all shadow-xs hover:shadow-sm shrink-0">
+                                Rezerviraj paket (220 €) &rarr;
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Pricing Grid (4 Tiers) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <!-- Do 10 djece -->
-                    <div class="bg-stone-50 rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between text-center relative">
+                    <div id="tier-card-10" onclick="setChildren(10)" class="tier-card cursor-pointer bg-edu-cream/40 backdrop-blur-sm rounded-3xl p-6 sm:p-7 border border-edu-charcoal/10 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between text-center relative">
                         <div>
-                            <div class="text-xs uppercase font-extrabold tracking-wider text-slate-500 mb-2">Mala grupa</div>
-                            <h3 class="text-xl font-bold text-brand-dark mb-4">Do 10 djece</h3>
+                            <div class="text-xs uppercase font-extrabold tracking-wider text-edu-charcoal/70 mb-2">Mala grupa</div>
+                            <h3 class="text-xl font-bold text-edu-charcoal mb-4">Do 10 djece</h3>
                             <div class="flex items-baseline justify-center gap-1 mb-4">
-                                <span class="text-4xl sm:text-5xl font-black text-brand-dark">170</span>
-                                <span class="text-xl font-bold text-slate-600">€</span>
+                                <span class="text-4xl sm:text-5xl font-black text-edu-charcoal">170</span>
+                                <span class="text-xl font-bold text-edu-charcoal/80">€</span>
                             </div>
                         </div>
-                        <div class="pt-4 border-t border-slate-200/60 text-xs text-slate-600 font-light">
+                        <div class="pt-4 border-t border-edu-charcoal/10 text-xs text-edu-charcoal/75 font-light">
                             Uključuje 2h igre, hranu, tortu, sokove i edukatore
                         </div>
                     </div>
 
-                    <!-- Do 15 djece -->
-                    <div class="bg-gradient-to-b from-brand-accent/15 to-stone-50 rounded-3xl p-6 sm:p-7 border-2 border-brand-accent/40 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between text-center relative transform lg:-translate-y-2">
-                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-dark text-white text-2xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                    <!-- Do 15 djece (Najčešći odabir) -->
+                    <div id="tier-card-15" onclick="setChildren(15)" class="tier-card active-tier cursor-pointer bg-gradient-to-b from-edu-terracotta/20 via-white to-edu-cream/40 rounded-3xl p-6 sm:p-7 border-2 border-edu-terracotta/60 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-center relative transform lg:-translate-y-2">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-edu-terracotta text-white text-2xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-2xs">
                             Najčešći odabir
                         </div>
                         <div>
-                            <div class="text-xs uppercase font-extrabold tracking-wider text-brand-dark/70 mb-2 mt-1">Srednja grupa</div>
-                            <h3 class="text-xl font-bold text-brand-dark mb-4">Do 15 djece</h3>
+                            <div class="text-xs uppercase font-extrabold tracking-wider text-edu-charcoal/80 mb-2 mt-1">Srednja grupa</div>
+                            <h3 class="text-xl font-bold text-edu-charcoal mb-4">Do 15 djece</h3>
                             <div class="flex items-baseline justify-center gap-1 mb-4">
-                                <span class="text-4xl sm:text-5xl font-black text-brand-dark">220</span>
-                                <span class="text-xl font-bold text-slate-600">€</span>
+                                <span class="text-4xl sm:text-5xl font-black text-edu-charcoal">220</span>
+                                <span class="text-xl font-bold text-edu-charcoal/80">€</span>
                             </div>
                         </div>
-                        <div class="pt-4 border-t border-brand-accent/20 text-xs text-slate-600 font-light">
+                        <div class="pt-4 border-t border-edu-terracotta/25 text-xs text-edu-charcoal/75 font-light">
                             Uključuje 2h igre, hranu, tortu, sokove i edukatore
                         </div>
                     </div>
 
                     <!-- Do 20 djece -->
-                    <div class="bg-stone-50 rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between text-center relative">
+                    <div id="tier-card-20" onclick="setChildren(20)" class="tier-card cursor-pointer bg-edu-cream/40 backdrop-blur-sm rounded-3xl p-6 sm:p-7 border border-edu-charcoal/10 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between text-center relative">
                         <div>
-                            <div class="text-xs uppercase font-extrabold tracking-wider text-slate-500 mb-2">Velika grupa</div>
-                            <h3 class="text-xl font-bold text-brand-dark mb-4">Do 20 djece</h3>
+                            <div class="text-xs uppercase font-extrabold tracking-wider text-edu-charcoal/70 mb-2">Velika grupa</div>
+                            <h3 class="text-xl font-bold text-edu-charcoal mb-4">Do 20 djece</h3>
                             <div class="flex items-baseline justify-center gap-1 mb-4">
-                                <span class="text-4xl sm:text-5xl font-black text-brand-dark">250</span>
-                                <span class="text-xl font-bold text-slate-600">€</span>
+                                <span class="text-4xl sm:text-5xl font-black text-edu-charcoal">250</span>
+                                <span class="text-xl font-bold text-edu-charcoal/80">€</span>
                             </div>
                         </div>
-                        <div class="pt-4 border-t border-slate-200/60 text-xs text-slate-600 font-light">
+                        <div class="pt-4 border-t border-edu-charcoal/10 text-xs text-edu-charcoal/75 font-light">
                             Uključuje 2h igre, hranu, tortu, sokove i edukatore
                         </div>
                     </div>
 
                     <!-- Do 25 djece -->
-                    <div class="bg-stone-50 rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between text-center relative">
+                    <div id="tier-card-25" onclick="setChildren(25)" class="tier-card cursor-pointer bg-edu-cream/40 backdrop-blur-sm rounded-3xl p-6 sm:p-7 border border-edu-charcoal/10 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between text-center relative">
                         <div>
-                            <div class="text-xs uppercase font-extrabold tracking-wider text-slate-500 mb-2">Maksimalna grupa</div>
-                            <h3 class="text-xl font-bold text-brand-dark mb-4">Do 25 djece</h3>
+                            <div class="text-xs uppercase font-extrabold tracking-wider text-edu-charcoal/70 mb-2">Maksimalna grupa</div>
+                            <h3 class="text-xl font-bold text-edu-charcoal mb-4">Do 25 djece</h3>
                             <div class="flex items-baseline justify-center gap-1 mb-4">
-                                <span class="text-4xl sm:text-5xl font-black text-brand-dark">280</span>
-                                <span class="text-xl font-bold text-slate-600">€</span>
+                                <span class="text-4xl sm:text-5xl font-black text-edu-charcoal">280</span>
+                                <span class="text-xl font-bold text-edu-charcoal/80">€</span>
                             </div>
                         </div>
-                        <div class="pt-4 border-t border-slate-200/60 text-xs text-slate-600 font-light">
+                        <div class="pt-4 border-t border-edu-charcoal/10 text-xs text-edu-charcoal/75 font-light">
                             Uključuje 2h igre, hranu, tortu, sokove i edukatore
                         </div>
                     </div>
                 </div>
 
-                <!-- Dodatno dijete banner info -->
-                <div class="bg-slate-100/80 rounded-2xl p-4 sm:p-5 text-center mb-8 border border-slate-200 max-w-xl mx-auto">
-                    <p class="text-brand-dark font-medium text-sm sm:text-base">
-                        ➕ <strong class="font-bold">Dodatno dijete iznad 25:</strong> 12 € po djetetu
+                <!-- Dodatno dijete banner info (Nordic Pastel Blue) -->
+                <div class="bg-edu-blue/20 backdrop-blur-sm rounded-2xl p-4 sm:p-5 text-center mb-8 border border-edu-blue/35 max-w-xl mx-auto shadow-2xs">
+                    <p class="text-edu-charcoal font-medium text-sm sm:text-base">
+                        ➕ <strong class="font-bold text-edu-charcoal">Dodatno dijete iznad 25:</strong> 12 € po djetetu
                     </p>
                 </div>
 
-                <!-- Akontacija & Pravila otkazivanja Banner -->
-                <div class="bg-gradient-to-br from-amber-50/80 via-white to-amber-50/50 rounded-3xl p-6 sm:p-8 md:p-10 border-2 border-amber-200/70 shadow-sm relative overflow-hidden">
+                <!-- Akontacija & Pravila otkazivanja Banner (Nordic Gold & Terracotta) -->
+                <div class="bg-gradient-to-br from-edu-gold/20 via-white to-edu-terracotta/15 rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-edu-gold/40 shadow-xs relative overflow-hidden backdrop-blur-sm">
                     <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 shadow-xs border border-amber-200">
+                        <div class="w-14 h-14 rounded-2xl bg-edu-gold/30 text-edu-charcoal flex items-center justify-center shrink-0 shadow-2xs border border-edu-gold/45">
                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-xl font-bold text-brand-dark mb-2 flex items-center gap-2">
+                            <h3 class="text-xl font-bold text-edu-charcoal mb-2 flex items-center gap-2">
                                 <span>Akontacija 70 € pri rezervaciji</span>
                             </h3>
-                            <p class="text-brand-dark/80 text-sm sm:text-base font-light leading-relaxed">
-                                U slučaju otkazivanja molimo vas da nas pravovremeno obavijestite kako bismo dogovorili novi termin. Akontacija se ne vraća ukoliko se novi termin ne može dogovoriti, ali se može iskoristiti za druge usluge u igraonici.
+                            <p class="text-edu-charcoal/80 text-sm sm:text-base font-light leading-relaxed">
+                                U slučaju otkazivanja molimo vas da nas pravovremeno obavijestite kako bismo dogovorili novi termin. Akontacija se ne vraća ukoliko se novi termin ne može dogovoriti, ali se može u potpunosti iskoristiti za druge usluge ili slobodnu igru u igraonici.
                             </p>
                         </div>
                         <div class="w-full md:w-auto shrink-0 pt-2 md:pt-0">
-                            <a href="#booking-section" class="inline-block w-full md:w-auto text-center bg-brand-dark hover:bg-slate-800 text-white font-bold px-7 py-3.5 rounded-full transition-all shadow-sm hover:shadow-md">
+                            <a href="#booking-section" class="inline-block w-full md:w-auto text-center bg-edu-terracotta hover:bg-edu-terracotta/90 text-white font-bold px-7 py-3.5 rounded-full transition-all shadow-xs hover:shadow-sm">
                                 Rezerviraj termin
                             </a>
                         </div>
@@ -482,78 +879,325 @@
             </div>
         </section>
 
-        <!-- SEKCIJA 6: Booking -->
-        <section id="booking-section" class="py-20 px-4 sm:px-6 bg-brand-bg border-t border-brand-accent/10">
+        <!-- SEKCIJA 7: Booking & Online Kalendar Termina -->
+        <section id="booking-section" class="py-20 px-4 sm:px-6 bg-edu-cream/50 border-t border-edu-charcoal/10 scroll-mt-24">
             <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl sm:text-4xl font-bold text-brand-dark mb-4">Kalendar se brzo puni! 📅</h2>
-                <p class="text-lg text-brand-dark/70 font-light mb-10 max-w-2xl mx-auto">
-                    Zbog zatvorenog tipa proslava, broj termina svakog mjeseca je strogo ograničen. Odaberite datum ispod.
-                </p>
                 
-                <div class="bg-white rounded-3xl shadow-md p-4 md:p-8 border border-brand-accent/10 min-h-[500px] flex items-center justify-center relative overflow-hidden">
+                <!-- Selected Theme & Guests Summary Banner (UX Continuity) -->
+                <div id="selection-summary-pill" class="hidden mb-6 inline-flex items-center gap-2 bg-white px-5 py-2 rounded-full border border-edu-terracotta/40 shadow-xs text-xs sm:text-sm font-semibold text-edu-charcoal">
+                    <span>Odabrali ste temu:</span>
+                    <strong class="text-edu-terracotta" id="selected-theme-display">Mali slikari</strong>
+                    <button onclick="clearThemeSelection()" class="text-edu-charcoal/50 hover:text-edu-charcoal ml-2 text-xs">✕</button>
+                </div>
+
+                <h2 class="text-3xl sm:text-4xl font-bold text-edu-charcoal mb-3">Kalendar se brzo puni! 📅</h2>
+                <p class="text-base sm:text-lg text-edu-charcoal/75 font-light mb-8 max-w-2xl mx-auto">
+                    Zbog zatvorenog tipa proslava, broj termina svakog mjeseca je strogo ograničen. Odaberite željeni datum i satnicu u kalendaru ispod:
+                </p>
+
+                <!-- Steps Helper UX -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto mb-8 text-left text-xs text-edu-charcoal/80">
+                    <div class="bg-white/80 p-3 rounded-2xl border border-edu-charcoal/10 flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-full bg-edu-terracotta text-white flex items-center justify-center font-bold text-xs shrink-0">1</span>
+                        <span>Kliknite na željeni datum</span>
+                    </div>
+                    <div class="bg-white/80 p-3 rounded-2xl border border-edu-charcoal/10 flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-full bg-edu-terracotta text-white flex items-center justify-center font-bold text-xs shrink-0">2</span>
+                        <span>Odaberite slobodno vrijeme</span>
+                    </div>
+                    <div class="bg-white/80 p-3 rounded-2xl border border-edu-charcoal/10 flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-full bg-edu-terracotta text-white flex items-center justify-center font-bold text-xs shrink-0">3</span>
+                        <span>Unesite kontakt podatke</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white/95 rounded-[2.5rem] shadow-sm p-3 sm:p-6 md:p-8 border border-edu-charcoal/10 min-h-[550px] flex items-center justify-center relative overflow-hidden backdrop-blur-sm">
                     <!-- Calendly inline widget begin -->
                     <div class="calendly-inline-widget w-full" data-url="https://calendly.com/teavujic6/30min?text_color=5f5f64&primary_color=caa998" style="min-width:320px;height:700px;"></div>
                     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
                     <!-- Calendly inline widget end -->
                 </div>
+
+                <!-- Alternative Direct Booking UX -->
+                <div class="mt-8 pt-6 border-t border-edu-charcoal/10 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs sm:text-sm text-edu-charcoal/80">
+                    <span>Više volite dogovor telefonom ili porukom?</span>
+                    <div class="flex items-center gap-3">
+                        <a href="tel:+385958457648" class="font-bold text-edu-charcoal hover:text-edu-terracotta underline">
+                            📞 095 845 7648
+                        </a>
+                        <span>ili</span>
+                        <a href="https://wa.me/385958457648?text=Pozdrav!%20Zanima%20me%20rezervacija%20rođendana%20u%20EduPlayu." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3.5 py-1.5 rounded-full transition-colors text-xs">
+                            💬 WhatsApp poruka
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- SEKCIJA 7: Česta pitanja -->
-        <section class="py-20 px-4 sm:px-6 bg-white border-t border-brand-accent/10">
+        <!-- SEKCIJA 8: Česta pitanja (FAQ s pretraživanjem i jasnim odgovorima) -->
+        <section id="faq" class="py-20 px-4 sm:px-6 bg-white border-t border-edu-charcoal/10 scroll-mt-24">
             <div class="max-w-3xl mx-auto">
-                <h2 class="text-3xl sm:text-4xl font-bold text-brand-dark mb-10 text-center">Česta pitanja</h2>
+                <div class="text-center mb-10">
+                    <div class="inline-flex items-center gap-2 bg-edu-terracotta/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-edu-charcoal mb-4 border border-edu-terracotta/35">
+                        ❓ PITANJA I ODGOVORI
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-edu-charcoal mb-3">Česta pitanja roditelja</h2>
+                    <p class="text-sm sm:text-base text-edu-charcoal/75 font-light">
+                        Odgovori na sve što vas zanima prije rezervacije proslave:
+                    </p>
+                </div>
                 
                 <div class="space-y-4">
-                    <details class="group bg-brand-bg rounded-2xl border border-brand-accent/10 overflow-hidden hover:shadow-sm transition-shadow" open>
-                        <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg hover:bg-brand-bg/80 transition-colors text-brand-dark">
+                    <details class="group bg-edu-cream/40 rounded-2xl border border-edu-charcoal/10 overflow-hidden hover:border-edu-terracotta/40 hover:shadow-2xs transition-all" open>
+                        <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-base sm:text-lg hover:bg-white transition-colors text-edu-charcoal">
                             Moraju li roditelji gostiju ostati s djecom?
-                            <span class="transition group-open:rotate-180 text-brand-accent">
+                            <span class="transition group-open:rotate-180 text-edu-terracotta shrink-0 ml-4">
                                 <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
                             </span>
                         </summary>
-                        <div class="text-brand-dark/70 font-light p-6 pt-0 leading-relaxed border-t border-brand-accent/10 mt-2">
-                            Za jaslički uzrast preporučujemo prisutnost. Stariju djecu roditelji mogu ostaviti našim edukatorima!
+                        <div class="text-edu-charcoal/80 font-light p-6 pt-0 leading-relaxed border-t border-edu-charcoal/10 mt-2 text-sm sm:text-base">
+                            Za jaslički uzrast (do 3 godine) preporučujemo prisutnost roditelja kako bi se djeca osjećala potpuno sigurno. Za stariju djecu (3+ godine) roditelji mogu ostaviti djecu našim educiranim animatorima ili ostati uživati u našoj roditeljskoj lounge zoni uz kavu i besplatan Wi-Fi.
                         </div>
                     </details>
                     
-                    <details class="group bg-brand-bg rounded-2xl border border-brand-accent/10 overflow-hidden hover:shadow-sm transition-shadow">
-                        <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg hover:bg-brand-bg/80 transition-colors text-brand-dark">
-                            Što mi trebamo donijeti?
-                            <span class="transition group-open:rotate-180 text-brand-accent">
+                    <details class="group bg-edu-cream/40 rounded-2xl border border-edu-charcoal/10 overflow-hidden hover:border-edu-terracotta/40 hover:shadow-2xs transition-all">
+                        <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-base sm:text-lg hover:bg-white transition-colors text-edu-charcoal">
+                            Što mi kao roditelji trebamo donijeti?
+                            <span class="transition group-open:rotate-180 text-edu-terracotta shrink-0 ml-4">
                                 <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
                             </span>
                         </summary>
-                        <div class="text-brand-dark/70 font-light p-6 pt-0 leading-relaxed border-t border-brand-accent/10 mt-2">
-                            Samo slavljenika i dobro raspoloženje! Mi osiguravamo prostor, stručnu animaciju, pizzu, sladolednu Ledo tortu, zdrave grickalice, sokove i kompletno čišćenje.
+                        <div class="text-edu-charcoal/80 font-light p-6 pt-0 leading-relaxed border-t border-edu-charcoal/10 mt-2 text-sm sm:text-base">
+                            Samo slavljenika i dobro raspoloženje! EduPlay paket uključuje sve: prostor, stručnu animaciju, pizzu, sladolednu Ledo tortu sa svjećicama, zdrave grickalice, sokove, vodu i kompletno završno čišćenje. Ako želite posebnu tortu iz vaše najdraže slastičarnice, slobodno je možete donijeti uz račun.
                         </div>
                     </details>
                     
-                    <details class="group bg-brand-bg rounded-2xl border border-brand-accent/10 overflow-hidden hover:shadow-sm transition-shadow">
-                        <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-lg hover:bg-brand-bg/80 transition-colors text-brand-dark">
-                            Je li sigurno za bebe?
-                            <span class="transition group-open:rotate-180 text-brand-accent">
+                    <details class="group bg-edu-cream/40 rounded-2xl border border-edu-charcoal/10 overflow-hidden hover:border-edu-terracotta/40 hover:shadow-2xs transition-all">
+                        <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-base sm:text-lg hover:bg-white transition-colors text-edu-charcoal">
+                            Je li prostor siguran za bebe i puzalice (1. i 2. rođendan)?
+                            <span class="transition group-open:rotate-180 text-edu-terracotta shrink-0 ml-4">
                                 <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
                             </span>
                         </summary>
-                        <div class="text-brand-dark/70 font-light p-6 pt-0 leading-relaxed border-t border-brand-accent/10 mt-2">
-                            Apsolutno! Nemamo oštrih rubova i cijeli prostor je samo vaš.
+                        <div class="text-edu-charcoal/80 font-light p-6 pt-0 leading-relaxed border-t border-edu-charcoal/10 mt-2 text-sm sm:text-base">
+                            Apsolutno! Proslave 1. rođendana su naša posebna specijalnost u Puli. Naša Soft Play zona obložena je mekanim certifikovanim strunjačama i nema oštrih kutova. Budući da je cijeli prostor zatvoren isključivo za vaše slavlje, nema nepoznate veće djece koja bi mogla srušiti ili preplašiti najmlađe.
                         </div>
                     </details>
+
+                    <details class="group bg-edu-cream/40 rounded-2xl border border-edu-charcoal/10 overflow-hidden hover:border-edu-terracotta/40 hover:shadow-2xs transition-all">
+                        <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-base sm:text-lg hover:bg-white transition-colors text-edu-charcoal">
+                            Koliko ranije možemo doći prije početka rođendana?
+                            <span class="transition group-open:rotate-180 text-edu-terracotta shrink-0 ml-4">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </summary>
+                        <div class="text-edu-charcoal/80 font-light p-6 pt-0 leading-relaxed border-t border-edu-charcoal/10 mt-2 text-sm sm:text-base">
+                            Preporučujemo dolazak 10 do 15 minuta prije ugovorenog termina kako biste se mirno smjestili, dočekali prve goste i predali eventualne osobne stvari našim edukatorima.
+                        </div>
+                    </details>
+
+                    <details class="group bg-edu-cream/40 rounded-2xl border border-edu-charcoal/10 overflow-hidden hover:border-edu-terracotta/40 hover:shadow-2xs transition-all">
+                        <summary class="flex justify-between items-center font-semibold cursor-pointer p-6 text-base sm:text-lg hover:bg-white transition-colors text-edu-charcoal">
+                            Ima li dovoljno parkinga za goste?
+                            <span class="transition group-open:rotate-180 text-edu-terracotta shrink-0 ml-4">
+                                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </summary>
+                        <div class="text-edu-charcoal/80 font-light p-6 pt-0 leading-relaxed border-t border-edu-charcoal/10 mt-2 text-sm sm:text-base">
+                            Da! Nalazimo se u Grožnjanskoj ulici 17 u Puli gdje je osiguran besplatan parking neposredno ispred i u blizini prostora, tako da vaši gosti neće gubiti vrijeme tražeći mjesto.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCIJA 9: Kontakt Banner & Lokacija -->
+        <section id="kontakt" class="py-16 sm:py-20 px-4 sm:px-6 scroll-mt-24">
+            <div class="max-w-4xl mx-auto bg-gradient-to-br from-edu-cream via-white to-edu-terracotta/15 p-8 sm:p-12 md:p-14 rounded-[2.5rem] border border-edu-terracotta/30 shadow-sm relative overflow-hidden text-center backdrop-blur-sm">
+                <!-- Background decorative elements -->
+                <div class="absolute -top-12 -right-12 w-48 h-48 bg-edu-gold/15 rounded-full filter blur-2xl pointer-events-none"></div>
+                <div class="absolute -bottom-12 -left-12 w-48 h-48 bg-edu-blue/20 rounded-full filter blur-2xl pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-2xl mx-auto">
+                    <div class="inline-flex items-center gap-2 bg-edu-terracotta/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-edu-charcoal mb-4 border border-edu-terracotta/35">
+                        📞 OTVORENI ZA SVA VAŠA PITANJA
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-edu-charcoal tracking-tight mb-4">
+                        Imate pitanje ili posebnu želju za rođendan?
+                    </h2>
+                    <p class="text-base sm:text-lg text-edu-charcoal/75 font-light leading-relaxed mb-8">
+                        Naš tim rado će vam pomoći oko odabira teme, posebnih zahtjeva, slobodnih termina ili organizacije. Javite nam se s povjerenjem!
+                    </p>
+
+                    <!-- Contact cards grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 text-left">
+                        <!-- Telefon / WhatsApp -->
+                        <a href="tel:+385958457648" class="group bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-edu-charcoal/10 shadow-2xs hover:shadow-xs hover:border-edu-terracotta transition-all flex flex-col justify-between">
+                            <div>
+                                <div class="w-10 h-10 rounded-xl bg-edu-terracotta/20 text-edu-charcoal flex items-center justify-center mb-3 group-hover:scale-105 transition-transform border border-edu-terracotta/30">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                </div>
+                                <div class="text-xs uppercase font-bold tracking-wider text-edu-charcoal/60 mb-1">Nazovite nas</div>
+                                <div class="font-bold text-edu-charcoal group-hover:text-edu-terracotta transition-colors">095 845 7648</div>
+                            </div>
+                            <div class="mt-3 text-xs text-edu-terracotta font-semibold flex items-center gap-1">
+                                Poziv ili WhatsApp &rarr;
+                            </div>
+                        </a>
+
+                        <!-- Email -->
+                        <a href="mailto:info@eduplay-pula.hr" class="group bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-edu-charcoal/10 shadow-2xs hover:shadow-xs hover:border-edu-blue transition-all flex flex-col justify-between">
+                            <div>
+                                <div class="w-10 h-10 rounded-xl bg-edu-blue/25 text-edu-charcoal flex items-center justify-center mb-3 group-hover:scale-105 transition-transform border border-edu-blue/35">
+                                    <svg class="w-5 h-5 text-edu-charcoal" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                </div>
+                                <div class="text-xs uppercase font-bold tracking-wider text-edu-charcoal/60 mb-1">Pošaljite e-mail</div>
+                                <div class="font-bold text-edu-charcoal text-sm break-all group-hover:text-edu-terracotta transition-colors">info@eduplay-pula.hr</div>
+                            </div>
+                            <div class="mt-3 text-xs text-edu-terracotta font-semibold flex items-center gap-1">
+                                Odgovaramo brzo &rarr;
+                            </div>
+                        </a>
+
+                        <!-- Adresa / Lokacija -->
+                        <a href="https://maps.google.com/?q=Grožnjanska+ulica+17,+52100+Pula" target="_blank" rel="noopener noreferrer" class="group bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-edu-charcoal/10 shadow-2xs hover:shadow-xs hover:border-edu-sage transition-all flex flex-col justify-between">
+                            <div>
+                                <div class="w-10 h-10 rounded-xl bg-edu-sage/30 text-edu-charcoal flex items-center justify-center mb-3 border border-edu-sage/40 group-hover:scale-105 transition-transform">
+                                    <svg class="w-5 h-5 text-edu-charcoal" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                                </div>
+                                <div class="text-xs uppercase font-bold tracking-wider text-edu-charcoal/60 mb-1">Posjetite nas</div>
+                                <div class="font-bold text-edu-charcoal text-sm leading-snug">Grožnjanska ul. 17,<br>52100 Pula</div>
+                            </div>
+                            <div class="mt-3 text-xs text-edu-terracotta font-semibold flex items-center gap-1">
+                                Otvori u Google Kartama &rarr;
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Direct action buttons -->
+                    <div class="flex flex-wrap items-center justify-center gap-3">
+                        <a href="tel:+385958457648" class="inline-flex items-center gap-2 bg-edu-terracotta hover:bg-edu-terracotta/90 text-white font-bold px-7 py-3.5 rounded-full text-sm transition-all shadow-xs hover:shadow-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Nazovite 095 845 7648
+                        </a>
+                        <a href="mailto:info@eduplay-pula.hr" class="inline-flex items-center gap-2 bg-white border border-edu-charcoal/15 hover:border-edu-terracotta text-edu-charcoal font-bold px-7 py-3.5 rounded-full text-sm transition-all shadow-2xs hover:shadow-xs">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            Pošaljite upit
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER LITE -->
-    <footer class="bg-brand-dark py-10 px-4 text-center">
-        <p class="text-brand-bg/60 font-light text-sm">
-            &copy; 2026 EduPlay Pula. Sva prava pridržana.
-        </p>
+    <!-- FOOTER (Usklađen s ostatkom weba) -->
+    <footer id="contact" class="bg-edu-charcoal pt-20 pb-10 text-edu-cream border-t border-white/5 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            
+            <!-- Branded footer column -->
+            <div>
+              <div class="mb-6">
+                <a href="/" class="flex items-center select-none group" aria-label="EduPlay Početna">
+                  <img src="/Eduplaylogo1.png" alt="EduPlay Pula" class="h-12 w-auto object-contain brightness-0 invert" />
+                </a>
+              </div>
+              <p class="text-edu-cream/75 font-light text-sm leading-relaxed mb-6">
+                Vaš mir, njihov razvoj. Prva premium, guilt-free dječja igraonica u Puli bez ekrana.
+              </p>
+              <div class="flex space-x-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 hover:bg-edu-gold/20 flex items-center justify-center text-edu-cream hover:text-edu-cream transition-colors" aria-label="Instagram">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 hover:bg-edu-gold/20 flex items-center justify-center text-edu-cream hover:text-edu-cream transition-colors" aria-label="Facebook">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Quick links -->
+            <div>
+              <h4 class="text-edu-cream font-bold text-sm uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Radno vrijeme</h4>
+              <ul class="space-y-3 text-edu-cream/75 text-sm font-light">
+                <li class="flex justify-between items-center gap-2"><span>Ponedjeljak - Nedjelja</span> <span class="font-semibold text-edu-gold whitespace-nowrap">09-13, 16-20</span></li>
+                <li class="pt-2 text-[10px] text-edu-cream/50 italic leading-snug">
+                  *Dolaske je preporučljivo najaviti u aplikaciji radi zadržavanja ugodne atmosfere.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Address -->
+            <div>
+              <h4 class="text-edu-cream font-bold text-sm uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Kontakt & Adresa</h4>
+              <ul class="space-y-4 text-edu-cream/75 text-sm font-light">
+                <li class="flex items-start">
+                  <svg class="w-[18px] h-[18px] mr-3 text-edu-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span>Grožnjanska ul. 17,<br />52100 Pula, Hrvatska</span>
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-[18px] h-[18px] mr-3 text-edu-gold shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <a href="tel:+385958457648" class="hover:text-edu-cream transition-colors">095 845 7648</a>
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-[18px] h-[18px] mr-3 text-edu-gold shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  <a href="mailto:info@eduplay-pula.hr" class="hover:text-edu-cream transition-colors">info@eduplay-pula.hr</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Web Development note -->
+            <div>
+              <h4 class="text-edu-cream font-bold text-sm uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Izrada web stranice</h4>
+              <p class="text-edu-cream/75 font-light text-sm leading-relaxed mb-4">
+                Redizajn vizualnog identiteta i izrada weba:
+              </p>
+              <a 
+                href="https://merkat.media"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center bg-white/5 border border-white/10 hover:border-edu-gold px-4 py-2 rounded-xl text-xs text-edu-gold transition-all font-bold tracking-wide"
+              >
+                MERKAT MEDIA
+              </a>
+            </div>
+
+          </div>
+
+          <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-edu-cream/40 text-xs font-light gap-4">
+            <p>&copy; 2026 EduPlay Pula. Sva prava pridržana.</p>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+              <a href="#" class="hover:text-edu-cream transition-colors">Opći uvjeti</a>
+              <a href="/kucni-red.html" class="hover:text-edu-cream transition-colors">Kućni red</a>
+              <a href="/cesta-pitanja.html" class="hover:text-edu-cream transition-colors">Česta pitanja</a>
+              <a href="#" class="hover:text-edu-cream transition-colors">Politika privatnosti</a>
+              <a href="#" class="hover:text-edu-cream transition-colors font-semibold text-edu-gold">HR-HR</a>
+            </div>
+          </div>
+        </div>
     </footer>
 
+    <!-- STICKY MOBILE ACTION BAR (Visoka konverzija i brz pristup na mobitelima) -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-edu-charcoal/10 px-4 py-2.5 shadow-lg flex items-center justify-between gap-3">
+        <a href="tel:+385958457648" class="flex-1 text-center py-2.5 rounded-full border border-edu-charcoal/20 text-edu-charcoal font-bold text-xs flex items-center justify-center gap-1.5 hover:bg-edu-cream transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            095 845 7648
+        </a>
+        <a href="#booking-section" class="flex-1 text-center py-2.5 rounded-full bg-edu-terracotta hover:bg-edu-terracotta/90 text-white font-bold text-xs shadow-xs flex items-center justify-center gap-1.5 transition-all">
+            📅 Rezerviraj termin
+        </a>
+    </div>
+
+    <!-- Floating Feedback Toast Notification -->
+    <div id="toast" class="fixed top-24 right-4 z-50 transform translate-y-[-150%] opacity-0 transition-all duration-300 bg-white/95 backdrop-blur-md border border-edu-terracotta/40 text-edu-charcoal px-4 py-3 rounded-2xl shadow-lg flex items-center gap-3 text-xs sm:text-sm font-semibold pointer-events-none">
+        <span class="text-base" id="toast-icon">✨</span>
+        <span id="toast-msg">Odabrana tema!</span>
+    </div>
+
+    <!-- Interactive Scripts for UX Enhancement -->
     <script>
+        // 1. Scroll Progress Bar
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -562,6 +1206,202 @@
             if (progressBar) {
                 progressBar.style.width = scrolled + '%';
             }
+        });
+
+        // 2. Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                const isOpen = !mobileMenu.classList.contains('hidden');
+                if (isOpen) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                } else {
+                    mobileMenu.classList.remove('hidden');
+                    menuIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                }
+            });
+
+            // Close mobile menu on clicking any link inside
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
+        }
+
+        // 3. Interactive Pricing Calculator Logic
+        let childrenCount = 15;
+
+        function updatePricing() {
+            const countDisplay = document.getElementById('calc-children-count');
+            const priceDisplay = document.getElementById('calc-total-price');
+            const remainderDisplay = document.getElementById('calc-remainder-price');
+            const tierNameDisplay = document.getElementById('calc-tier-name');
+            const ctaBtn = document.getElementById('calc-cta-btn');
+
+            let price = 170;
+            let tierName = "Mala grupa (do 10 djece)";
+            let activeTierId = "tier-card-10";
+
+            if (childrenCount <= 10) {
+                price = 170;
+                tierName = "Mala grupa (do 10 djece)";
+                activeTierId = "tier-card-10";
+            } else if (childrenCount <= 15) {
+                price = 220;
+                tierName = "Srednja grupa (do 15 djece)";
+                activeTierId = "tier-card-15";
+            } else if (childrenCount <= 20) {
+                price = 250;
+                tierName = "Velika grupa (do 20 djece)";
+                activeTierId = "tier-card-20";
+            } else if (childrenCount <= 25) {
+                price = 280;
+                tierName = "Maksimalna grupa (do 25 djece)";
+                activeTierId = "tier-card-25";
+            } else {
+                price = 280 + (childrenCount - 25) * 12;
+                tierName = `Grupa od ${childrenCount} djece (25 + ${childrenCount - 25} dodatno)`;
+                activeTierId = "tier-card-25";
+            }
+
+            if (countDisplay) countDisplay.textContent = childrenCount;
+            if (priceDisplay) priceDisplay.textContent = price;
+            if (remainderDisplay) remainderDisplay.textContent = Math.max(0, price - 70) + ' €';
+            if (tierNameDisplay) tierNameDisplay.textContent = tierName;
+            if (ctaBtn) ctaBtn.textContent = `Rezerviraj paket (${price} €) →`;
+
+            // Highlight corresponding tier card
+            document.querySelectorAll('.tier-card').forEach(card => {
+                card.classList.remove('active-tier', 'border-2', 'border-edu-terracotta/60', 'bg-gradient-to-b', 'from-edu-terracotta/20');
+                if (card.id === activeTierId) {
+                    card.classList.add('active-tier', 'border-2', 'border-edu-terracotta/60');
+                }
+            });
+
+            // Highlight preset buttons
+            document.querySelectorAll('.calc-preset-btn').forEach(btn => {
+                const num = parseInt(btn.textContent);
+                if (num === childrenCount) {
+                    btn.classList.add('bg-edu-terracotta', 'text-white', 'border-edu-terracotta');
+                    btn.classList.remove('bg-white', 'text-edu-charcoal');
+                } else {
+                    btn.classList.remove('bg-edu-terracotta', 'text-white', 'border-edu-terracotta');
+                    btn.classList.add('bg-white');
+                }
+            });
+        }
+
+        function adjustChildren(delta) {
+            childrenCount = Math.max(5, Math.min(35, childrenCount + delta));
+            updatePricing();
+        }
+
+        function setChildren(num) {
+            childrenCount = num;
+            updatePricing();
+            showToast('💰', `Odabrano ${num} djece – Cijena ažurirana!`);
+        }
+
+        // 4. Program Filter (Baby vs Kids)
+        function filterPrograms(category) {
+            const babyGroup = document.getElementById('card-group-baby');
+            const kidsGroup = document.getElementById('card-group-kids');
+            const filterBtns = document.querySelectorAll('.program-filter-btn');
+
+            filterBtns.forEach(btn => {
+                btn.classList.remove('bg-edu-terracotta', 'text-white');
+                btn.classList.add('text-edu-charcoal/75');
+            });
+
+            const activeBtn = document.getElementById('filter-btn-' + category);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-edu-terracotta', 'text-white');
+                activeBtn.classList.remove('text-edu-charcoal/75');
+            }
+
+            if (category === 'all') {
+                if (babyGroup) { babyGroup.classList.remove('hidden'); babyGroup.classList.add('lg:col-span-5'); }
+                if (kidsGroup) { kidsGroup.classList.remove('hidden'); kidsGroup.classList.add('lg:col-span-7'); }
+            } else if (category === 'baby') {
+                if (babyGroup) { babyGroup.classList.remove('hidden'); babyGroup.classList.remove('lg:col-span-5'); babyGroup.classList.add('lg:col-span-12'); }
+                if (kidsGroup) { kidsGroup.classList.add('hidden'); }
+            } else if (category === 'kids') {
+                if (babyGroup) { babyGroup.classList.add('hidden'); }
+                if (kidsGroup) { kidsGroup.classList.remove('hidden'); kidsGroup.classList.remove('lg:col-span-7'); kidsGroup.classList.add('lg:col-span-12'); }
+            }
+        }
+
+        // 5. Select Theme Interaction
+        function selectTheme(themeName) {
+            const pill = document.getElementById('selection-summary-pill');
+            const display = document.getElementById('selected-theme-display');
+
+            if (pill && display) {
+                display.textContent = themeName;
+                pill.classList.remove('hidden');
+                pill.classList.add('theme-selected-badge');
+            }
+
+            // Mark active style on selected theme card
+            document.querySelectorAll('.theme-card').forEach(card => {
+                card.classList.remove('ring-2', 'ring-edu-terracotta', 'bg-edu-terracotta/5');
+                if (card.getAttribute('data-theme-name') === themeName) {
+                    card.classList.add('ring-2', 'ring-edu-terracotta', 'bg-edu-terracotta/5');
+                }
+            });
+
+            showToast('🎨', `Odabrano: ${themeName}!`);
+
+            // Smooth scroll to Calendly booking
+            const bookingSection = document.getElementById('booking-section');
+            if (bookingSection) {
+                bookingSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function clearThemeSelection() {
+            const pill = document.getElementById('selection-summary-pill');
+            if (pill) pill.classList.add('hidden');
+            document.querySelectorAll('.theme-card').forEach(card => {
+                card.classList.remove('ring-2', 'ring-edu-terracotta', 'bg-edu-terracotta/5');
+            });
+        }
+
+        // 6. Toast Notification Helper
+        let toastTimeout;
+        function showToast(icon, message) {
+            const toast = document.getElementById('toast');
+            const toastIcon = document.getElementById('toast-icon');
+            const toastMsg = document.getElementById('toast-msg');
+
+            if (!toast) return;
+
+            toastIcon.textContent = icon;
+            toastMsg.textContent = message;
+
+            clearTimeout(toastTimeout);
+            toast.classList.remove('translate-y-[-150%]', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-[-150%]', 'opacity-0');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3000);
+        }
+
+        // Initialize state on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePricing();
         });
     </script>
 </body>
