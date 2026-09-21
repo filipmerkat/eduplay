@@ -217,15 +217,6 @@
                                         </p>
                                     </div>
                                 </div>
-
-                                <!-- Floating Badge under photo -->
-                                <div class="mt-3.5 p-3 rounded-2xl bg-edu-cream/70 flex items-center justify-between text-left text-xs font-semibold text-edu-charcoal">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-base">☕</span>
-                                        <span>Lounge zona s kavom za roditelje</span>
-                                    </div>
-                                    <span class="text-2xs font-bold uppercase tracking-wider text-edu-terracotta bg-edu-terracotta/15 px-2 py-0.5 rounded-md">Besplatan parking</span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -569,12 +560,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Footer highlight -->
-                        <div class="mt-8 pt-5 border-t border-edu-sage/25 flex items-center gap-3 text-xs text-edu-charcoal/80 font-medium">
-                            <span class="w-2.5 h-2.5 rounded-full bg-edu-sage shrink-0"></span>
-                            <span>Mekana Soft Play zona & Snoezelen šator za miran završetak</span>
-                        </div>
                     </div>
 
                     <!-- 2. EduPlay Kids (3+) -->
@@ -694,12 +679,6 @@
 
                             </div>
                         </div>
-
-                        <!-- Footer highlight -->
-                        <div class="mt-8 pt-5 border-t border-edu-lilac/25 flex items-center gap-3 text-xs text-edu-charcoal/80 font-medium">
-                            <span class="w-2.5 h-2.5 rounded-full bg-edu-lilac shrink-0"></span>
-                            <span>Svi materijali, rekviziti i pregačice uključeni u cijenu programa</span>
-                        </div>
                     </div>
 
                 </div>
@@ -755,6 +734,84 @@
                             </div>
                         </div>
 
+                        <!-- 2. Slavljenički dodaci (opcionalno) -->
+                        <div class="mb-6 bg-white/80 backdrop-blur-sm rounded-3xl p-5 sm:p-6 border border-edu-charcoal/10 shadow-2xs text-left">
+                            <div class="flex items-center justify-between mb-3.5">
+                                <h4 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-edu-charcoal flex items-center gap-2">
+                                    <span>✨ Slavljenički dodaci</span>
+                                    <span class="text-3xs font-normal lowercase tracking-normal text-edu-charcoal/60 bg-edu-charcoal/5 px-2 py-0.5 rounded-full">opcionalno</span>
+                                </h4>
+                            </div>
+
+                            <div class="space-y-2.5">
+                                <!-- Face painting -->
+                                <label class="flex items-start gap-3 p-3 bg-white hover:bg-edu-cream/40 rounded-2xl border border-edu-charcoal/10 hover:border-edu-terracotta/40 cursor-pointer transition-colors shadow-2xs">
+                                    <input type="checkbox" id="addon-facepaint" onchange="updatePricing()" class="accent-edu-terracotta w-4 h-4 mt-0.5 rounded cursor-pointer shrink-0">
+                                    <div class="text-xs flex-1">
+                                        <div class="flex justify-between items-baseline flex-wrap gap-1">
+                                            <span class="font-bold text-edu-charcoal">Face painting s Hanom Peranić Kolić</span>
+                                            <span class="font-extrabold text-edu-terracotta" id="addon-facepaint-price">+75 €</span>
+                                        </div>
+                                        <p class="text-2xs text-edu-charcoal/70 font-light mt-0.5">5 € po djetetu (automatski i dinamički preračunato prema odabranom broju djece u grupi)</p>
+                                    </div>
+                                </label>
+
+                                <!-- Fotografiranje -->
+                                <label class="flex items-start gap-3 p-3 bg-white hover:bg-edu-cream/40 rounded-2xl border border-edu-charcoal/10 hover:border-edu-terracotta/40 cursor-pointer transition-colors shadow-2xs">
+                                    <input type="checkbox" id="addon-photo" onchange="updatePricing()" class="accent-edu-terracotta w-4 h-4 mt-0.5 rounded cursor-pointer shrink-0">
+                                    <div class="text-xs flex-1">
+                                        <div class="flex justify-between items-baseline flex-wrap gap-1">
+                                            <span class="font-bold text-edu-charcoal">Fotografiranje proslave s Elison Benčić</span>
+                                            <span class="font-extrabold text-edu-terracotta">+80 €</span>
+                                        </div>
+                                        <p class="text-2xs text-edu-charcoal/70 font-light mt-0.5">1 sat profesionalnog fotografiranja (+80 €)</p>
+                                    </div>
+                                </label>
+
+                                <!-- Pinjata -->
+                                <label class="flex items-start gap-3 p-3 bg-white hover:bg-edu-cream/40 rounded-2xl border border-edu-charcoal/10 hover:border-edu-terracotta/40 cursor-pointer transition-colors shadow-2xs">
+                                    <input type="checkbox" id="addon-pinjata" onchange="updatePricing()" class="accent-edu-terracotta w-4 h-4 mt-0.5 rounded cursor-pointer shrink-0">
+                                    <div class="text-xs flex-1">
+                                        <div class="flex justify-between items-baseline flex-wrap gap-1">
+                                            <span class="font-bold text-edu-charcoal">Pinjata</span>
+                                            <span class="font-extrabold text-edu-terracotta">+40 €</span>
+                                        </div>
+                                        <p class="text-2xs text-edu-charcoal/70 font-light mt-0.5">Tematska pinjata s punjenjem (+40 €)</p>
+                                    </div>
+                                </label>
+
+                                <!-- Polaroid slike i album -->
+                                <label class="flex items-start gap-3 p-3 bg-white hover:bg-edu-cream/40 rounded-2xl border border-edu-charcoal/10 hover:border-edu-terracotta/40 cursor-pointer transition-colors shadow-2xs">
+                                    <input type="checkbox" id="addon-polaroid" onchange="updatePricing()" class="accent-edu-terracotta w-4 h-4 mt-0.5 rounded cursor-pointer shrink-0">
+                                    <div class="text-xs flex-1">
+                                        <div class="flex justify-between items-baseline flex-wrap gap-1">
+                                            <span class="font-bold text-edu-charcoal">Polaroid slike i album</span>
+                                            <span class="font-extrabold text-edu-terracotta">+30 €</span>
+                                        </div>
+                                        <p class="text-2xs text-edu-charcoal/70 font-light mt-0.5">10 fotografija u albumu za uspomenu (+30 €)</p>
+                                    </div>
+                                </label>
+
+                                <!-- Dekoracija -->
+                                <label class="flex items-start gap-3 p-3 bg-white hover:bg-edu-cream/40 rounded-2xl border border-edu-charcoal/10 hover:border-edu-terracotta/40 cursor-pointer transition-colors shadow-2xs">
+                                    <input type="checkbox" id="addon-decoration" onchange="updatePricing()" class="accent-edu-terracotta w-4 h-4 mt-0.5 rounded cursor-pointer shrink-0">
+                                    <div class="text-xs flex-1">
+                                        <div class="flex justify-between items-baseline flex-wrap gap-1">
+                                            <span class="font-bold text-edu-charcoal">Dekoracija</span>
+                                            <span class="text-2xs font-bold uppercase tracking-wider text-edu-terracotta bg-edu-terracotta/15 px-2.5 py-0.5 rounded-md">Po dogovoru</span>
+                                        </div>
+                                        <p class="text-2xs text-edu-charcoal/70 font-light mt-0.5">Prikazana opcija "Po dogovoru s vanjskim suradnicima"</p>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- 3. Napomena -->
+                            <div class="mt-4 p-3.5 bg-edu-gold/15 border border-edu-gold/40 rounded-2xl text-xs text-edu-charcoal flex items-start gap-2.5">
+                                <span class="text-edu-terracotta text-base shrink-0">ℹ️</span>
+                                <span class="leading-relaxed font-medium"><strong>Napomena:</strong> Svi vanjski suradnici moraju potvrditi dostupnost za proslavu.</span>
+                            </div>
+                        </div>
+
                         <!-- Live Calculation Result Card -->
                         <div class="bg-white rounded-3xl p-6 border border-edu-charcoal/10 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
                             <div class="text-center md:text-left">
@@ -762,7 +819,10 @@
                                 <div class="flex items-baseline justify-center md:justify-start gap-1.5">
                                     <span class="text-4xl sm:text-5xl font-black text-edu-charcoal" id="calc-total-price">220</span>
                                     <span class="text-xl font-bold text-edu-charcoal/80">€</span>
-                                    <span class="text-xs text-edu-charcoal/60 ml-2 font-normal">(sve uključeno)</span>
+                                    <span class="text-xs text-edu-charcoal/60 ml-2 font-normal">(ukupni izračun)</span>
+                                </div>
+                                <div id="calc-decoration-note" class="hidden text-2xs text-edu-terracotta font-bold mt-1">
+                                    + dekoracija po dogovoru s vanjskim suradnicima
                                 </div>
                                 <div class="text-xs text-edu-charcoal/70 mt-2 space-x-3">
                                     <span>Akontacija: <strong class="text-edu-charcoal font-semibold">70 €</strong> pri rezervaciji</span>
@@ -1243,38 +1303,89 @@
             const remainderDisplay = document.getElementById('calc-remainder-price');
             const tierNameDisplay = document.getElementById('calc-tier-name');
             const ctaBtn = document.getElementById('calc-cta-btn');
+            const facepaintPriceDisplay = document.getElementById('addon-facepaint-price');
+            const decorationNote = document.getElementById('calc-decoration-note');
 
-            let price = 170;
+            const addonFacepaint = document.getElementById('addon-facepaint')?.checked || false;
+            const addonPhoto = document.getElementById('addon-photo')?.checked || false;
+            const addonPinjata = document.getElementById('addon-pinjata')?.checked || false;
+            const addonPolaroid = document.getElementById('addon-polaroid')?.checked || false;
+            const addonDecoration = document.getElementById('addon-decoration')?.checked || false;
+
+            let basePrice = 170;
             let tierName = "Mala grupa (do 10 djece)";
             let activeTierId = "tier-card-10";
 
             if (childrenCount <= 10) {
-                price = 170;
+                basePrice = 170;
                 tierName = "Mala grupa (do 10 djece)";
                 activeTierId = "tier-card-10";
             } else if (childrenCount <= 15) {
-                price = 220;
+                basePrice = 220;
                 tierName = "Srednja grupa (do 15 djece)";
                 activeTierId = "tier-card-15";
             } else if (childrenCount <= 20) {
-                price = 250;
+                basePrice = 250;
                 tierName = "Velika grupa (do 20 djece)";
                 activeTierId = "tier-card-20";
             } else if (childrenCount <= 25) {
-                price = 280;
+                basePrice = 280;
                 tierName = "Maksimalna grupa (do 25 djece)";
                 activeTierId = "tier-card-25";
             } else {
-                price = 280 + (childrenCount - 25) * 12;
+                basePrice = 280 + (childrenCount - 25) * 12;
                 tierName = `Grupa od ${childrenCount} djece (25 + ${childrenCount - 25} dodatno)`;
                 activeTierId = "tier-card-25";
             }
 
+            // Dinamička cijena face paintinga prema broju djece u grupi (5 € po djetetu)
+            const facepaintCost = childrenCount * 5;
+            if (facepaintPriceDisplay) {
+                facepaintPriceDisplay.textContent = `+${facepaintCost} €`;
+            }
+
+            let totalPrice = basePrice;
+            const selectedAddons = [];
+
+            if (addonFacepaint) {
+                totalPrice += facepaintCost;
+                selectedAddons.push(`Face painting (+${facepaintCost}€)`);
+            }
+            if (addonPhoto) {
+                totalPrice += 80;
+                selectedAddons.push('Fotografiranje (+80€)');
+            }
+            if (addonPinjata) {
+                totalPrice += 40;
+                selectedAddons.push('Pinjata (+40€)');
+            }
+            if (addonPolaroid) {
+                totalPrice += 30;
+                selectedAddons.push('Polaroid (+30€)');
+            }
+            if (addonDecoration) {
+                selectedAddons.push('Dekoracija');
+            }
+
             if (countDisplay) countDisplay.textContent = childrenCount;
-            if (priceDisplay) priceDisplay.textContent = price;
-            if (remainderDisplay) remainderDisplay.textContent = Math.max(0, price - 70) + ' €';
-            if (tierNameDisplay) tierNameDisplay.textContent = tierName;
-            if (ctaBtn) ctaBtn.textContent = `Rezerviraj paket (${price} €) →`;
+            if (priceDisplay) priceDisplay.textContent = totalPrice;
+            if (remainderDisplay) remainderDisplay.textContent = Math.max(0, totalPrice - 70) + ' €';
+            
+            let fullTierDisplay = tierName;
+            if (selectedAddons.length > 0) {
+                fullTierDisplay += ` + ${selectedAddons.length} dodatak(a)`;
+            }
+            if (tierNameDisplay) tierNameDisplay.textContent = fullTierDisplay;
+
+            if (ctaBtn) ctaBtn.textContent = `Rezerviraj paket (${totalPrice} €) →`;
+
+            if (decorationNote) {
+                if (addonDecoration) {
+                    decorationNote.classList.remove('hidden');
+                } else {
+                    decorationNote.classList.add('hidden');
+                }
+            }
 
             // Highlight corresponding tier card
             document.querySelectorAll('.tier-card').forEach(card => {

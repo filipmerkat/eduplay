@@ -44,7 +44,7 @@ Kada dijete samo kontrolira tempo igre, prekomjerna stimulacija nestaje, a zamje
   },
   {
     id: "montessori-kod-kuce",
-    title: "Montessori kod kuće za roditelje",
+    title: "Savjeti za roditelje",
     date: "28. Travnja 2026.",
     category: "Igračka",
     categoryColor: "text-edu-gold border-edu-gold/20 bg-nordic-bg",

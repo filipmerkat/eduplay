@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
 import { Link } from 'react-router-dom';
+import { blogPosts } from './data/blogs';
 import { Menu, X, Puzzle, Coffee, HeartHandshake, ArrowRight, Instagram, Facebook, Mail, MapPin, Phone, Quote, ChevronLeft, ChevronRight, Moon, Sun, Calculator, Check, Sparkles, HelpCircle, Gift, BookOpen, Clock } from 'lucide-react';
 
 // Brand colors and layout alignment constants
@@ -168,11 +169,14 @@ export default function App() {
 
   // Pricing calculator state
   const [calcService, setCalcService] = useState<'rođendani' | 'slobodna_igra' | 'radionice'>('rođendani');
-  const [birthdayChildren, setBirthdayChildren] = useState<number>(5);
+  const [birthdayChildren, setBirthdayChildren] = useState<number>(10);
   const [playHours, setPlayHours] = useState<number>(2);
   const [playChildren, setPlayChildren] = useState<number>(1);
   const [addonFacepaint, setAddonFacepaint] = useState(false);
-  const [addonGift, setAddonGift] = useState(false);
+  const [addonPhotography, setAddonPhotography] = useState(false);
+  const [addonPinjata, setAddonPinjata] = useState(false);
+  const [addonPolaroid, setAddonPolaroid] = useState(false);
+  const [addonDecoration, setAddonDecoration] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -185,25 +189,26 @@ export default function App() {
   // Calculate pricing nicely
   const calculateTotal = () => {
     if (calcService === 'rođendani') {
-      let base = 140;
-      if (birthdayChildren <= 5) base = 140;
-      else if (birthdayChildren <= 10) base = 170;
-      else if (birthdayChildren <= 15) base = 200;
-      else if (birthdayChildren <= 20) base = 230;
-      else if (birthdayChildren <= 25) base = 260;
-      else base = 260 + (birthdayChildren - 25) * 10;
+      let base = 170;
+      if (birthdayChildren <= 10) base = 170;
+      else if (birthdayChildren <= 15) base = 220;
+      else if (birthdayChildren <= 20) base = 250;
+      else if (birthdayChildren <= 25) base = 280;
+      else base = 280 + (birthdayChildren - 25) * 12;
       
-      if (addonFacepaint) base += 30;
-      if (addonGift) base += 25;
+      if (addonFacepaint) base += birthdayChildren * 5;
+      if (addonPhotography) base += 80;
+      if (addonPinjata) base += 40;
+      if (addonPolaroid) base += 30;
       return base;
     } else if (calcService === 'slobodna_igra') {
       if (playChildren === 1) {
         if (playHours === 1) return 7;
-        if (playHours === 2) return 14;
-        if (playHours === 3) return 20;
+        if (playHours === 2) return 13;
+        if (playHours === 3) return 19;
       } else if (playChildren === 2) {
         if (playHours === 1) return 13;
-        if (playHours === 2) return 25;
+        if (playHours === 2) return 24;
         if (playHours === 3) return 35;
       }
       return 7;
@@ -561,7 +566,7 @@ export default function App() {
 
                 <div className="mt-8 pt-6 border-t border-nordic-border flex flex-col sm:flex-row justify-between items-start sm:items-center text-xs text-nordic-text/80 gap-4">
                   <span className="flex items-center"><Check size={14} className="text-edu-sage mr-1.5" /> 100% Neotrovni prirodni premazi</span>
-                  <span className="flex items-center"><Check size={14} className="text-edu-sage mr-1.5" /> Usklađeno s Montessori standardom</span>
+                  <span className="flex items-center"><Check size={14} className="text-edu-sage mr-1.5" /> Visoki standard kvalitete</span>
                 </div>
               </div>
 
@@ -605,7 +610,7 @@ export default function App() {
                   </div>
                   <div className="pt-6 border-t border-white/20 mt-4">
                     <div className="text-2xs uppercase tracking-wide text-edu-cream/80 mb-1">Početna cijena</div>
-                    <div className="text-2xl font-black mb-6">€140 / 5 djece</div>
+                    <div className="text-2xl font-black mb-6">€170 / do 10 djece</div>
                     <a href="#calculator" className="block text-center bg-white text-edu-terracotta hover:bg-edu-cream font-bold py-3.5 px-6 rounded-full text-sm transition-all shadow-md mb-3">
                       Izračunaj / Rezerviraj
                     </a>
@@ -629,6 +634,7 @@ export default function App() {
                       Slobodna igra (uz roditelje ili pod nadzorom)
                     </p>
                     <ul className="space-y-3 mb-8 text-sm text-edu-cream/90 font-light">
+                      <li className="flex items-center"><Check size={14} className="text-edu-cream mr-2 shrink-0" /> 1 sat: 7 € · 2 sata: 13 € · 3 sata: 19 €</li>
                       <li className="flex items-center"><Check size={14} className="text-edu-cream mr-2 shrink-0" /> Mini play city za role-play</li>
                       <li className="flex items-center"><Check size={14} className="text-edu-cream mr-2 shrink-0" /> Umirujući šator za smirenje</li>
                       <li className="flex items-start"><Check size={14} className="text-edu-cream mr-2 shrink-0 mt-1" /> <span>kutak kreativne igre uključuje glazbeni dio i umjetnički dio</span></li>
@@ -636,7 +642,7 @@ export default function App() {
                   </div>
                   <div className="pt-6 border-t border-white/20 mt-4">
                     <div className="text-2xs uppercase tracking-wide text-edu-cream/80 mb-1">Satnica s popustima</div>
-                    <div className="text-2xl font-black mb-6">već od €7 / h</div>
+                    <div className="text-2xl font-black mb-6">1h: €7 · 2h: €13 · 3h: €19</div>
                     <a href="#calculator" className="block text-center bg-white text-edu-blue font-bold py-3.5 px-6 rounded-full text-sm transition-all hover:bg-edu-cream shadow-md">
                       Isprobaj odmah
                     </a>
@@ -729,7 +735,7 @@ export default function App() {
 
                   {/* Calculations Details per service type */}
                   {calcService === 'rođendani' && (
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                       <div>
                         <label className="block text-xs font-bold uppercase tracking-wide text-nordic-heading mb-2" htmlFor="birthdayChildrenSelector">
                           Broj djece:
@@ -738,33 +744,127 @@ export default function App() {
                           id="birthdayChildrenSelector"
                           value={birthdayChildren}
                           onChange={(e) => setBirthdayChildren(parseInt(e.target.value))}
-                          className="w-full px-4 py-2.5 rounded-xl border border-nordic-border bg-nordic-bg text-sm text-nordic-text focus:outline-none focus:ring-1 focus:ring-edu-gold"
+                          className="w-full px-4 py-2.5 rounded-xl border border-nordic-border bg-nordic-bg text-sm text-nordic-text focus:outline-none focus:ring-1 focus:ring-edu-gold font-medium"
                         >
-                          <option value={5}>Do 5 djece (€140)</option>
                           <option value={10}>Do 10 djece (€170)</option>
-                          <option value={15}>Do 15 djece (€200)</option>
-                          <option value={20}>Do 20 djece (€230)</option>
-                          <option value={25}>Do 25 djece (€260)</option>
-                          <option value={26}>26 djece (€270)</option>
-                          <option value={27}>27 djece (€280)</option>
-                          <option value={28}>28 djece (€290)</option>
-                          <option value={29}>29 djece (€300)</option>
-                          <option value={30}>30 djece (€310)</option>
+                          <option value={15}>Do 15 djece (€220)</option>
+                          <option value={20}>Do 20 djece (€250)</option>
+                          <option value={25}>Do 25 djece (€280)</option>
+                          <option value={26}>26 djece (€292)</option>
+                          <option value={27}>27 djece (€304)</option>
+                          <option value={28}>28 djece (€316)</option>
+                          <option value={29}>29 djece (€328)</option>
+                          <option value={30}>30 djece (€340)</option>
                         </select>
-                        <p className="text-3xs text-nordic-text mt-2 font-light">Dodatno dijete iznad 25 djece naplaćuje se 10 eur.</p>
+                        <p className="text-3xs text-nordic-text mt-2 font-light">Dodatno dijete iznad 25 djece naplaćuje se 12 eur.</p>
                       </div>
 
-                      {/* Add-ons checkbox */}
-                      <div className="space-y-3">
-                        <span className="block text-xs font-bold uppercase tracking-wide text-nordic-heading">Slavljenički Dodaci (opcionalno):</span>
-                        <div className="grid grid-cols-1 gap-3">
-                          <label className="flex items-center space-x-3 p-3 bg-nordic-bg/30 rounded-xl border border-nordic-border/70 cursor-pointer hover:border-edu-gold/50 transition-colors">
-                            <input type="checkbox" checked={addonFacepaint} onChange={() => setAddonFacepaint(!addonFacepaint)} className="accent-edu-gold w-4 h-4 rounded" />
-                            <div className="text-xs">
-                              <span className="block font-semibold text-nordic-heading">Oslikavanje lica / Facepainting</span>
-                              <span className="text-nordic-text font-light text-2xs">+ €30 fiksno</span>
+                      {/* Add-ons list */}
+                      <div className="space-y-3 pt-1">
+                        <span className="block text-xs font-bold uppercase tracking-wide text-nordic-heading">
+                          Slavljenički dodaci (opcionalno):
+                        </span>
+                        <div className="space-y-2.5">
+                          {/* 1. Face painting */}
+                          <label className="flex items-start space-x-3 p-3 bg-nordic-bg/40 hover:bg-nordic-bg/70 rounded-2xl border border-nordic-border/80 cursor-pointer hover:border-edu-gold/50 transition-colors">
+                            <input 
+                              type="checkbox" 
+                              checked={addonFacepaint} 
+                              onChange={() => setAddonFacepaint(!addonFacepaint)} 
+                              className="accent-edu-gold w-4 h-4 mt-0.5 rounded cursor-pointer" 
+                            />
+                            <div className="text-xs flex-1">
+                              <div className="flex justify-between items-baseline flex-wrap gap-1">
+                                <span className="font-semibold text-nordic-heading">Face painting s Hanom Peranić Kolić</span>
+                                <span className="font-bold text-edu-gold">5 € po djetetu</span>
+                              </div>
+                              <span className="text-nordic-text/75 font-light text-2xs block mt-0.5">
+                                Profesionalno oslikavanje lica{addonFacepaint ? ` (${birthdayChildren} djece = +${birthdayChildren * 5} €)` : ''}
+                              </span>
                             </div>
                           </label>
+
+                          {/* 2. Fotografiranje */}
+                          <label className="flex items-start space-x-3 p-3 bg-nordic-bg/40 hover:bg-nordic-bg/70 rounded-2xl border border-nordic-border/80 cursor-pointer hover:border-edu-gold/50 transition-colors">
+                            <input 
+                              type="checkbox" 
+                              checked={addonPhotography} 
+                              onChange={() => setAddonPhotography(!addonPhotography)} 
+                              className="accent-edu-gold w-4 h-4 mt-0.5 rounded cursor-pointer" 
+                            />
+                            <div className="text-xs flex-1">
+                              <div className="flex justify-between items-baseline flex-wrap gap-1">
+                                <span className="font-semibold text-nordic-heading">Fotografiranje proslave s Elison Benčić</span>
+                                <span className="font-bold text-edu-gold">+80 €</span>
+                              </div>
+                              <span className="text-nordic-text/75 font-light text-2xs block mt-0.5">
+                                1 sat profesionalnog fotografiranja proslave
+                              </span>
+                            </div>
+                          </label>
+
+                          {/* 3. Pinjata */}
+                          <label className="flex items-start space-x-3 p-3 bg-nordic-bg/40 hover:bg-nordic-bg/70 rounded-2xl border border-nordic-border/80 cursor-pointer hover:border-edu-gold/50 transition-colors">
+                            <input 
+                              type="checkbox" 
+                              checked={addonPinjata} 
+                              onChange={() => setAddonPinjata(!addonPinjata)} 
+                              className="accent-edu-gold w-4 h-4 mt-0.5 rounded cursor-pointer" 
+                            />
+                            <div className="text-xs flex-1">
+                              <div className="flex justify-between items-baseline flex-wrap gap-1">
+                                <span className="font-semibold text-nordic-heading">Pinjata</span>
+                                <span className="font-bold text-edu-gold">+40 €</span>
+                              </div>
+                              <span className="text-nordic-text/75 font-light text-2xs block mt-0.5">
+                                Tematska pinjata s punjenjem za zabavno razbijanje
+                              </span>
+                            </div>
+                          </label>
+
+                          {/* 4. Polaroid slike i album */}
+                          <label className="flex items-start space-x-3 p-3 bg-nordic-bg/40 hover:bg-nordic-bg/70 rounded-2xl border border-nordic-border/80 cursor-pointer hover:border-edu-gold/50 transition-colors">
+                            <input 
+                              type="checkbox" 
+                              checked={addonPolaroid} 
+                              onChange={() => setAddonPolaroid(!addonPolaroid)} 
+                              className="accent-edu-gold w-4 h-4 mt-0.5 rounded cursor-pointer" 
+                            />
+                            <div className="text-xs flex-1">
+                              <div className="flex justify-between items-baseline flex-wrap gap-1">
+                                <span className="font-semibold text-nordic-heading">Polaroid slike i album</span>
+                                <span className="font-bold text-edu-gold">+30 €</span>
+                              </div>
+                              <span className="text-nordic-text/75 font-light text-2xs block mt-0.5">
+                                10 fotografija u albumu kao trajna uspomena
+                              </span>
+                            </div>
+                          </label>
+
+                          {/* 5. Dekoracija */}
+                          <label className="flex items-start space-x-3 p-3 bg-nordic-bg/40 hover:bg-nordic-bg/70 rounded-2xl border border-nordic-border/80 cursor-pointer hover:border-edu-gold/50 transition-colors">
+                            <input 
+                              type="checkbox" 
+                              checked={addonDecoration} 
+                              onChange={() => setAddonDecoration(!addonDecoration)} 
+                              className="accent-edu-gold w-4 h-4 mt-0.5 rounded cursor-pointer" 
+                            />
+                            <div className="text-xs flex-1">
+                              <div className="flex justify-between items-baseline flex-wrap gap-1">
+                                <span className="font-semibold text-nordic-heading">Dekoracija</span>
+                                <span className="text-2xs font-bold uppercase tracking-wider text-edu-terracotta bg-edu-terracotta/15 px-2.5 py-0.5 rounded-md">Po dogovoru</span>
+                              </div>
+                              <span className="text-nordic-text/75 font-light text-2xs block mt-0.5">
+                                Po dogovoru s vanjskim suradnicima
+                              </span>
+                            </div>
+                          </label>
+                        </div>
+
+                        {/* Napomena o vanjskim suradnicima */}
+                        <div className="p-3 bg-edu-gold/10 border border-edu-gold/30 rounded-xl text-3xs sm:text-2xs text-nordic-heading font-medium flex items-start gap-2 mt-3">
+                          <span className="text-edu-gold text-sm shrink-0">ℹ️</span>
+                          <span className="leading-relaxed"><strong>Napomena:</strong> Svi vanjski suradnici moraju potvrditi dostupnost za proslavu.</span>
                         </div>
                       </div>
                     </div>
@@ -784,10 +884,10 @@ export default function App() {
                           onChange={(e) => setPlayHours(parseInt(e.target.value))}
                           className="w-full accent-edu-gold cursor-pointer bg-nordic-border rounded-lg h-2"
                         />
-                        <div className="flex justify-between text-3xs text-nordic-text mt-1 font-semibold">
-                          <span>1 sat</span>
-                          <span>2 sata</span>
-                          <span>3 sata</span>
+                        <div className="flex justify-between text-3xs text-nordic-text mt-1.5 font-semibold">
+                          <span>1 sat (7 €)</span>
+                          <span>2 sata (13 €)</span>
+                          <span>3 sata (19 €)</span>
                         </div>
                       </div>
 
@@ -831,6 +931,9 @@ export default function App() {
                     <div className="py-8">
                       <span className="text-5xl font-black text-nordic-heading tracking-tight">€{calculateTotal()}</span>
                       <span className="text-xs text-nordic-text block mt-2 font-medium">PDV uključen u cijenu</span>
+                      {addonDecoration && calcService === 'rođendani' && (
+                        <span className="text-3xs text-edu-terracotta font-bold block mt-1.5">+ dekoracija po dogovoru</span>
+                      )}
                     </div>
 
                     <div className="border-t border-nordic-border/60 pt-4 space-y-2 text-left text-2xs text-nordic-text font-light">
@@ -883,7 +986,7 @@ export default function App() {
                   </p>
                 </div>
                 <div className="pt-6 border-t border-white/20 mt-8 text-xs font-semibold uppercase tracking-wider text-edu-cream/90">
-                  Načela učenja kroz igru
+                  NAJVIŠI STANDARDI
                 </div>
               </div>
 
@@ -942,28 +1045,60 @@ usvojenih vještina kroz igru koja privlači dijete.
           </div>
         </section>
 
-        {/* CTA Banner prije FAQ */}
-        <section className="py-16 px-4 sm:px-6 max-w-5xl mx-auto">
-          <div className="bg-blue-50/50 rounded-3xl p-8 md:p-16 text-center border border-blue-100/50">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-4">
-              Imate pitanja prije dolaska?
-            </h2>
-            <p className="text-slate-600 font-light max-w-2xl mx-auto mb-8 leading-relaxed">
-              Znamo da organizacija dječjeg rođendana ili prvi posjet novoj igraonici može izazvati puno pitanja. Zato smo pripremili detaljne odgovore na sve što vas zanima.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <a 
-                href="/cesta-pitanja.html" 
-                className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 px-8 rounded-full transition-colors"
-              >
-                Pročitajte Česta Pitanja
-              </a>
-              <a 
-                href="#contact" 
-                className="w-full sm:w-auto border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white font-medium py-3 px-8 rounded-full transition-colors"
-              >
-                Pošaljite nam upit
-              </a>
+        {/* BLOG / SAVJETI SECTION */}
+        <section id="blog" className="py-24 bg-nordic-bg relative border-t border-nordic-border/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="text-edu-gold font-bold text-sm uppercase tracking-widest block mb-3">
+                SAVJETI
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-nordic-heading">
+                Korisni savjeti za roditelje
+              </h2>
+              <p className="mt-4 text-base sm:text-lg text-nordic-text font-light leading-relaxed">
+                Stručni uvidi, ideje za razvojnu igru i podrška mirnijem roditeljstvu.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {blogPosts.map((post) => (
+                <article 
+                  key={post.id}
+                  className="bg-nordic-card rounded-[2rem] border border-nordic-border overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="aspect-16/10 overflow-hidden relative">
+                      <img 
+                        src={post.image} 
+                        alt={post.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
+                      <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-2xs font-bold uppercase tracking-wider border shadow-2xs backdrop-blur-xs ${post.categoryColor}`}>
+                        {post.category}
+                      </span>
+                    </div>
+                    <div className="p-6 sm:p-7">
+                      <span className="text-2xs text-nordic-text/70 block mb-2 font-medium">
+                        {post.date}
+                      </span>
+                      <h3 className="text-xl font-bold text-nordic-heading group-hover:text-edu-gold transition-colors mb-3 leading-snug">
+                        {post.title}
+                      </h3>
+                      <p className="text-sm text-nordic-text font-light leading-relaxed line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="p-6 sm:p-7 pt-0">
+                    <Link 
+                      to={`/blog/${post.id}`} 
+                      className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-edu-gold hover:text-edu-gold/80 transition-colors group-hover:translate-x-1 duration-200"
+                    >
+                      Pročitaj više →
+                    </Link>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
