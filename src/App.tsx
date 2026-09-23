@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { blogPosts } from './data/blogs';
-import { Menu, X, Puzzle, Coffee, HeartHandshake, ArrowRight, Instagram, Facebook, Mail, MapPin, Phone, Quote, ChevronLeft, ChevronRight, Moon, Sun, Calculator, Check, Sparkles, HelpCircle, Gift, BookOpen, Clock } from 'lucide-react';
+import { Menu, X, Puzzle, Coffee, HeartHandshake, ArrowRight, Instagram, Facebook, Mail, MapPin, Phone, Quote, ChevronLeft, ChevronRight, Moon, Sun, Calculator, Check, Sparkles, HelpCircle, Gift, BookOpen, Clock, Download } from 'lucide-react';
 
 // Brand colors and layout alignment constants
 const testimonials = [
@@ -177,6 +177,8 @@ export default function App() {
   const [addonPinjata, setAddonPinjata] = useState(false);
   const [addonPolaroid, setAddonPolaroid] = useState(false);
   const [addonDecoration, setAddonDecoration] = useState(false);
+  const [workshopProgram, setWorkshopProgram] = useState<'ilse' | 'luize'>('ilse');
+  const [workshopPackage, setWorkshopPackage] = useState<'single' | 'monthly'>('single');
 
   useEffect(() => {
     if (isDarkMode) {
@@ -212,10 +214,14 @@ export default function App() {
         if (playHours === 3) return 35;
       }
       return 7;
-    } else {
-      // average workshop pass/session
-      return 60;
+    } else if (calcService === 'radionice') {
+      if (workshopProgram === 'ilse') {
+        return workshopPackage === 'single' ? 25 : 90;
+      } else {
+        return workshopPackage === 'single' ? 20 : 70;
+      }
     }
+    return 25;
   };
 
   return (
@@ -653,22 +659,24 @@ export default function App() {
                 <div className="bg-edu-sage text-edu-charcoal dark:text-edu-charcoal w-full min-w-full md:w-auto md:min-w-0 snap-center shrink-0 p-8 rounded-[2.5rem] flex flex-col justify-between hover:shadow-2xl transition-all duration-300 border border-transparent">
                   <div>
                     <div className="inline-block px-3.5 py-1.5 rounded-full bg-edu-charcoal/10 text-edu-charcoal text-xs font-extrabold uppercase mb-6">
-                      Mali genijalci
+                      Stručni programi
                     </div>
                     <h3 className="text-2xl font-bold mb-4">Edukativne radionice</h3>
                     <p className="text-edu-charcoal/80 text-sm font-light leading-relaxed mb-6">
-                      Kreću od jeseni. Stručno osoblje (edukacijski rehabilitator, radni terapeut, fonetičar rehabilitator, socijalni pedagog).
+                      Stručno vođeni programi u malim grupama: radionice emocija i socijalnih vještina te senzomotoričke radionice.
                     </p>
                     <ul className="space-y-3 mb-8 text-sm text-edu-charcoal/90 font-light">
-                      <li className="flex items-center"><Check size={14} className="text-edu-charcoal mr-2 shrink-0" /> termin jednom tjedno</li>
+                      <li className="flex items-center"><Check size={14} className="text-edu-charcoal mr-2 shrink-0" /> Radionice s Ilse Bošković Duić (od 25 €)</li>
+                      <li className="flex items-center"><Check size={14} className="text-edu-charcoal mr-2 shrink-0" /> Senzomotorika s Luize (od 20 €)</li>
+                      <li className="flex items-center"><Check size={14} className="text-edu-charcoal mr-2 shrink-0" /> Rad u malim grupama i individualni pristup</li>
                     </ul>
                   </div>
                   <div className="pt-6 border-t border-edu-charcoal/20 mt-4">
-                    <div className="text-2xs uppercase tracking-wide text-edu-charcoal/70 mb-1">Mjesečna cijena</div>
-                    <div className="text-2xl font-black mb-6">Više informacija uskoro</div>
-                    <button className="block w-full text-center bg-edu-charcoal hover:bg-edu-charcoal/90 text-edu-cream font-bold py-3.5 px-6 rounded-full text-sm transition-all shadow-md cursor-not-allowed opacity-80">
-                      Najava i više info kasnije
-                    </button>
+                    <div className="text-2xs uppercase tracking-wide text-edu-charcoal/70 mb-1">Cijena programa</div>
+                    <div className="text-2xl font-black mb-6">od €20 / radionica</div>
+                    <a href="#calculator" className="block w-full text-center bg-edu-charcoal hover:bg-edu-charcoal/90 text-edu-cream font-bold py-3.5 px-6 rounded-full text-sm transition-all shadow-md">
+                      Pogledaj opcije i cjenik
+                    </a>
                   </div>
                 </div>
               </div>
@@ -909,14 +917,157 @@ export default function App() {
                   )}
 
                   {calcService === 'radionice' && (
-                    <div className="space-y-4 bg-nordic-bg/40 p-4 rounded-2xl border border-nordic-border/80 text-xs">
-                      <div className="flex items-start space-x-2">
-                        <PaperIcon className="text-edu-sage w-5 h-5 shrink-0" />
-                        <div>
-                          <p className="font-bold text-nordic-heading">Kreću od jeseni</p>
-                          <p className="text-nordic-text font-light mt-1 text-sm">
-                            Stručno osoblje (edukacijski rehabilitator, radni terapeut, fonetičar rehabilitator, socijalni pedagog) - mjesečna cijena 60 eura za termin jednom tjedno. Najava i više info kasnije.
-                          </p>
+                    <div className="space-y-4 text-xs">
+                      {/* Opcija 1: Radionice s Ilse Bošković Duić */}
+                      <div
+                        onClick={() => setWorkshopProgram('ilse')}
+                        className={`p-4 sm:p-5 rounded-2xl border transition-all duration-200 cursor-pointer text-left ${
+                          workshopProgram === 'ilse'
+                            ? 'bg-edu-gold/10 border-edu-gold shadow-2xs'
+                            : 'bg-nordic-bg/40 border-nordic-border hover:border-edu-gold/50'
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex items-start gap-2.5">
+                            <span className="w-4 h-4 rounded-full border-2 border-edu-gold flex items-center justify-center shrink-0 mt-0.5">
+                              {workshopProgram === 'ilse' && (
+                                <span className="w-2 h-2 rounded-full bg-edu-gold" />
+                              )}
+                            </span>
+                            <div>
+                              <h4 className="font-bold text-sm text-nordic-heading leading-tight">
+                                1. Radionice s Ilse Bošković Duić
+                              </h4>
+                              <p className="text-2xs text-nordic-text font-light mt-0.5">
+                                Igrom do emocionalne pismenosti i socijalnih vještina
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Odabir paketa za Ilse */}
+                        <div className="mt-3.5 pl-6 sm:pl-7 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setWorkshopProgram('ilse');
+                              setWorkshopPackage('single');
+                            }}
+                            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                              workshopProgram === 'ilse' && workshopPackage === 'single'
+                                ? 'bg-edu-gold text-edu-cream border-edu-gold shadow-2xs font-bold'
+                                : 'bg-white dark:bg-nordic-bg/70 text-nordic-text border-nordic-border hover:border-edu-gold/60'
+                            }`}
+                          >
+                            <span className="block text-3xs uppercase tracking-wider opacity-85">Pojedinačna radionica</span>
+                            <span className="text-base font-black">25 €</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setWorkshopProgram('ilse');
+                              setWorkshopPackage('monthly');
+                            }}
+                            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                              workshopProgram === 'ilse' && workshopPackage === 'monthly'
+                                ? 'bg-edu-gold text-edu-cream border-edu-gold shadow-2xs font-bold'
+                                : 'bg-white dark:bg-nordic-bg/70 text-nordic-text border-nordic-border hover:border-edu-gold/60'
+                            }`}
+                          >
+                            <span className="block text-3xs uppercase tracking-wider opacity-85">Mjesečni paket (4x radionice)</span>
+                            <span className="text-base font-black">90 €</span>
+                          </button>
+                        </div>
+
+                        {/* Hyperlink za preuzimanje PDF brošure */}
+                        <div className="mt-3 pt-3 border-t border-nordic-border/50 pl-6 sm:pl-7">
+                          <a
+                            href="/igrom%20do%20emocija%20i%20soc.%20vjestina%20predstavljanje.pdf"
+                            download="igrom do emocija i soc. vjestina predstavljanje.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-edu-terracotta hover:text-edu-terracotta/80 hover:underline transition-colors group"
+                          >
+                            <Download size={14} className="shrink-0 group-hover:-translate-y-0.5 transition-transform" />
+                            <span>preuzmi brošuru s više informacija</span>
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Opcija 2: Senzomotoričke radionice s Luize */}
+                      <div
+                        onClick={() => setWorkshopProgram('luize')}
+                        className={`p-4 sm:p-5 rounded-2xl border transition-all duration-200 cursor-pointer text-left ${
+                          workshopProgram === 'luize'
+                            ? 'bg-edu-gold/10 border-edu-gold shadow-2xs'
+                            : 'bg-nordic-bg/40 border-nordic-border hover:border-edu-gold/50'
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex items-start gap-2.5">
+                            <span className="w-4 h-4 rounded-full border-2 border-edu-gold flex items-center justify-center shrink-0 mt-0.5">
+                              {workshopProgram === 'luize' && (
+                                <span className="w-2 h-2 rounded-full bg-edu-gold" />
+                              )}
+                            </span>
+                            <div>
+                              <h4 className="font-bold text-sm text-nordic-heading leading-tight">
+                                2. Senzomotoričke radionice s Luize
+                              </h4>
+                              <p className="text-2xs text-nordic-text font-medium mt-1 flex flex-wrap items-center gap-1.5">
+                                <span className="inline-flex items-center gap-1 bg-edu-sage/20 text-edu-charcoal px-2 py-0.5 rounded-md font-semibold">
+                                  <Clock size={11} className="shrink-0" /> Utorkom 18:30-19:30
+                                </span>
+                                <span className="bg-nordic-border/50 text-nordic-heading px-2 py-0.5 rounded-md">
+                                  Dob 2-4 godine
+                                </span>
+                                <span className="bg-nordic-border/50 text-nordic-heading px-2 py-0.5 rounded-md">
+                                  rad u malim grupama
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Odabir paketa za Luize */}
+                        <div className="mt-3.5 pl-6 sm:pl-7 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setWorkshopProgram('luize');
+                              setWorkshopPackage('single');
+                            }}
+                            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                              workshopProgram === 'luize' && workshopPackage === 'single'
+                                ? 'bg-edu-gold text-edu-cream border-edu-gold shadow-2xs font-bold'
+                                : 'bg-white dark:bg-nordic-bg/70 text-nordic-text border-nordic-border hover:border-edu-gold/60'
+                            }`}
+                          >
+                            <span className="block text-3xs uppercase tracking-wider opacity-85">Pojedinačna radionica</span>
+                            <span className="text-base font-black">20 €</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setWorkshopProgram('luize');
+                              setWorkshopPackage('monthly');
+                            }}
+                            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                              workshopProgram === 'luize' && workshopPackage === 'monthly'
+                                ? 'bg-edu-gold text-edu-cream border-edu-gold shadow-2xs font-bold'
+                                : 'bg-white dark:bg-nordic-bg/70 text-nordic-text border-nordic-border hover:border-edu-gold/60'
+                            }`}
+                          >
+                            <span className="block text-3xs uppercase tracking-wider opacity-85">Mjesečni paket</span>
+                            <span className="text-base font-black">70 €</span>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -933,6 +1084,18 @@ export default function App() {
                       <span className="text-xs text-nordic-text block mt-2 font-medium">PDV uključen u cijenu</span>
                       {addonDecoration && calcService === 'rođendani' && (
                         <span className="text-3xs text-edu-terracotta font-bold block mt-1.5">+ dekoracija po dogovoru</span>
+                      )}
+                      {calcService === 'radionice' && (
+                        <div className="mt-2.5 px-3 py-1.5 rounded-xl bg-edu-gold/15 text-nordic-heading text-2xs font-bold leading-tight">
+                          {workshopProgram === 'ilse' ? 'Radionice s Ilse Bošković Duić' : 'Senzomotoričke radionice s Luize'}
+                          <span className="block text-3xs text-nordic-text font-medium mt-0.5">
+                            {workshopPackage === 'single'
+                              ? 'Pojedinačna radionica'
+                              : workshopProgram === 'ilse'
+                              ? 'Mjesečni paket (4x radionice)'
+                              : 'Mjesečni paket'}
+                          </span>
+                        </div>
                       )}
                     </div>
 
@@ -1288,7 +1451,8 @@ usvojenih vještina kroz igru koja privlači dijete.
                   >
                     <option value="slobodna_igra">Slobodna razvojna igra u Grožnjanskoj (popust na više sati)</option>
                     <option value="rodjendan">Tematska Montessori Proslava Rođendana</option>
-                    <option value="radionica">Edukativna senzorna radionica s Teta Teom</option>
+                    <option value="radionica_ilse">Radionice s Ilse Bošković Duić (emocije i socijalne vještine)</option>
+                    <option value="radionica_luize">Senzomotoričke radionice s Luize (utorak 18:30-19:30)</option>
                   </select>
                 </div>
 
