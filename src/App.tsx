@@ -177,6 +177,7 @@ export default function App() {
   const [addonPinjata, setAddonPinjata] = useState(false);
   const [addonPolaroid, setAddonPolaroid] = useState(false);
   const [addonDecoration, setAddonDecoration] = useState(false);
+  const [addonTorta, setAddonTorta] = useState(false);
   const [workshopProgram, setWorkshopProgram] = useState<'ilse' | 'luize'>('ilse');
   const [workshopPackage, setWorkshopPackage] = useState<'single' | 'monthly'>('single');
 
@@ -867,6 +868,35 @@ export default function App() {
                               </span>
                             </div>
                           </label>
+
+                          {/* 6. La Dolce Vita torta */}
+                          <label className="flex items-start space-x-3 p-3 bg-nordic-bg/40 hover:bg-nordic-bg/70 rounded-2xl border border-nordic-border/80 cursor-pointer hover:border-edu-gold/50 transition-colors">
+                            <input 
+                              type="checkbox" 
+                              checked={addonTorta} 
+                              onChange={() => setAddonTorta(!addonTorta)} 
+                              className="accent-edu-gold w-4 h-4 mt-0.5 rounded cursor-pointer" 
+                            />
+                            <div className="text-xs flex-1">
+                              <div className="flex justify-between items-baseline flex-wrap gap-1">
+                                <span className="font-semibold text-nordic-heading">La Dolce Vita torta</span>
+                                <span className="text-2xs font-bold uppercase tracking-wider text-edu-terracotta bg-edu-terracotta/15 px-2.5 py-0.5 rounded-md">Po dogovoru</span>
+                              </div>
+                              <span className="text-nordic-text/75 font-light text-2xs block mt-0.5">
+                                Custom torta po izboru.{' '}
+                                <a 
+                                  href="https://www.instagram.com/la_dolce_vita_di_v?vrfl=ZTM1YWl4dDRzemo0" 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  onClick={(e) => e.stopPropagation()} 
+                                  className="text-edu-terracotta hover:underline font-semibold inline-flex items-center gap-1"
+                                >
+                                  <span>Instagram profil</span>
+                                  <Instagram size={11} className="inline shrink-0" />
+                                </a>
+                              </span>
+                            </div>
+                          </label>
                         </div>
 
                         {/* Napomena o vanjskim suradnicima */}
@@ -1084,6 +1114,9 @@ export default function App() {
                       <span className="text-xs text-nordic-text block mt-2 font-medium">PDV uključen u cijenu</span>
                       {addonDecoration && calcService === 'rođendani' && (
                         <span className="text-3xs text-edu-terracotta font-bold block mt-1.5">+ dekoracija po dogovoru</span>
+                      )}
+                      {addonTorta && calcService === 'rođendani' && (
+                        <span className="text-3xs text-edu-terracotta font-bold block mt-1.5">+ La Dolce Vita custom torta po dogovoru</span>
                       )}
                       {calcService === 'radionice' && (
                         <div className="mt-2.5 px-3 py-1.5 rounded-xl bg-edu-gold/15 text-nordic-heading text-2xs font-bold leading-tight">
