@@ -453,8 +453,8 @@ export default function App() {
                       <div className="absolute bottom-10 right-10 w-64 h-64 bg-edu-lilac/25 rounded-full filter blur-3xl"></div>
                       <div className="absolute inset-0 z-10 overflow-hidden border-4 border-nordic-card shadow-2xl rounded-tl-[10rem] rounded-br-[10rem] rounded-tr-[4rem] rounded-bl-[4rem]">
                         <img 
-                          src="/EDUBABY.jpg" 
-                          alt="Drvene dječje kućice za igru" 
+                          src="/Eduplay_djecja_igraonica_pula_slobodna_igra.webp" 
+                          alt="Slobodna dječja igra u EduPlay Pula" 
                           className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-700"
                         />
                       </div>
